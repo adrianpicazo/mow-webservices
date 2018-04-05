@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "988825721106",
+    "firebase_url": "https://mealsonwheels-2daf0.firebaseio.com",
+    "project_id": "mealsonwheels-2daf0",
+    "storage_bucket": "mealsonwheels-2daf0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988825721106:android:995a19a2d247d7f4",
+        "android_client_info": {
+          "package_name": "com.mealsonwheel.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988825721106-66j78m8t4efufa4j4487tsehnitu2rs1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiXn4nAoQcmhOr9zut8M3q_lHtyQOVI1w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
