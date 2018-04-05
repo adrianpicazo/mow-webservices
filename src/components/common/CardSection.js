@@ -1,18 +1,19 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const CardSection = (props) => {
+const CardSection = ({ children, style }) => {
+    const { defaultStyle } = styles;
+
     return (
-        <View style={[styles.containerStyle, props.style]}>
-            {props.children}
+        <View style={[defaultStyle, style]}>
+            {children}
         </View>
     );
 };
 
 const styles = {
-    containerStyle: {
+    defaultStyle: {
         padding: 5,
-        backgroundColor: '#fff',
         justifyContent: 'flex-start',
         flexDirection: 'row',
         position: 'relative'

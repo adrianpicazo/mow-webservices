@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Header from '../../headers/Header';
-import { Card, CardSection, Button, InputColumn, Failure } from '../../common/index';
+import { Card, CardSection, Button, InputColumn, Failure, BaseTemplate } from '../../common/index';
 import {
     orderAddressFormReset,
     orderAddressFormChange,
@@ -66,7 +65,7 @@ class OrderAddress extends Component {
         const { address } = this.props;
 
         return (
-            <View style={{ flex: 1 }}>
+            <BaseTemplate>
                 <Header
                     renderBackButton
                     headerTitle="Dirección del pedido"
@@ -94,7 +93,7 @@ class OrderAddress extends Component {
                         </Button>
                     </CardSection>
                 </Card>
-            </View>
+            </BaseTemplate>
         );
     }
 }

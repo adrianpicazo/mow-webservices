@@ -26,10 +26,10 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNFirebasePackage(),
-              new RNFirebaseAuthPackage(),
-              new RNFirebaseDatabasePackage()
+        new MainReactPackage(),
+        new RNFirebasePackage(),
+        new RNFirebaseAuthPackage(),
+        new RNFirebaseDatabasePackage()
       );
     }
 

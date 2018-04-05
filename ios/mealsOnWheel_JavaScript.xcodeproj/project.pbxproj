@@ -22,6 +22,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		189050A232534334A73A587B /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C8626C1BC9C4142AEC27B96 /* SimpleLineIcons.ttf */; };
 		1C1A63EC95EB4BB4B88C1721 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EC90F9123D94726BCAEE70F /* libRNFirebase.a */; };
+		38D6821DBBBBDB8B83F93048 /* libPods-mealsOnWheel_JavaScript.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1EE2ADAFE5606B2E0067F2 /* libPods-mealsOnWheel_JavaScript.a */; };
 		467C6EE4253341CBB0D9549E /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05FF8367AB104CDBB1EC45D3 /* MaterialIcons.ttf */; };
 		51DE388E13554E7C8D764791 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 549DD333D93547C680E2DEA1 /* libAirMaps.a */; };
 		55402F721D07464E80320095 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D015A2C4B21F43C4944346BA /* libRNVectorIcons.a */; };
@@ -346,11 +347,13 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = mealsOnWheel_JavaScript/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D72418FD666BB46393AE4FC /* Pods-mealsOnWheel_JavaScript.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealsOnWheel_JavaScript.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mealsOnWheel_JavaScript/Pods-mealsOnWheel_JavaScript.debug.xcconfig"; sourceTree = "<group>"; };
 		36D6D14A236C46EC8962DA85 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		3A2C5C5EAE6E4AC6AA553C5A /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		461F0FF924EA4C5193D1BC2B /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		549DD333D93547C680E2DEA1 /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		6A1EE2ADAFE5606B2E0067F2 /* libPods-mealsOnWheel_JavaScript.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mealsOnWheel_JavaScript.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7D4FBD3212834361A863B4FF /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		7D53559B31A5493EA44D8612 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -364,6 +367,7 @@
 		CA0B43F0C66443F4BA523A09 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		CFB2E8EDE19C4D9E9CFF17CF /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		D015A2C4B21F43C4944346BA /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		E34D8CD55743E6003A720CD2 /* Pods-mealsOnWheel_JavaScript.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealsOnWheel_JavaScript.release.xcconfig"; path = "Pods/Target Support Files/Pods-mealsOnWheel_JavaScript/Pods-mealsOnWheel_JavaScript.release.xcconfig"; sourceTree = "<group>"; };
 		F1BBB5C84D564576A805C2D9 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -388,6 +392,7 @@
 				55402F721D07464E80320095 /* libRNVectorIcons.a in Frameworks */,
 				51DE388E13554E7C8D764791 /* libAirMaps.a in Frameworks */,
 				1C1A63EC95EB4BB4B88C1721 /* libRNFirebase.a in Frameworks */,
+				38D6821DBBBBDB8B83F93048 /* libPods-mealsOnWheel_JavaScript.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
+				6A1EE2ADAFE5606B2E0067F2 /* libPods-mealsOnWheel_JavaScript.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -578,6 +584,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				9F1DCCA8D4AF4880A5579906 /* Resources */,
 				A114BD09206169D5008FC4C7 /* Recovered References */,
+				B05AD435855DC285B7EA2A10 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -653,6 +660,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B05AD435855DC285B7EA2A10 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2D72418FD666BB46393AE4FC /* Pods-mealsOnWheel_JavaScript.debug.xcconfig */,
+				E34D8CD55743E6003A720CD2 /* Pods-mealsOnWheel_JavaScript.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -660,6 +676,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "mealsOnWheel_JavaScript" */;
 			buildPhases = (
+				B338C0F020C1E552238BB233 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -1091,6 +1108,24 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		B338C0F020C1E552238BB233 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-mealsOnWheel_JavaScript-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1120,6 +1155,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D72418FD666BB46393AE4FC /* Pods-mealsOnWheel_JavaScript.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -1155,6 +1191,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E34D8CD55743E6003A720CD2 /* Pods-mealsOnWheel_JavaScript.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";

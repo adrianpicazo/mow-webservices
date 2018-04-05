@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextInput, View, Text } from 'react-native';
+import { colors } from '../../res/Colors';
 
 const InputRow = ({ label, value, onChangeText, placeholder, secureTextEntry }) => {
     const {
@@ -20,6 +21,7 @@ const InputRow = ({ label, value, onChangeText, placeholder, secureTextEntry }) 
                 style={[inputStyle, { width: '65%' }]}
                 value={value}
                 onChangeText={onChangeText}
+                underlineColorAndroid="transparent"
             />
         </View>
     );
@@ -44,6 +46,7 @@ const InputColumn = ({ label, value, onChangeText, placeholder, secureTextEntry 
                 style={[inputStyle, { width: '100%' }]}
                 value={value}
                 onChangeText={onChangeText}
+                underlineColorAndroid="transparent"
             />
         </View>
     );
@@ -55,16 +58,20 @@ const styles = {
         padding: 5,
         paddingLeft: 10,
         paddingRight: 10,
-        borderColor: '#d0d0d0',
+        borderColor: colors.BLUE.N700,
         borderWidth: 1,
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5
     },
     labelStyle: {
         fontSize: 18,
-        color: '#ffffff',
+        color: colors.WHITE,
         padding: 5,
         paddingLeft: 10,
         paddingRight: 10,
-        backgroundColor: '#d0d0d0'
+        backgroundColor: colors.BLUE.N700,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5
     },
     rowContainerStyle: {
         flexDirection: 'row',

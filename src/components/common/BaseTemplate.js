@@ -1,11 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
+import COStatusBar from '../auxiliar/COStatusBar';
+import { colors } from '../../res/Colors';
 
 const BaseTemplate = ({ children, newBaseTemplateStyle }) => {
     const { baseTemplateStyle } = styles;
 
     return (
         <View style={[baseTemplateStyle, newBaseTemplateStyle]}>
+            <COStatusBar />
             {children}
         </View>
     );
@@ -14,7 +17,7 @@ const BaseTemplate = ({ children, newBaseTemplateStyle }) => {
 const styles = {
     baseTemplateStyle: {
         flex: 1,
-        backgroundColor: '#48ff63'
+        backgroundColor: colors.BLUE.N050
     }
 };
 

@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { Card, CardSection, InputColumn, Button, Spinner, Failure, Success } from '../common/index';
+import {
+BaseTemplate,
+Card,
+CardSection,
+InputColumn,
+Button,
+Spinner,
+Failure,
+Success
+} from '../common/index';
+import Header from '../headers/Header';
 import {
     loginReset,
     loginFieldsChanged,
     loginUserError,
     loginUser
 } from '../../actions/index';
-
-import Header from '../headers/Header';
+import { colors } from '../../res/Colors';
 
 class LoginForm extends Component {
 
@@ -88,7 +97,7 @@ class LoginForm extends Component {
         const { cardStyle, cardSectionStyle, viewStyle } = styles;
 
         return (
-            <View style={{ flex: 1 }}>
+            <BaseTemplate>
                 <Header headerTitle="Acceso" />
 
                 <Card style={cardStyle}>
@@ -124,7 +133,7 @@ class LoginForm extends Component {
 
                     {this.renderLoginButtons()}
                 </Card>
-            </View>
+            </BaseTemplate>
         );
     }
 }
@@ -138,9 +147,7 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 10,
-        backgroundColor: '#ffffff',
-        padding: 5
+        padding: 5,
     },
     cardSectionStyle: {
         flexDirection: 'row',

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { Card } from '../../common/Card';
-import { CardSection } from '../../common/CardSection';
+import { Card, CardSection, BaseTemplate } from '../../common/index';
 import OrderBanner from '../order/OrderBanner';
 import Header from '../../headers/Header';
 import { addRestaurantToOrder } from '../../../actions/index';
@@ -32,7 +31,7 @@ class RestaurantInfo extends Component {
         const { name, type, thumbnail_image, description, categories } = this.props;
 
         return (
-            <View style={{ flex: 1 }}>
+            <BaseTemplate>
                 <Header
                     renderBackButton
                     headerTitle="Información del restaurante"
@@ -65,7 +64,7 @@ class RestaurantInfo extends Component {
 
                     <CategoryList categories={categories} />
                 </ScrollView>
-            </View>
+            </BaseTemplate>
         );
     }
 }

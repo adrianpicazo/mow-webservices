@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Card } from '../../common/Card';
-import { CardSection } from '../../common/CardSection';
+import { Card, CardSection, BaseTemplate } from '../../common/index';
 import OrderBanner from '../order/OrderBanner';
 import Header from '../../headers/Header';
 import ProductList from '../product/ProductList';
@@ -21,7 +20,7 @@ class CategoryInfo extends Component {
         const { name, products } = this.props.category;
 
         return (
-            <View style={{ flex: 1 }}>
+            <BaseTemplate>
                 <Header
                     renderBackButton
                     headerTitle="Productos"
@@ -40,7 +39,7 @@ class CategoryInfo extends Component {
                 </Card>
 
                 <ProductList products={products} />
-            </View>
+            </BaseTemplate>
         );
     }
 }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import OrderInfoTotal from './OrderInfoTotal';
 import OrderInfoOverview from './OrderInfoOverview';
 import Header from '../../headers/Header';
+import { BaseTemplate } from '../../common';
 
 class OrderInfo extends Component {
 
@@ -12,7 +13,7 @@ class OrderInfo extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <BaseTemplate>
                 <Header
                     renderBackButton
                     headerTitle="Tu pedido"
@@ -22,7 +23,7 @@ class OrderInfo extends Component {
                     <OrderInfoTotal />
                     <OrderInfoOverview />
                 </ScrollView>
-            </View>
+            </BaseTemplate>
         );
     }
 }

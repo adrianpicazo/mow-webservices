@@ -1,16 +1,19 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const Card = (props) => {
+const Card = ({ children, style }) => {
+    const { defaultStyle } = styles;
+
     return (
-        <View style={[styles.containerStyle, props.style]}>
-            {props.children}
+        <View style={[defaultStyle, style]}>
+            {children}
         </View>
     );
 };
 
 const styles = {
-    containerStyle: {
+    defaultStyle: {
+        /**
         borderWidth: 1,
         borderRadius: 2,
         borderColor: '#ddd',
@@ -23,6 +26,7 @@ const styles = {
         marginLeft: 5,
         marginRight: 5,
         marginTop: 10
+         **/
     }
 };
 

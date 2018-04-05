@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
+import { colors } from '../../../res/Colors';
 
 const BarButton = ({ onPress, image }) => {
     const { buttonStyle, imageStyle } = styles;
@@ -22,7 +23,7 @@ const styles = {
     imageStyle: {
         height: '100%',
         width: undefined,
-        tintColor: '#ffffff'
+        tintColor: colors.WHITE
     },
     buttonStyle: {
         height: 30,
@@ -32,7 +33,7 @@ const styles = {
         padding: 3,
         borderWidth: 1,
         borderRadius: 3,
-        borderColor: '#ffffff'
+        borderColor: colors.WHITE
     }
 };
 

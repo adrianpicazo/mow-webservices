@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Header from '../../headers/Header';
 import { restaurantsFetch } from '../../../actions/index';
 import RestaurantListItem from './RestaurantListItem';
+import { BaseTemplate } from '../../common';
 
 class RestaurantList extends Component {
 
@@ -39,7 +40,7 @@ class RestaurantList extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <BaseTemplate>
                 <Header
                     renderFilterMenuButton
                     renderUserAccountMenuButton
@@ -52,7 +53,7 @@ class RestaurantList extends Component {
                     dataSource={this.dataSource}
                     renderRow={this.renderRow}
                 />
-            </View>
+            </BaseTemplate>
         );
     }
 }

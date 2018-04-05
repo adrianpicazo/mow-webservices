@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Bar, BarCard, BarSection, BarButton } from '../common/bar';
+import { colors } from '../../res/Colors';
 import {
     IC_BLACK_LEFT_ARROW,
     IC_BLACK_FILTER_MENU_HORIZONTAL,
@@ -57,7 +58,7 @@ class Header extends Component {
         const { headerTextStyle } = styles;
 
         return (
-            <Bar>
+            <Bar newBarStyle={{ backgroundColor: colors.BLUE.N900 }}>
                 <BarCard newCardStyle={{ justifyContent: 'flex-start' }}>
                     {this.renderBackButton()}
                     <BarSection>

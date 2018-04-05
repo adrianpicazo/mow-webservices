@@ -2,7 +2,15 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, InputColumn, Button, Failure, Spinner } from '../common/index';
+import {
+    BaseTemplate,
+    Card,
+    CardSection,
+    InputColumn,
+    Button,
+    Failure,
+    Spinner
+} from '../common/index';
 import Header from '../headers/Header';
 import {
     registryReset,
@@ -86,7 +94,7 @@ class RegistryForm extends Component {
         const { name, surnames, email, password, repeatedPassword } = this.props.formFields;
 
         return (
-            <View style={{ flex: 1 }}>
+            <BaseTemplate>
                 <Header
                     renderBackButton
                     headerTitle="Registro"
@@ -161,7 +169,7 @@ class RegistryForm extends Component {
 
                     {this.renderRegistryButton()}
                 </Card>
-            </View>
+            </BaseTemplate>
         );
     }
 }
