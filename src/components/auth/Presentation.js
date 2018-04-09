@@ -18,7 +18,7 @@ class Presentation extends Component {
 
         return (
             <Template>
-                {/* Espacio */}
+                {/* Espaciado */}
                 <View style={{ flex: 1 }} />
 
                 <Card>
@@ -34,7 +34,7 @@ class Presentation extends Component {
                     </CardSection>
                 </Card>
 
-                {/* Espacio */}
+                {/* Espaciado */}
                 <View style={{ flex: 1 }} />
 
                 <Card>

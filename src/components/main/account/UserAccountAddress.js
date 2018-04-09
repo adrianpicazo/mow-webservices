@@ -3,12 +3,13 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import Header from '../../headers/Header';
 import {
+    Template,
     Card,
     CardSection,
     Button,
     InputColumn,
     Spinner,
-    Information,
+    Warning,
     Failure,
     Success
 } from '../../common/index';
@@ -18,6 +19,7 @@ import {
     addressUpdate,
     addressFormFailure
 } from '../../../actions/index';
+import { fonts } from '../../../res/Fonts';
 
 class UserAccountAddress extends Component {
 
@@ -41,98 +43,94 @@ class UserAccountAddress extends Component {
         }
     }
 
-    renderFeedbackAlert() {
-        const {
-            cardStyle,
-            cardSectionStyle,
-        } = styles;
+    renderFormSuccess() {
+        const { updated } = this.props;
 
-        const { updated, error } = this.props;
-        const { address } = this.props.account;
+        if (updated) {
+            return (
+                <CardSection>
+                    <Success title={'ÉXITO DE ACTUALIZACIÓN'}>
+                        La dirección se ha actualizado correctamente.
+                    </Success>
+                </CardSection>
+            );
+        }
+    }
 
-        if (address === '') {
+    renderFormFailure() {
+        const { error } = this.props;
+
+        if (error) {
             return (
-                <Card style={cardStyle}>
-                    <CardSection style={cardSectionStyle}>
-                        <Information>
-                            No se ha registrado ninguna dirección todavía.
-                        </Information>
-                    </CardSection>
-                </Card>
-            );
-        } else if (updated) {
-            return (
-                <Card style={cardStyle}>
-                    <CardSection style={cardSectionStyle}>
-                        <Success title={'ÉXITO DE ACTUALIZACIÓN'}>
-                            La dirección se ha actualizado correctamente.
-                        </Success>
-                    </CardSection>
-                </Card>
-            );
-        } else if (error !== '') {
-            return (
-                <Card style={cardStyle}>
-                    <CardSection style={cardSectionStyle}>
-                        <Failure title={'FALLO DE ACTUALIZACIÓN'}>
-                            {error}
-                        </Failure>
-                    </CardSection>
-                </Card>
+                <CardSection>
+                    <Failure title={'FALLO DE ACTUALIZACIÓN'}>
+                        {error}
+                    </Failure>
+                </CardSection>
             );
         }
     }
 
     renderActualAddress() {
-        const {
-            cardStyle,
-            cardSectionStyle,
-            labelStyle,
-            textStyle
-        } = styles;
-
-        const { loading } = this.props;
         const { address } = this.props.account;
+
+        if (address) {
+            return (
+                <CardSection style={{ flexDirection: 'column' }}>
+                    <Text style={fonts.HUGE_FONT}>
+                        Dirección actual
+                    </Text>
+                    <Text style={fonts.BIG_FONT}>
+                        {address}
+                    </Text>
+                </CardSection>
+            );
+        }
+
+        return (
+            <CardSection>
+                <Warning>
+                    No se ha registrado ninguna dirección todavía.
+                </Warning>
+            </CardSection>
+        );
+    }
+
+    renderRegistryButton() {
+        const { loading } = this.props;
 
         if (loading) {
             return <Spinner size="large" />;
         }
 
         return (
-            <Card style={cardStyle}>
-                <CardSection style={cardSectionStyle}>
-                    <Text style={labelStyle}>
-                        Dirección actual
-                    </Text>
-                    <Text style={textStyle}>
-                        { address || '-' }
-                    </Text>
+            <Card>
+                <CardSection>
+                    <Button onPress={this.onRegisterButtonPress}>
+                        Añadir
+                    </Button>
                 </CardSection>
             </Card>
         );
     }
 
     render() {
-        const {
-            cardStyle,
-            cardSectionStyle,
-        } = styles;
-
         const { address } = this.props;
 
         return (
-            <View style={{ flex: 1 }}>
+            <Template>
                 <Header
                     renderBackButton
                     renderUserAccountMenuButton
-                    headerTitle="Tu pedido"
+                    headerTitle="Tu dirección"
                 />
 
-                {this.renderFeedbackAlert()}
-                {this.renderActualAddress()}
+                <Card>
+                    {this.renderActualAddress()}
+                </Card>
 
-                <Card style={[cardStyle, { marginBottom: 10 }]}>
-                    <CardSection style={cardSectionStyle}>
+                <Card>
+                    <CardSection>
                         <InputColumn
                             label="Introduzca una dirección:"
                             placeholder="Partida Benadresa, 90, Castelló de la Plana"
@@ -144,46 +142,18 @@ class UserAccountAddress extends Component {
                         />
                     </CardSection>
 
-                    <CardSection style={cardSectionStyle}>
-                        <Button onPress={this.onRegisterButtonPress}>
-                            Registrar
-                        </Button>
-                    </CardSection>
+                    {this.renderFormSuccess()}
+                    {this.renderFormFailure()}
                 </Card>
-            </View>
+
+                {/* Espacio */}
+                <View style={{ flex: 1 }} />
+
+                {this.renderRegistryButton()}
+            </Template>
         );
     }
 }
-
-const styles = {
-    cardStyle: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        marginBottom: 0,
-        padding: 0
-    },
-    cardSectionStyle: {
-        width: '100%',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        borderBottomWidth: 0,
-    },
-    labelStyle: {
-        fontSize: 18,
-        color: '#ffffff',
-        padding: 5,
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: '#d0d0d0'
-    },
-    textStyle: {
-        fontSize: 18,
-        padding: 5,
-        paddingLeft: 10,
-        paddingRight: 10,
-    }
-};
 
 const mapStateToProps = ({ account, addressForm }) => {
     const { address, error, loading, updated } = addressForm;

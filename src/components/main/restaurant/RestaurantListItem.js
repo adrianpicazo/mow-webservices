@@ -45,6 +45,7 @@ class RestaurantListItem extends Component {
                         <Image
                             style={imageStyle}
                             source={{ uri: thumbnail_image }}
+                            resizeMode="contain"
                         />
                     </View>
                     <View style={headerContentStyle}>

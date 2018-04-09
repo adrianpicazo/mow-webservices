@@ -34,6 +34,14 @@
           "products": []
         },
         {
+          "name": "Sopas",
+          "products": []
+        },
+        {
+          "name": "Mariscos",
+          "products": []
+        },
+        {
           "name": "Bebidas",
           "products": []
         },
@@ -137,6 +145,16 @@
       "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/French_fries_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : []
+    }
+  },
+  "users" : {
+    "7mkovZXaOwSTjvk9XQYrgBoZMG82" : {
+      "account" : {
+        "address" : "Avd/ del Mar, Nº53, 5A",
+        "email" : "test@test.com",
+        "name" : "Adrián",
+        "surnames": "Picazo Marín"
+      }
     }
   }
 }

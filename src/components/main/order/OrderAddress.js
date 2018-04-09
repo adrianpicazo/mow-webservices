@@ -31,37 +31,25 @@ class OrderAddress extends Component {
             this.props.orderAddressFormFailure('Existen campos vacíos.');
         } else {
             this.props.orderAddressAddition(address);
-
             Actions.push('orderDoneOverview');
         }
     }
 
-    renderFeedbackAlert() {
-        const {
-            cardStyle,
-            cardSectionStyle,
-        } = styles;
-
+    renderOrderAddressError() {
         const { error } = this.props;
 
-        if (error !== '') {
+        if (error) {
             return (
-                <Card style={cardStyle}>
-                    <CardSection style={cardSectionStyle}>
-                        <Failure title={'FALLO DE FORMULARIO'}>
-                            {error}
-                        </Failure>
-                    </CardSection>
-                </Card>
+                <CardSection>
+                    <Failure title={'FALLO DE FORMULARIO'}>
+                        {error}
+                    </Failure>
+                </CardSection>
             );
         }
     }
 
     render() {
-        const {
-            cardSectionStyle
-        } = styles;
-
         const { address } = this.props;
 
         return (
@@ -72,10 +60,8 @@ class OrderAddress extends Component {
                     newHeaderTextStyle={{ fontSize: 20 }}
                 />
 
-                {this.renderFeedbackAlert()}
-
                 <Card>
-                    <CardSection style={cardSectionStyle}>
+                    <CardSection>
                         <InputColumn
                             label="Introduzca su dirección:"
                             placeholder="Partida Benadresa, 90, Castelló de la Plana"
@@ -87,9 +73,13 @@ class OrderAddress extends Component {
                         />
                     </CardSection>
 
-                    <CardSection style={cardSectionStyle}>
+                    {this.renderOrderAddressError()}
+                </Card>
+
+                <Card>
+                    <CardSection>
                         <Button onPress={this.onContinueButtonPress}>
-                            Continuar
+                            Finalizar pedido
                         </Button>
                     </CardSection>
                 </Card>
@@ -97,36 +87,6 @@ class OrderAddress extends Component {
         );
     }
 }
-
-const styles = {
-    cardStyle: {
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        marginBottom: 0,
-        padding: 0
-    },
-    cardSectionStyle: {
-        width: '100%',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        borderBottomWidth: 0,
-    },
-    labelStyle: {
-        fontSize: 18,
-        color: '#ffffff',
-        padding: 5,
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: '#d0d0d0'
-    },
-    textStyle: {
-        fontSize: 18,
-        padding: 5,
-        paddingLeft: 10,
-        paddingRight: 10,
-    }
-};
 
 const mapStateToProps = ({ account, orderAddressForm }) => {
     const { address, error } = orderAddressForm;

@@ -4,6 +4,8 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { Card, CardSection } from '../../common/index';
 import { Button } from '../../common/Buttons';
+import { colors } from '../../../res/Colors';
+import { fonts } from '../../../res/Fonts';
 
 class OrderInfoTotal extends Component {
 
@@ -12,24 +14,20 @@ class OrderInfoTotal extends Component {
     }
 
     renderEmptyOrder() {
-        const {
-            orderCardStyle,
-            orderTotalSectionStyle,
-            orderTotalTextStyle
-        } = styles;
+        const { orderCardStyle } = styles;
 
         return (
             <Card style={orderCardStyle}>
-                <CardSection style={orderTotalSectionStyle}>
-                    <Text style={[orderTotalTextStyle, { fontSize: 24 }]}>
+                <CardSection style={{ flexDirection: 'column' }}>
+                    <Text style={fonts.HUGE_FONT}>
                         PEDIDO VACÍO
                     </Text>
-                    <Text style={orderTotalTextStyle}>
+                    <Text style={fonts.NORMAL_FONT}>
                         ELIJA ALGO RICO
                     </Text>
                 </CardSection>
 
-                <CardSection style={{ borderBottomWidth: 0 }}>
+                <CardSection>
                     <Button onPress={() => Actions.pop()}>
                         Añadir platos
                     </Button>
@@ -39,38 +37,34 @@ class OrderInfoTotal extends Component {
     }
 
     renderOrder() {
-        const {
-            orderCardStyle,
-            orderTotalSectionStyle,
-            orderTotalTextStyle
-        } = styles;
+        const { orderCardStyle } = styles;
 
         const { numProducts, totalPrice } = this.props;
 
         return (
             <Card style={orderCardStyle}>
-                <CardSection style={orderTotalSectionStyle}>
-                    <Text style={[orderTotalTextStyle, { fontSize: 24 }]}>
+                <CardSection style={{ flexDirection: 'column' }}>
+                    <Text style={fonts.HUGE_FONT}>
                         TOTAL DEL PEDIDO
                     </Text>
-                    <Text style={orderTotalTextStyle}>
+                    <Text style={fonts.NORMAL_FONT}>
                         {numProducts} PRODUCTOS
                     </Text>
                 </CardSection>
 
-                <CardSection style={orderTotalSectionStyle}>
+                <CardSection>
                     <Text
-                        style={[orderTotalTextStyle, {
+                        style={{
                             fontSize: 22,
                             color: '#47dd97',
                             fontWeight: 'bold'
-                        }]}
+                        }}
                     >
                         € {totalPrice}
                     </Text>
                 </CardSection>
 
-                <CardSection style={{ borderBottomWidth: 0 }}>
+                <CardSection>
                     <Button onPress={() => Actions.pop()}>
                         Añadir platos
                     </Button>
@@ -88,18 +82,14 @@ class OrderInfoTotal extends Component {
 
 const styles = {
     orderCardStyle: {
-        padding: 10,
-        backgroundColor: '#fff'
-    },
-    orderTotalSectionStyle: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignContent: 'center',
-        borderBottomWidth: 0,
-    },
-    orderTotalTextStyle: {
-        fontSize: 12,
-        textAlign: 'center'
+        borderWidth: 2,
+        borderStyle: 'dotted',
+        borderColor: colors.BLUE.N700,
+        borderRadius: 5,
+        marginTop: 15,
+        marginBottom: 10,
+        marginRight: 15,
+        marginLeft: 15
     }
 };
 

@@ -2,11 +2,11 @@ import React from 'react';
 import { View } from 'react-native';
 import { colors } from '../../res/Colors';
 
-const HorizontalRule = ({ style }) => {
+const HorizontalRule = ({ style, marginLeft = 0, marginRight = 0 }) => {
     const { defaultStyle } = styles.horizontal;
 
     return (
-        <View style={[defaultStyle, style]} />
+        <View style={[defaultStyle, { marginLeft, marginRight }, style]} />
     );
 };
 

@@ -4,19 +4,19 @@ const INITIAL_STATE = {
     id: -1,
     name: '',
     type: '',
-    thumbnailImage: '',
+    image: '',
     description: '',
     categories: null
 };
 
 const passRestaurantPropsToState = (state, action) => {
-    const { id, name, type, thumbnailImage, description, categories } = action.payload;
+    const { id, name, type, thumbnail_image, description, categories } = action.payload;
     const newState = { ...state, ...INITIAL_STATE };
 
     newState.id = id;
     newState.name = name;
     newState.type = type;
-    newState.thumbnailImage = thumbnailImage;
+    newState.image = thumbnail_image;
     newState.description = description;
     newState.categories = categories;
 

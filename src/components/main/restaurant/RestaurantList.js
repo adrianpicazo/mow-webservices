@@ -1,16 +1,11 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Dimensions, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import Header from '../../headers/Header';
 import { restaurantsFetch } from '../../../actions/index';
 import RestaurantListItem from './RestaurantListItem';
 import { Template, HorizontalRule } from '../../common';
-
-const screenSize = Dimensions.get('window');
-const itemSeparatorLeftMargin = 65;
-const itemSeparatorRightMargin = 30;
-const itemSeparatorWidth = screenSize.width - (itemSeparatorLeftMargin + itemSeparatorRightMargin);
 
 class RestaurantList extends Component {
 
@@ -39,11 +34,8 @@ class RestaurantList extends Component {
                     keyExtractor={item => item.id.toString()}
                     style={flatListStyle}
                     ItemSeparatorComponent={() => <HorizontalRule
-                        style={{
-                            width: itemSeparatorWidth,
-                            marginLeft: itemSeparatorLeftMargin,
-                            marginRight: itemSeparatorRightMargin
-                        }}
+                        marginLeft={65}
+                        marginRight={30}
                     />}
                 />
             </Template>

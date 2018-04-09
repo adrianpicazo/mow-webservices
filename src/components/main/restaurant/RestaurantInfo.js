@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Text, Image, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, Template, ScrollTemplate } from '../../common/index';
+import { Card, CardSection, Template, ScrollTemplate, HorizontalRule, Warning } from '../../common';
 import OrderBanner from '../order/OrderBanner';
 import Header from '../../headers/Header';
 import { addRestaurantToOrder } from '../../../actions/index';
-import CategoryList from '../category/CategoryList';
-import { colors } from '../../../res/Colors';
+import CategoryListItem from './CategoryListItem';
 
 class RestaurantInfo extends Component {
 
@@ -21,15 +20,44 @@ class RestaurantInfo extends Component {
         this.props.addRestaurantToOrder(restaurant);
     }
 
+    renderCategoryList() {
+        const { categories } = this.props;
+        const { categoryListStyle } = styles;
+
+        if (categories === undefined) {
+            return (
+                <Card>
+                    <CardSection>
+                        <Warning>
+                            No existen categorías de productos para este restaurante.
+                        </Warning>
+                    </CardSection>
+                </Card>
+            );
+        }
+
+        // TODO: revisar la key
+        return (
+            <FlatList
+                data={categories}
+                renderItem={({ item }) => <CategoryListItem category={item} />}
+                keyExtractor={item => item.name}
+                style={categoryListStyle}
+                ItemSeparatorComponent={() => <HorizontalRule />}
+            />
+        );
+    }
+
     render() {
         const {
+            cardStyle,
             thumbnailStyle,
             headerContentStyle,
             thumbnailContainerStyle,
             headerTextStyle
-        } = styles;
+        } = styles.restaurant;
 
-        const { name, type, thumbnail_image, description, categories } = this.props;
+        const { name, type, image, description } = this.props;
 
         return (
             <Template>
@@ -39,15 +67,15 @@ class RestaurantInfo extends Component {
                     newHeaderTextStyle={{ fontSize: 20 }}
                 />
 
-                <ScrollTemplate>
-                    <OrderBanner />
+                <OrderBanner />
 
-                    <Card>
+                <ScrollTemplate>
+                    <Card style={cardStyle}>
                         <CardSection>
                             <View style={thumbnailContainerStyle}>
                                 <Image
                                     style={thumbnailStyle}
-                                    source={{ uri: thumbnail_image }}
+                                    source={{ uri: image }}
                                     resizeMode="contain"
                                 />
                             </View>
@@ -64,7 +92,7 @@ class RestaurantInfo extends Component {
                         </CardSection>
                     </Card>
 
-                    <CategoryList categories={categories} />
+                    {this.renderCategoryList()}
                 </ScrollTemplate>
             </Template>
         );
@@ -72,33 +100,46 @@ class RestaurantInfo extends Component {
 }
 
 const styles = {
-    headerContentStyle: {
-        flexDirection: 'column',
-        justifyContent: 'space-around'
+    restaurant: {
+        cardStyle: {
+            alignItems: 'flex-start',
+            paddingTop: 0,
+            paddingRight: 10,
+            paddingLeft: 10,
+            marginBottom: 5
+        },
+        headerContentStyle: {
+            flexDirection: 'column',
+            justifyContent: 'space-around'
+        },
+        headerTextStyle: {
+            fontSize: 18
+        },
+        thumbnailStyle: {
+            height: '100%',
+            width: undefined,
+        },
+        thumbnailContainerStyle: {
+            height: 50,
+            width: 50,
+            marginRight: 10,
+            padding: 3
+        }
     },
-    headerTextStyle: {
-        fontSize: 18
-    },
-    thumbnailStyle: {
-        height: '100%',
-        width: undefined,
-        backgroundColor: '#10fffa'
-
-    },
-    thumbnailContainerStyle: {
-        height: 50,
-        width: 50,
-        marginRight: 0,
-        marginLeft: 0,
-        padding: 3,
-        backgroundColor: '#fff713'
+    categoryListStyle: {
+        position: 'relative',
+        width: '100%',
+        marginTop: -5,
+        paddingLeft: 15,
+        paddingRight: 15,
+        marginBottom: 5
     }
 };
 
 const mapStateToProps = ({ restaurantSelected }) => {
-    const { id, name, type, thumbnailImage, description, categories } = restaurantSelected;
+    const { id, name, type, image, description, categories } = restaurantSelected;
 
-    return { id, name, type, thumbnailImage, description, categories };
+    return { id, name, type, image, description, categories };
 };
 
 export default connect(mapStateToProps, { addRestaurantToOrder })(RestaurantInfo);

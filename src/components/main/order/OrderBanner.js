@@ -14,7 +14,6 @@ class OrderBanner extends Component {
 
     render() {
         const {
-            bannerCardStyle,
             bannerStyle,
             imageContainerStyle,
             bannerTextStyle,
@@ -24,7 +23,7 @@ class OrderBanner extends Component {
         const { numProducts, totalPrice } = this.props;
 
         return (
-            <Card style={bannerCardStyle}>
+            <Card style={{ width: '100%' }}>
                 <TouchableOpacity
                     onPress={() => Actions.push('orderInfo')}
                     style={bannerStyle}
@@ -50,13 +49,6 @@ class OrderBanner extends Component {
 }
 
 const styles = {
-    bannerCardStyle: {
-        width: '100%',
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 20,
-        paddingRight: 20
-    },
     bannerTextStyle: {
         fontSize: 20,
         color: colors.WHITE,

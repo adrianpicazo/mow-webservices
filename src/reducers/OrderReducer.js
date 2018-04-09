@@ -17,6 +17,7 @@ const EXAMPLE_STATE = {
     address: ''
 };
 
+// EXAMPLE_STATE
 // TODO: borrar el estado ejemplo.
 const INITIAL_STATE = {
     selectedRestaurantId: 0,

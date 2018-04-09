@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
 import OrderInfoTotal from './OrderInfoTotal';
 import OrderInfoOverview from './OrderInfoOverview';
 import Header from '../../headers/Header';
-import { Template } from '../../common';
+import { ScrollTemplate, Template } from '../../common';
 
 class OrderInfo extends Component {
 
@@ -19,10 +18,10 @@ class OrderInfo extends Component {
                     headerTitle="Tu pedido"
                 />
 
-                <ScrollView style={{ flex: 1 }}>
+                <ScrollTemplate>
                     <OrderInfoTotal />
                     <OrderInfoOverview />
-                </ScrollView>
+                </ScrollTemplate>
             </Template>
         );
     }

@@ -24,17 +24,17 @@ const CardSection = ({ children, style }) => {
 const styles = {
     card: {
         defaultStyle: {
-            backgroundColor: '#ff5e44',
+            //backgroundColor: '#ff5e44',
             position: 'relative',
             flexDirection: 'column',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            padding: 5,
+            padding: 10,
         }
     },
     cardSection: {
         defaultStyle: {
-            backgroundColor: '#08ff1a',
+            //backgroundColor: '#08ff1a',
             position: 'relative',
             flexDirection: 'row',
             justifyContent: 'flex-start',

@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { Card, CardSection, Button } from '../../common/index';
+import {
+    ScrollTemplate,
+    Template,
+    Card,
+    CardSection,
+    Button,
+    HorizontalRule
+} from '../../common/index';
 import { resetOrder } from '../../../actions/index';
 import Header from '../../headers/Header';
+import { fonts } from '../../../res/Fonts';
 
 class OrderDoneOverview extends Component {
 
@@ -21,20 +29,19 @@ class OrderDoneOverview extends Component {
     }
 
     renderRow(itemName, itemPrice, quantity, index) {
-        const {
-            overviewTextContainerStyle,
-            overviewTextStyle,
-        } = styles;
-
         return (
-            <View key={index} style={overviewTextContainerStyle}>
-                <Text style={overviewTextStyle}>
+            <CardSection key={index}>
+                <Text style={fonts.NORMAL_FONT}>
                     {itemName} {quantity === undefined ? '' : `(${quantity})`}
                 </Text>
-                <Text style={overviewTextStyle}>
+
+                {/* Espaciado */}
+                <View style={{ flex: 1 }} />
+
+                <Text style={fonts.NORMAL_FONT}>
                     € {itemPrice}
                 </Text>
-            </View>
+            </CardSection>
         );
     }
 
@@ -43,107 +50,85 @@ class OrderDoneOverview extends Component {
             this.renderRow(name, priceEuros, quantity, index));
     }
 
-    render() {
-        const {
-            cardStyle,
-            cardSectionStyle,
-            headerTitleContainerStyle,
-            headerTitleTextStyle,
-            headerSubtitleTextStyle,
-            overviewSectionStyle,
-            overviewTitleStyle,
-            overviewTotalTextStyle,
-            overviewTextContainerStyle,
-            horizontalRuleStyle
-        } = styles;
+    renderRule() {
+        return (
+            <HorizontalRule style={{ width: 275, marginTop: 5, marginBottom: 5 }} />
+        );
+    }
 
-        const {
-            products,
-            subtotalPrice,
-            otherExpenses,
-            totalPrice,
-            address
-        } = this.props;
+    render() {
+        const { headerTitleContainerStyle, headerTitleTextStyle } = styles;
+
+        const { products, subtotalPrice, otherExpenses, totalPrice, address } = this.props;
 
         return (
-            <View style={{ flex: 1 }}>
+            <Template>
                 <Header headerTitle="Tu pedido" />
 
-                <ScrollView style={{ flex: 1 }}>
-                    <Card style={[cardStyle, { backgroundColor: '#6add91' }]}>
-                        <View style={headerTitleContainerStyle}>
-                            <Text style={headerTitleTextStyle}>
-                                PEDIDO REALIZADO{'\n'}CON ÉXITO
-                            </Text>
-                        </View>
+                <ScrollTemplate>
+                    <Card style={headerTitleContainerStyle}>
+                        <Text style={headerTitleTextStyle}>
+                            PEDIDO REALIZADO{'\n'}CON ÉXITO
+                        </Text>
                     </Card>
 
-                    <Card style={cardStyle}>
-                        <CardSection style={cardSectionStyle}>
-                            <Text style={headerSubtitleTextStyle}>
-                                {`DIRECCIÓN\n${address}`}
+                    <Card>
+                        <CardSection style={{ flexDirection: 'column' }}>
+                            <Text style={fonts.BIG_FONT}>
+                                DIRECCIÓN
+                            </Text>
+                            <Text style={fonts.NORMAL_FONT}>
+                                {address}
                             </Text>
                         </CardSection>
                     </Card>
 
-                    <Card style={cardStyle}>
-                        <CardSection style={overviewSectionStyle}>
-                            <Text style={overviewTitleStyle}>
+                    <Card style={{ margin: 10 }}>
+                        <CardSection>
+                            <Text style={fonts.HUGE_FONT}>
                                 RESUMEN DEL PEDIDO
                             </Text>
                         </CardSection>
 
-                        <View style={horizontalRuleStyle} />
+                        {this.renderRule()}
+                        {this.renderRows(products)}
+                        {this.renderRule()}
+                        {this.renderRow('SUBTOTAL', subtotalPrice)}
+                        {this.renderRows(otherExpenses)}
+                        {this.renderRule()}
 
-                        <CardSection style={overviewSectionStyle}>
-                            {this.renderRows(products)}
+                        <CardSection>
+                            <Text style={[fonts.BIG_FONT, { fontWeight: 'bold' }]}>
+                                TOTAL
+                            </Text>
+
+                            {/* Espaciado */}
+                            <View style={{ flex: 1 }} />
+
+                            <Text style={[fonts.BIG_FONT, { fontWeight: 'bold' }]}>
+                                € {totalPrice}
+                            </Text>
                         </CardSection>
 
-                        <View style={horizontalRuleStyle} />
-
-                        <CardSection style={overviewSectionStyle}>
-                            {this.renderRow('SUBTOTAL', subtotalPrice)}
-                            {this.renderRows(otherExpenses)}
-                        </CardSection>
-
-                        <View style={horizontalRuleStyle} />
-
-                        <CardSection style={overviewSectionStyle}>
-                            <View style={overviewTextContainerStyle}>
-                                <Text style={overviewTotalTextStyle}>TOTAL</Text>
-                                <Text style={overviewTotalTextStyle}>€ {totalPrice}</Text>
-                            </View>
-                        </CardSection>
-
-                        <CardSection style={[overviewSectionStyle, { marginTop: 5 }]}>
-                            <Button onPress={this.onButtonPress}>Volver</Button>
+                        <CardSection style={{ marginTop: 10 }}>
+                            <Button onPress={this.onButtonPress}>
+                                Volver
+                            </Button>
                         </CardSection>
                     </Card>
-                </ScrollView>
-            </View>
+                </ScrollTemplate>
+            </Template>
         );
     }
 }
 
 const styles = {
-    cardStyle: {
-        flex: 1,
-        marginBottom: 5,
-        padding: 10,
-        backgroundColor: '#fff'
-    },
-    cardSectionStyle: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        borderBottomWidth: 0,
-    },
     headerTitleContainerStyle: {
-        flex: 1,
-        width: '100%',
+        width: '80%',
         backgroundColor: '#6add91',
-        borderRadius: 10
+        borderRadius: 5,
+        marginTop: 20,
+        marginBottom: 5
     },
     headerTitleTextStyle: {
         width: '100%',
@@ -151,37 +136,6 @@ const styles = {
         textAlign: 'center',
         color: '#ffffff',
         fontWeight: 'bold'
-    },
-    headerSubtitleTextStyle: {
-        width: '100%',
-        fontSize: 14,
-        textAlign: 'center',
-        lineHeight: 20
-    },
-    overviewTitleStyle: {
-        fontSize: 22
-    },
-    overviewTextStyle: {
-        fontSize: 14
-    },
-    overviewTotalTextStyle: {
-        fontSize: 18,
-        fontWeight: 'bold'
-    },
-    overviewTextContainerStyle: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 5,
-        marginBottom: 5,
-    },
-    overviewSectionStyle: {
-        flexDirection: 'column',
-        borderBottomWidth: 0
-    },
-    horizontalRuleStyle: {
-        backgroundColor: '#dddddd',
-        height: 2
     }
 };
 

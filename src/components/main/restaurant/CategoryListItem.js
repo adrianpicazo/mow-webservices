@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { CardSection } from '../../common/index';
+import { fonts } from '../../../res/Fonts';
 
 class CategoryListItem extends Component {
 
@@ -14,11 +15,6 @@ class CategoryListItem extends Component {
     }
 
     render() {
-        const {
-            headerContentStyle,
-            headerTextStyle
-        } = styles;
-
         const { name } = this.props.category;
 
         return (
@@ -26,26 +22,13 @@ class CategoryListItem extends Component {
                 onPress={this.onCategoryItemPress.bind(this)}
             >
                 <CardSection>
-                    <View style={headerContentStyle}>
-                        <Text style={headerTextStyle}>
-                            {name}
-                        </Text>
-                    </View>
+                    <Text style={[fonts.BIG_FONT, { padding: 5 }]}>
+                        {name}
+                    </Text>
                 </CardSection>
             </TouchableOpacity>
         );
     }
 }
-
-const styles = {
-    headerContentStyle: {
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-    },
-    headerTextStyle: {
-        fontSize: 18,
-        padding: 5
-    }
-};
 
 export default CategoryListItem;

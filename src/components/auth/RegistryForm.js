@@ -60,11 +60,13 @@ class RegistryForm extends Component {
     }
 
     renderRegistryError() {
-        if (this.props.error) {
+        const { error } = this.props;
+
+        if (error) {
             return (
                 <CardSection>
                     <Failure title={'FALLO DE REGISTRO'}>
-                        {this.props.error}
+                        {error}
                     </Failure>
                 </CardSection>
             );
@@ -72,7 +74,9 @@ class RegistryForm extends Component {
     }
 
     renderRegistryButton() {
-        if (this.props.loading) {
+        const { loading } = this.props;
+
+        if (loading) {
             return <Spinner size="large" />;
         }
 

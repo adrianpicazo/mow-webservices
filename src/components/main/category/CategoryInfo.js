@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Card, CardSection, Template } from '../../common/index';
+import { Text, FlatList } from 'react-native';
+import { Card, CardSection, Template, Warning, HorizontalRule } from '../../common/index';
 import OrderBanner from '../order/OrderBanner';
 import Header from '../../headers/Header';
-import ProductList from '../product/ProductList';
+import ProductListItem from './ProductListItem';
+import { fonts } from '../../../res/Fonts';
 
 class CategoryInfo extends Component {
 
@@ -11,13 +12,37 @@ class CategoryInfo extends Component {
         super(props, context);
     }
 
-    render() {
-        const {
-            headerContentStyle,
-            headerTextStyle
-        } = styles;
+    renderProductList() {
+        const { productListStyle } = styles;
+        const { products } = this.props.category;
 
-        const { name, products } = this.props.category;
+        if (products === undefined) {
+            return (
+                <Card>
+                    <CardSection>
+                        <Warning>
+                            No existen productos para esta categoría.
+                        </Warning>
+                    </CardSection>
+                </Card>
+            );
+        }
+
+        // TODO: revisar la key
+        return (
+            <FlatList
+                data={products}
+                renderItem={({ item }) => <ProductListItem product={item} />}
+                keyExtractor={item => item.name}
+                style={productListStyle}
+                ItemSeparatorComponent={() => <HorizontalRule />}
+            />
+        );
+    }
+
+    render() {
+        const { cardStyle } = styles;
+        const { name } = this.props.category;
 
         return (
             <Template>
@@ -28,30 +53,36 @@ class CategoryInfo extends Component {
 
                 <OrderBanner />
 
-                <Card>
+                <Card style={cardStyle}>
                     <CardSection>
-                        <View style={headerContentStyle}>
-                            <Text style={headerTextStyle}>
-                                {name}
-                            </Text>
-                        </View>
+                        <Text style={[fonts.BIG_FONT, { padding: 5 }]}>
+                            {name.toUpperCase()}
+                        </Text>
                     </CardSection>
                 </Card>
 
-                <ProductList products={products} />
+                {this.renderProductList()}
             </Template>
         );
     }
 }
 
 const styles = {
-    headerContentStyle: {
-        flexDirection: 'row',
-        justifyContent: 'space-around'
+    cardStyle: {
+        width: '100%',
+        alignItems: 'flex-start',
+        paddingTop: 0,
+        paddingRight: 10,
+        paddingLeft: 10,
+        marginBottom: 5
     },
-    headerTextStyle: {
-        fontSize: 18,
-        padding: 5
+    productListStyle: {
+        position: 'relative',
+        width: '100%',
+        marginTop: 0,
+        paddingLeft: 15,
+        paddingRight: 15,
+        marginBottom: 5
     }
 };
 

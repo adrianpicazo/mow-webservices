@@ -14,11 +14,14 @@ const Template = ({ children, style }) => {
     );
 };
 
-const ScrollTemplate = ({ children, style }) => {
-    const { defaultContentContainerStyle } = styles.scrollTemplate;
+const ScrollTemplate = ({ children, style, containerStyle }) => {
+    const { defaultStyle, defaultContentContainerStyle } = styles.scrollTemplate;
 
     return (
-        <ScrollView contentContainerStyle={[defaultContentContainerStyle, style]}>
+        <ScrollView
+            style={[defaultStyle, style]}
+            contentContainerStyle={[defaultContentContainerStyle, containerStyle]}
+        >
             {children}
         </ScrollView>
     );
@@ -56,6 +59,9 @@ const styles = {
         }
     },
     scrollTemplate: {
+        defaultStyle: {
+            width: '100%'
+        },
         defaultContentContainerStyle: {
             flexGrow: 1,
             position: 'relative',
