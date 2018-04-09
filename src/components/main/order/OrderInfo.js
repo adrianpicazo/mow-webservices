@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import OrderInfoTotal from './OrderInfoTotal';
 import OrderInfoOverview from './OrderInfoOverview';
 import Header from '../../headers/Header';
-import { BaseTemplate } from '../../common';
+import { Template } from '../../common';
 
 class OrderInfo extends Component {
 
@@ -13,7 +13,7 @@ class OrderInfo extends Component {
 
     render() {
         return (
-            <BaseTemplate>
+            <Template>
                 <Header
                     renderBackButton
                     headerTitle="Tu pedido"
@@ -23,7 +23,7 @@ class OrderInfo extends Component {
                     <OrderInfoTotal />
                     <OrderInfoOverview />
                 </ScrollView>
-            </BaseTemplate>
+            </Template>
         );
     }
 }

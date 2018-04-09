@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { Card } from '../../common/Card';
-import { CardSection } from '../../common/CardSection';
-import { Button } from '../../common/Button';
+import { Card, CardSection, Button } from '../../common/index';
 import { IC_WHITE_MINUS } from '../../../res/images/index';
 import { removeProductFromOrder } from '../../../actions/index';
 
@@ -92,6 +90,12 @@ class OrderInfoOverview extends Component {
 
         return (
             <Card style={[orderCardStyle, { flex: 1, marginBottom: 5 }]}>
+                <CardSection style={[orderOverviewSectionStyle, { marginTop: 10 }]}>
+                    <Button onPress={() => Actions.push('orderAddress')}>
+                        Realizar pedido
+                    </Button>
+                </CardSection>
+
                 <CardSection style={orderOverviewSectionStyle}>
                     <Text style={orderOverviewTitleStyle}>
                         RESUMEN DEL PEDIDO
@@ -124,11 +128,7 @@ class OrderInfoOverview extends Component {
                     </View>
                 </CardSection>
 
-                <CardSection style={[orderOverviewSectionStyle, { marginTop: 10 }]}>
-                    <Button onPress={() => Actions.push('orderAddress')}>
-                        Realizar pedido
-                    </Button>
-                </CardSection>
+
             </Card>
         );
     }

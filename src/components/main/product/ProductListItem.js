@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { CardSection } from '../../common/CardSection';
+import { CardSection } from '../../common/index';
 import { IC_WHITE_PLUS } from '../../../res/images/index';
 import { addProductToOrder } from '../../../actions/index';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
 import ProductListItem from './ProductListItem';
-import { Card } from '../../common/Card';
+import { Card } from '../../common/index';
 import { Warning } from '../../common/FeedbackAlertMessages';
 
 class ProductList extends Component {

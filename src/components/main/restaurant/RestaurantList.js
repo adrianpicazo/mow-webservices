@@ -1,11 +1,16 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { ListView, View } from 'react-native';
+import { Dimensions, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import Header from '../../headers/Header';
 import { restaurantsFetch } from '../../../actions/index';
 import RestaurantListItem from './RestaurantListItem';
-import { BaseTemplate } from '../../common';
+import { Template, HorizontalRule } from '../../common';
+
+const screenSize = Dimensions.get('window');
+const itemSeparatorLeftMargin = 65;
+const itemSeparatorRightMargin = 30;
+const itemSeparatorWidth = screenSize.width - (itemSeparatorLeftMargin + itemSeparatorRightMargin);
 
 class RestaurantList extends Component {
 
@@ -15,48 +20,47 @@ class RestaurantList extends Component {
 
     componentWillMount() {
         this.props.restaurantsFetch();
-
-        this.createDataSource(this.props);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        // nextProps are the next set of props that this component will be rendered with
-        // this.props is still the old set of props
-
-        this.createDataSource(nextProps);
-    }
-
-    createDataSource({ restaurants }) {
-        const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1 !== r2
-        });
-
-        this.dataSource = ds.cloneWithRows(restaurants);
-    }
-
-    renderRow(restaurant) {
-        return <RestaurantListItem restaurant={restaurant} />;
     }
 
     render() {
+        const { flatListStyle } = styles;
+
         return (
-            <BaseTemplate>
+            <Template>
                 <Header
                     renderFilterMenuButton
                     renderUserAccountMenuButton
                     headerTitle="Restaurantes"
                 />
 
-                <ListView
-                    style={{ flex: 1, marginBottom: 5 }}
-                    enableEmptySections
-                    dataSource={this.dataSource}
-                    renderRow={this.renderRow}
+                <FlatList
+                    data={this.props.restaurants}
+                    renderItem={({ item }) => <RestaurantListItem restaurant={item} />}
+                    keyExtractor={item => item.id.toString()}
+                    style={flatListStyle}
+                    ItemSeparatorComponent={() => <HorizontalRule
+                        style={{
+                            width: itemSeparatorWidth,
+                            marginLeft: itemSeparatorLeftMargin,
+                            marginRight: itemSeparatorRightMargin
+                        }}
+                    />}
                 />
-            </BaseTemplate>
+            </Template>
         );
     }
 }
+
+const styles = {
+    flatListStyle: {
+        position: 'relative',
+        width: '100%',
+        marginTop: 5,
+        paddingLeft: 5,
+        paddingRight: 5,
+        marginBottom: 10
+    }
+};
 
 const mapStateToProps = ({ restaurantListScreen }) => {
     const restaurants = _.map(restaurantListScreen.restaurants, (val, uid) => {

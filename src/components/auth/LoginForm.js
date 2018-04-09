@@ -3,14 +3,15 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import {
-BaseTemplate,
-Card,
-CardSection,
-InputColumn,
-Button,
-Spinner,
-Failure,
-Success
+    Template,
+    ScrollTemplate,
+    Card,
+    CardSection,
+    InputColumn,
+    Button,
+    Spinner,
+    Failure,
+    Success
 } from '../common/index';
 import Header from '../headers/Header';
 import {
@@ -19,7 +20,6 @@ import {
     loginUserError,
     loginUser
 } from '../../actions/index';
-import { colors } from '../../res/Colors';
 
 class LoginForm extends Component {
 
@@ -49,7 +49,7 @@ class LoginForm extends Component {
     renderLoginError() {
         if (this.props.error) {
             return (
-                <CardSection style={styles.cardSectionStyle}>
+                <CardSection>
                     <Failure title={'FALLO DE AUTENTICACIÓN'}>
                         {this.props.error}
                     </Failure>
@@ -61,7 +61,7 @@ class LoginForm extends Component {
     renderRegistrySuccess() {
         if (this.props.registrySuccess) {
             return (
-                <CardSection style={styles.cardSectionStyle}>
+                <CardSection>
                     <Success title={'ÉXITO DE REGISTRO'}>
                         {'Se ha registrado satisfactoriamente.'}
                     </Success>
@@ -71,38 +71,36 @@ class LoginForm extends Component {
     }
 
     renderLoginButtons() {
-        const { viewStyle, cardSectionStyle } = styles;
-
         if (this.props.loading) {
-            return <Spinner size="large" />;
+            return (
+                <Spinner size="large" />
+            );
         }
 
         return (
-            <View style={viewStyle}>
-                <CardSection style={cardSectionStyle}>
+            <Card>
+                <CardSection>
                     <Button onPress={this.onLoginButtonPress}>
                         Acceder
                     </Button>
                 </CardSection>
-                <CardSection style={cardSectionStyle}>
+                <CardSection>
                     <Button onPress={this.onRegisterButtonPress}>
                         Registrarse
                     </Button>
                 </CardSection>
-            </View>
+            </Card>
         );
     }
 
     render() {
-        const { cardStyle, cardSectionStyle, viewStyle } = styles;
-
         return (
-            <BaseTemplate>
+            <Template>
                 <Header headerTitle="Acceso" />
 
-                <Card style={cardStyle}>
-                    <View style={viewStyle}>
-                        <CardSection style={cardSectionStyle}>
+                <ScrollTemplate>
+                    <Card>
+                        <CardSection>
                             <InputColumn
                                 label="Correo electrónico"
                                 placeholder="email@gmail.com"
@@ -114,7 +112,7 @@ class LoginForm extends Component {
                             />
                         </CardSection>
 
-                        <CardSection style={cardSectionStyle}>
+                        <CardSection>
                             <InputColumn
                                 secureTextEntry
                                 label="Contraseña"
@@ -129,38 +127,17 @@ class LoginForm extends Component {
 
                         {this.renderLoginError()}
                         {this.renderRegistrySuccess()}
-                    </View>
+                    </Card>
+
+                    {/* Espacio */}
+                    <View style={{ flex: 1 }} />
 
                     {this.renderLoginButtons()}
-                </Card>
-            </BaseTemplate>
+                </ScrollTemplate>
+            </Template>
         );
     }
 }
-
-const styles = {
-    viewStyle: {
-        flexDirection: 'column',
-    },
-    cardStyle: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 5,
-    },
-    cardSectionStyle: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        borderBottomWidth: 0,
-    },
-    errorTextStyle: {
-        fontSize: 20,
-        alignSelf: 'center',
-        color: 'red'
-    }
-};
 
 const mapStateToProps = ({ auth }) => {
     const { email, password, error, loading, registrySuccess } = auth;

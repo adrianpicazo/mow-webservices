@@ -94,7 +94,8 @@ const styles = {
         borderStyle: 'solid',
         borderWidth: 2,
         borderRadius: 5,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: '100%'
     },
     titleContainerStyle: {
         borderBottomWidth: 2,

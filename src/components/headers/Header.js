@@ -56,13 +56,14 @@ class Header extends Component {
     // TODO: comprobación newHeaderTextStyle
     render() {
         const { headerTextStyle } = styles;
+        const { newHeaderTextStyle } = this.props;
 
         return (
             <Bar newBarStyle={{ backgroundColor: colors.BLUE.N900 }}>
                 <BarCard newCardStyle={{ justifyContent: 'flex-start' }}>
                     {this.renderBackButton()}
                     <BarSection>
-                        <Text style={[headerTextStyle, this.props.newHeaderTextStyle]}>
+                        <Text style={[headerTextStyle, newHeaderTextStyle]}>
                             {this.props.headerTitle}
                         </Text>
                     </BarSection>
@@ -82,7 +83,7 @@ class Header extends Component {
 const styles = {
     headerTextStyle: {
         fontSize: 25,
-        color: '#ffffff',
+        color: colors.WHITE,
         marginRight: 5,
         marginLeft: 15
     }

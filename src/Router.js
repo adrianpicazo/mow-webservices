@@ -12,7 +12,7 @@ import OrderAddressMap from './components/main/order/OrderAddressMap';
 import OrderDoneOverview from './components/main/order/OrderDoneOverview';
 import RegistryForm from './components/auth/RegistryForm';
 import UserAccountMenu from './components/main/account/UserAccountMenu';
-import Presentation from './components/main/Presentation';
+import Presentation from './components/auth/Presentation';
 import UserAccountAddress from './components/main/account/UserAccountAddress';
 
 const RouterComponent = () => {
@@ -23,6 +23,11 @@ const RouterComponent = () => {
                     <Scene key="auth">
                         <Scene
                             initial
+                            key="presentation"
+                            component={Presentation}
+                            hideNavBar
+                        />
+                        <Scene
                             key="login"
                             component={LoginForm}
                             hideNavBar
@@ -44,11 +49,6 @@ const RouterComponent = () => {
                             hideNavBar
                             gesturesEnabled={false}
                         >
-                            <Scene
-                                key="presentation"
-                                component={Presentation}
-                                hideNavBar
-                            />
                             <Scene
                                 initial
                                 key="restaurantList"

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 
 class RestaurantTypeCheckBox extends Component {

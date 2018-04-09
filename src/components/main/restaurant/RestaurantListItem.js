@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { Card } from '../../common/Card';
-import { CardSection } from '../../common/CardSection';
+import { Card, CardSection } from '../../common/index';
 import { restaurantItemSelection } from '../../../actions/index';
+import { colors } from '../../../res/Colors';
 
 class RestaurantListItem extends Component {
 
@@ -31,31 +31,27 @@ class RestaurantListItem extends Component {
 
     render() {
         const {
-            thumbnailStyle,
+            imageStyle,
+            imageContainerStyle,
             headerContentStyle,
-            thumbnailContainerStyle,
             headerTextStyle
         } = styles;
         const { name, type, thumbnail_image } = this.props.restaurant;
 
         return (
             <TouchableOpacity onPress={this.onRestaurantItemPress}>
-                <View>
-                    <Card>
-                        <CardSection>
-                            <View style={thumbnailContainerStyle}>
-                                <Image
-                                    style={thumbnailStyle}
-                                    source={{ uri: thumbnail_image }}
-                                />
-                            </View>
-                            <View style={headerContentStyle}>
-                                <Text style={headerTextStyle}>{name}</Text>
-                                <Text>{type}</Text>
-                            </View>
-                        </CardSection>
-                    </Card>
-                </View>
+                <CardSection>
+                    <View style={imageContainerStyle}>
+                        <Image
+                            style={imageStyle}
+                            source={{ uri: thumbnail_image }}
+                        />
+                    </View>
+                    <View style={headerContentStyle}>
+                        <Text style={headerTextStyle}>{name}</Text>
+                        <Text>{type}</Text>
+                    </View>
+                </CardSection>
             </TouchableOpacity>
         );
     }
@@ -69,15 +65,15 @@ const styles = {
     headerTextStyle: {
         fontSize: 18
     },
-    thumbnailStyle: {
-        height: 50,
-        width: 50
+    imageStyle: {
+        height: '100%',
+        width: undefined
     },
-    thumbnailContainerStyle: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 10,
-        marginRight: 10
+    imageContainerStyle: {
+        height: 50,
+        width: 50,
+        marginRight: 10,
+        padding: 3
     }
 };
 

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { Card } from '../../common/Card';
-import { CardSection } from '../../common/CardSection';
+import { Card, CardSection } from '../../common/index';
 import { IC_WHITE_SHOPPING_BASKET } from '../../../res/images/index';
+import { colors } from '../../../res/Colors';
 
 class OrderBanner extends Component {
 
@@ -14,8 +14,8 @@ class OrderBanner extends Component {
 
     render() {
         const {
+            bannerCardStyle,
             bannerStyle,
-            bannerComponentStyle,
             imageContainerStyle,
             bannerTextStyle,
             imageStyle
@@ -24,61 +24,67 @@ class OrderBanner extends Component {
         const { numProducts, totalPrice } = this.props;
 
         return (
-            <TouchableOpacity onPress={() => Actions.push('orderInfo')}>
-                <Card style={{ borderWidth: 0, marginBottom: 5 }}>
-                    <CardSection style={bannerStyle}>
-                        <View style={[bannerComponentStyle, { marginLeft: 10 }]}>
-                            <View style={imageContainerStyle}>
-                                <Image
-                                    style={imageStyle}
-                                    source={IC_WHITE_SHOPPING_BASKET}
-                                    resizeMode="contain"
-                                />
-                            </View>
-                            <Text style={bannerTextStyle}>{numProducts}</Text>
+            <Card style={bannerCardStyle}>
+                <TouchableOpacity
+                    onPress={() => Actions.push('orderInfo')}
+                    style={bannerStyle}
+                >
+                    <CardSection>
+                        <View style={imageContainerStyle}>
+                            <Image
+                                style={imageStyle}
+                                source={IC_WHITE_SHOPPING_BASKET}
+                                resizeMode="contain"
+                            />
                         </View>
-
-                        <View style={[bannerComponentStyle, { marginRight: 10 }]}>
-                            <Text style={bannerTextStyle}>Total: € {totalPrice}</Text>
-                        </View>
+                        <Text style={bannerTextStyle}>{numProducts}</Text>
                     </CardSection>
-                </Card>
-            </TouchableOpacity>
+
+                    <CardSection>
+                        <Text style={bannerTextStyle}>Total: € {totalPrice}</Text>
+                    </CardSection>
+                </TouchableOpacity>
+            </Card>
         );
     }
 }
 
 const styles = {
+    bannerCardStyle: {
+        width: '100%',
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 20,
+        paddingRight: 20
+    },
     bannerTextStyle: {
         fontSize: 20,
-        color: '#ffffff',
+        color: colors.WHITE,
         fontWeight: 'bold'
     },
     bannerStyle: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#7998ff',
-        borderStyle: 'solid',
-        borderRadius: 15,
-        borderBottomWidth: 0
-    },
-    bannerComponentStyle: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
+        backgroundColor: colors.BLUE.N500,
+        width: '100%',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: colors.WHITE
     },
     imageContainerStyle: {
         height: 30,
         width: 30,
-        marginRight: 10,
-        marginTop: 5,
-        marginBottom: 5
+        marginRight: 5,
+        padding: 3
     },
     imageStyle: {
-        flex: 1,
-        height: undefined,
-        width: undefined,
+        height: '100%',
+        width: undefined
     }
 };
 

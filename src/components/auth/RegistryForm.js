@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import {
-    BaseTemplate,
+    Template,
+    ScrollTemplate,
     Card,
     CardSection,
     InputColumn,
@@ -61,7 +62,7 @@ class RegistryForm extends Component {
     renderRegistryError() {
         if (this.props.error) {
             return (
-                <CardSection style={styles.cardSectionStyle}>
+                <CardSection>
                     <Failure title={'FALLO DE REGISTRO'}>
                         {this.props.error}
                     </Failure>
@@ -71,38 +72,34 @@ class RegistryForm extends Component {
     }
 
     renderRegistryButton() {
-        const { viewStyle, cardSectionStyle } = styles;
-
         if (this.props.loading) {
             return <Spinner size="large" />;
         }
 
         return (
-            <View style={viewStyle}>
-                <CardSection style={cardSectionStyle}>
+            <Card>
+                <CardSection>
                     <Button onPress={this.onRegistryButtonPress}>
                         Registrar
                     </Button>
                 </CardSection>
-            </View>
+            </Card>
         );
     }
 
     render() {
-        const { cardStyle, cardSectionStyle, viewStyle } = styles;
-
         const { name, surnames, email, password, repeatedPassword } = this.props.formFields;
 
         return (
-            <BaseTemplate>
+            <Template>
                 <Header
                     renderBackButton
                     headerTitle="Registro"
                 />
 
-                <Card style={cardStyle}>
-                    <View style={viewStyle}>
-                        <CardSection style={cardSectionStyle}>
+                <ScrollTemplate>
+                    <Card>
+                        <CardSection>
                             <InputColumn
                                 label="Nombre"
                                 placeholder="Adrián"
@@ -114,7 +111,7 @@ class RegistryForm extends Component {
                             />
                         </CardSection>
 
-                        <CardSection style={cardSectionStyle}>
+                        <CardSection>
                             <InputColumn
                                 label="Apellidos"
                                 placeholder="Picazo Marín"
@@ -126,7 +123,7 @@ class RegistryForm extends Component {
                             />
                         </CardSection>
 
-                        <CardSection style={cardSectionStyle}>
+                        <CardSection>
                             <InputColumn
                                 label="Correo electrónico"
                                 placeholder="email@gmail.com"
@@ -138,7 +135,7 @@ class RegistryForm extends Component {
                             />
                         </CardSection>
 
-                        <CardSection style={cardSectionStyle}>
+                        <CardSection>
                             <InputColumn
                                 secureTextEntry
                                 label="Contraseña"
@@ -151,7 +148,7 @@ class RegistryForm extends Component {
                             />
                         </CardSection>
 
-                        <CardSection style={cardSectionStyle}>
+                        <CardSection>
                             <InputColumn
                                 secureTextEntry
                                 label="Repita contraseña"
@@ -165,35 +162,17 @@ class RegistryForm extends Component {
                         </CardSection>
 
                         {this.renderRegistryError()}
-                    </View>
+                    </Card>
+
+                    {/* Espacio */}
+                    <View style={{ flex: 1 }} />
 
                     {this.renderRegistryButton()}
-                </Card>
-            </BaseTemplate>
+                </ScrollTemplate>
+            </Template>
         );
     }
 }
-
-const styles = {
-    viewStyle: {
-        flexDirection: 'column',
-    },
-    cardStyle: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 10,
-        backgroundColor: '#ffffff',
-        padding: 5
-    },
-    cardSectionStyle: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        borderBottomWidth: 0,
-    }
-};
 
 const mapStateToProps = ({ registry }) => {
     const { name, surnames, email, password, repeatedPassword, error, loading } = registry;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Header from '../../headers/Header';
-import { Card, CardSection, Button, InputColumn, Failure, BaseTemplate } from '../../common/index';
+import { Card, CardSection, Button, InputColumn, Failure, Template } from '../../common/index';
 import {
     orderAddressFormReset,
     orderAddressFormChange,
@@ -65,7 +65,7 @@ class OrderAddress extends Component {
         const { address } = this.props;
 
         return (
-            <BaseTemplate>
+            <Template>
                 <Header
                     renderBackButton
                     headerTitle="Dirección del pedido"
@@ -93,7 +93,7 @@ class OrderAddress extends Component {
                         </Button>
                     </CardSection>
                 </Card>
-            </BaseTemplate>
+            </Template>
         );
     }
 }

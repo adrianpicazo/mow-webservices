@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListView } from 'react-native';
-import { Card } from '../../common/Card';
+import { Card } from '../../common/index';
 import CategoryListItem from './CategoryListItem';
 import { Warning } from '../../common/FeedbackAlertMessages';
 

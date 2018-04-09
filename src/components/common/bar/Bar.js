@@ -1,6 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import { colors } from '../../../res/Colors';
+
+const screenSize = Dimensions.get('window');
 
 const Bar = ({ children, newBarStyle }) => {
     const { barStyle } = styles;
@@ -21,8 +23,8 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'center',
         height: 56,
-        width: '100%',
-        backgroundColor: colors.WHITE,
+        width: screenSize.width,
+        backgroundColor: colors.BLACK,
         padding: 5
     }
 };

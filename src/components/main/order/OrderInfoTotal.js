@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { Card } from '../../common/Card';
-import { CardSection } from '../../common/CardSection';
-import { Button } from '../../common/Button';
+import { Card, CardSection } from '../../common/index';
+import { Button } from '../../common/Buttons';
 
 class OrderInfoTotal extends Component {
 

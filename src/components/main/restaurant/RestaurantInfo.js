@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection, BaseTemplate } from '../../common/index';
+import { Card, CardSection, Template, ScrollTemplate } from '../../common/index';
 import OrderBanner from '../order/OrderBanner';
 import Header from '../../headers/Header';
 import { addRestaurantToOrder } from '../../../actions/index';
 import CategoryList from '../category/CategoryList';
+import { colors } from '../../../res/Colors';
 
 class RestaurantInfo extends Component {
 
@@ -31,22 +32,23 @@ class RestaurantInfo extends Component {
         const { name, type, thumbnail_image, description, categories } = this.props;
 
         return (
-            <BaseTemplate>
+            <Template>
                 <Header
                     renderBackButton
                     headerTitle="Información del restaurante"
                     newHeaderTextStyle={{ fontSize: 20 }}
                 />
 
-                <OrderBanner />
+                <ScrollTemplate>
+                    <OrderBanner />
 
-                <ScrollView style={{ flex: 1 }}>
                     <Card>
                         <CardSection>
                             <View style={thumbnailContainerStyle}>
                                 <Image
                                     style={thumbnailStyle}
                                     source={{ uri: thumbnail_image }}
+                                    resizeMode="contain"
                                 />
                             </View>
                             <View style={headerContentStyle}>
@@ -63,8 +65,8 @@ class RestaurantInfo extends Component {
                     </Card>
 
                     <CategoryList categories={categories} />
-                </ScrollView>
-            </BaseTemplate>
+                </ScrollTemplate>
+            </Template>
         );
     }
 }
@@ -78,14 +80,18 @@ const styles = {
         fontSize: 18
     },
     thumbnailStyle: {
-        height: 50,
-        width: 50
+        height: '100%',
+        width: undefined,
+        backgroundColor: '#10fffa'
+
     },
     thumbnailContainerStyle: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 10,
-        marginRight: 10
+        height: 50,
+        width: 50,
+        marginRight: 0,
+        marginLeft: 0,
+        padding: 3,
+        backgroundColor: '#fff713'
     }
 };
 

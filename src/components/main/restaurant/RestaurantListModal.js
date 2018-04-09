@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { Text, ScrollView, FlatList } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { ModalBase } from '../../common/ModalBase';
-import { CardSection } from '../../common/CardSection';
-import { Button } from '../../common/Button';
+import { Card, CardSection, Button } from '../../common/index';
 import {
     selectRestaurantType,
     selectAllRestaurantTypes,
     filterRestaurantsByType
 } from '../../../actions/index';
+import { colors } from '../../../res/Colors';
+import CheckButton from '../../common/CheckButton';
 
 class RestaurantListModal extends Component {
 
@@ -43,20 +44,23 @@ class RestaurantListModal extends Component {
         const { label, value } = this.props.selectedRestaurantTypes[propKey];
 
         return (
-            <CheckBox
-                key={index}
-                title={label}
-                onPress={() => this.props.selectRestaurantType({
-                    prop: propKey,
-                    value: !value
-                })}
-                checked={value}
-            />
+            <CardSection key={index} style={{ backgroundColor: '#72ff7d', width: '100%' }}>
+                <CheckButton
+                    checked={value}
+                    onPress={() => this.props.selectRestaurantType({
+                        prop: propKey,
+                        value: !value
+                    })}
+                />
+                <Text>
+                    {label}
+                </Text>
+            </CardSection>
         );
     }
 
     render() {
-        const { cardSectionCheckBoxesStyle } = styles;
+        const { cardSection, buttonStyle, textStyle } = styles.topButtonsSection;
 
         return (
             <ModalBase
@@ -64,22 +68,29 @@ class RestaurantListModal extends Component {
                 title="Tipos de restaurante"
                 onAccept={this.onAccept}
                 onDecline={this.onDecline}
+                titleSize={24}
             >
-                <CardSection style={{ borderBottomWidth: 0 }}>
-                    <Button onPress={() => this.props.selectAllRestaurantTypes(true)}>
-                        Selecciona todos
+                <CardSection style={cardSection}>
+                    <Button
+                        textStyle={textStyle}
+                        buttonStyle={buttonStyle}
+                        onPress={() => this.props.selectAllRestaurantTypes(true)}
+                    >
+                        Todos
                     </Button>
-                </CardSection>
-                <CardSection>
-                    <Button onPress={() => this.props.selectAllRestaurantTypes(false)}>
-                        Deselecciona todos
+                    <Button
+                        textStyle={textStyle}
+                        buttonStyle={buttonStyle}
+                        onPress={() => this.props.selectAllRestaurantTypes(false)}
+                    >
+                        Ninguno
                     </Button>
                 </CardSection>
 
-                <ScrollView style={{ flex: 1 }}>
-                    <CardSection style={cardSectionCheckBoxesStyle}>
+                <ScrollView style={{ flex: 1, backgroundColor: '#fff930' }}>
+                    <Card style={{ backgroundColor: '#ff4645', width: '100%' }}>
                         {this.renderRestaurantTypeCheckBoxes()}
-                    </CardSection>
+                    </Card>
                 </ScrollView>
             </ModalBase>
         );
@@ -89,6 +100,28 @@ class RestaurantListModal extends Component {
 const styles = {
     cardSectionCheckBoxesStyle: {
         flexDirection: 'column'
+    },
+    topButtonsSection: {
+        cardSection: {
+            padding: 0,
+            width: '100%'
+        },
+        textStyle: {
+            alignSelf: 'center',
+            color: colors.BLUE_GREY.N500,
+            fontSize: 14,
+            fontWeight: '800',
+            paddingTop: 10,
+            paddingBottom: 10
+        },
+        buttonStyle: {
+            width: '40%',
+            alignSelf: 'center',
+            backgroundColor: colors.BLUE.N050,
+            borderRadius: 5,
+            marginLeft: '5%',
+            marginRight: '5%',
+        }
     }
 };
 
