@@ -7,6 +7,7 @@ export const userAccountFetch = () => {
     const { currentUser } = firebase.auth();
 
     return (dispatch) => {
+        // TODO: borrar
         firebase.database().ref(`/users/${currentUser.uid}/account`)
             .on('value', snapshot => {
                 dispatch({

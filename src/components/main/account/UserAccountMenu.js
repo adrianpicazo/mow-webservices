@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, TouchableHighlight } from 'react-native';
+import { Text, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, CardSection } from '../../common/index';
-import COStatusBar from '../../auxiliar/COStatusBar';
+import { Template, Card, CardSection } from '../../common/index';
 import { userAccountFetch, logoutUser } from '../../../actions/index';
 import {
     IC_BLACK_CONTACT,
@@ -12,6 +11,9 @@ import {
     IC_BLACK_VIEW_DETAILS,
     IC_BLACK_HOME
 } from '../../../res/images/index';
+import { colors } from '../../../res/Colors';
+import { UserAccountMenuItem } from './UserAccountMenuItem';
+import { fonts } from '../../../res/Fonts';
 
 class UserAccountMenu extends Component {
 
@@ -30,31 +32,24 @@ class UserAccountMenu extends Component {
     }
 
     renderHeader() {
-        const {
-            titleTextStyle,
-            subtitleTextStyle,
-            containerTextStyle,
-            imageStyle,
-            containerImageStyle,
-            headerStyle
-        } = headerStyles;
+        const { headerStyle, imageStyle } = headerStyles;
 
         const { name, surnames, email } = this.props;
 
         return (
             <Card style={headerStyle}>
-                <CardSection style={containerImageStyle}>
+                <CardSection>
                     <Image
                         style={imageStyle}
                         source={IC_BLACK_CONTACT}
                         resizeMode="contain"
                     />
                 </CardSection>
-                <CardSection style={containerTextStyle}>
-                    <Text style={titleTextStyle}>
+                <CardSection style={{ flexDirection: 'column' }}>
+                    <Text style={[fonts.HUGE, { color: colors.WHITE }]}>
                         {name} {surnames}
                     </Text>
-                    <Text style={subtitleTextStyle}>
+                    <Text style={[fonts.BIG, { color: colors.WHITE }]}>
                         {email}
                     </Text>
                 </CardSection>
@@ -62,154 +57,52 @@ class UserAccountMenu extends Component {
         );
     }
 
-    renderMenuItem(image, label, onPress) {
-        const {
-            itemLabelStyle,
-            itemImageStyle,
-            itemContainerStyle,
-            itemContainerTouchableStyle
-        } = menuListStyles;
-
-        return (
-            <CardSection style={itemContainerStyle}>
-                <TouchableHighlight
-                    style={{ width: '100%' }}
-                    onPress={onPress}
-                    underlayColor={'#dddddd'}
-                >
-                    <View style={itemContainerTouchableStyle}>
-                        <Image
-                            style={itemImageStyle}
-                            source={image}
-                            resizeMode="contain"
-                        />
-                        <Text style={itemLabelStyle}>
-                            {label}
-                        </Text>
-                    </View>
-                </TouchableHighlight>
-            </CardSection>
-        );
-    }
-
     renderMenuList() {
-        const { itemListStyle } = menuListStyles;
-
         return (
-            <Card style={itemListStyle}>
-                {this.renderMenuItem(
-                    IC_BLACK_HOME,
-                    'Dirección',
-                    () => Actions.push('userAccountAddress'))
-                }
-                {this.renderMenuItem(
-                    IC_BLACK_VIEW_DETAILS,
-                    'Pedidos',
-                    () => { console.log('Pedidos'); })
-                }
-                {this.renderMenuItem(
-                    IC_BLACK_SETTINGS,
-                    'Configuración',
-                    () => { console.log('Configuración'); })
-                }
-                {this.renderMenuItem(
-                    IC_BLACK_ACCOUNT_LOGOUT,
-                    'Desconectar',
-                    this.onDisconnectButtonPress
-                )}
+            <Card style={{ width: '100%', alignItems: 'flex-start' }}>
+                <UserAccountMenuItem
+                    image={IC_BLACK_HOME}
+                    label="Dirección"
+                    onPress={() => Actions.push('userAccountAddress')}
+                />
+                <UserAccountMenuItem
+                    image={IC_BLACK_VIEW_DETAILS}
+                    label="Pedidos"
+                    onPress={() => console.log('Pedidos')}
+                />
+                <UserAccountMenuItem
+                    image={IC_BLACK_SETTINGS}
+                    label="Configuración"
+                    onPress={() => console.log('Configuración')}
+                />
+                <UserAccountMenuItem
+                    image={IC_BLACK_ACCOUNT_LOGOUT}
+                    label="Desconectar"
+                    onPress={() => this.onDisconnectButtonPress()}
+                />
             </Card>
         );
     }
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
-                <COStatusBar />
+            <Template>
                 {this.renderHeader()}
                 {this.renderMenuList()}
-            </View>
+            </Template>
         );
     }
 }
 
-const menuListStyles = {
-    itemLabelStyle: {
-        fontSize: 18,
-        fontStyle: 'normal',
-        fontWeight: 'normal',
-        textAlign: 'left',
-        marginLeft: 20
-    },
-    itemImageStyle: {
-        height: 30,
-        width: 30
-    },
-    itemContainerStyle: {
-        width: '100%',
-        padding: 0
-    },
-    itemContainerTouchableStyle: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 20
-    },
-    itemListStyle: {
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-        alignItems: 'flex-start',
-        borderWidth: 0,
-        borderRadius: 0,
-        shadowOffset: { width: 0, height: 0 },
-        marginLeft: 0,
-        marginRight: 0,
-        marginTop: 0,
-        elevation: 0,
-        paddingTop: 15
-    }
-};
-
 const headerStyles = {
-    titleTextStyle: {
-        backgroundColor: '#d0d0d0',
-        width: '100%',
-        color: '#ffffff',
-        fontSize: 22,
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        textAlign: 'center'
-    },
-    subtitleTextStyle: {
-        backgroundColor: '#d0d0d0',
-        width: '100%',
-        color: '#ffffff',
-        fontSize: 18,
-        fontStyle: 'normal',
-        fontWeight: 'normal',
-        textAlign: 'center',
-    },
-    containerTextStyle: {
-        backgroundColor: '#d0d0d0',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 10
-    },
     imageStyle: {
-        backgroundColor: '#d0d0d0',
-        width: '100%',
+        width: 100,
         height: 100,
-        tintColor: '#ffffff'
-    },
-    containerImageStyle: {
-        backgroundColor: '#d0d0d0',
-        padding: 10
+        tintColor: colors.WHITE
     },
     headerStyle: {
-        backgroundColor: '#d0d0d0',
+        width: '100%',
+        backgroundColor: colors.BLUE.N900,
         borderWidth: 0,
         borderRadius: 0,
         shadowOffset: { width: 0, height: 0 },

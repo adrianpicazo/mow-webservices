@@ -22,7 +22,7 @@ class CategoryListItem extends Component {
                 onPress={this.onCategoryItemPress.bind(this)}
             >
                 <CardSection>
-                    <Text style={[fonts.BIG_FONT, { padding: 5 }]}>
+                    <Text style={[fonts.BIG, { padding: 5 }]}>
                         {name}
                     </Text>
                 </CardSection>

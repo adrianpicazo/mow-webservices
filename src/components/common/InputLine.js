@@ -22,6 +22,7 @@ const InputRow = ({ label, value, onChangeText, placeholder, secureTextEntry }) 
                 value={value}
                 onChangeText={onChangeText}
                 underlineColorAndroid="transparent"
+                placeholderTextColor={colors.BLUE_GREY.N200}
             />
         </View>
     );
@@ -47,6 +48,7 @@ const InputColumn = ({ label, value, onChangeText, placeholder, secureTextEntry 
                 value={value}
                 onChangeText={onChangeText}
                 underlineColorAndroid="transparent"
+                placeholderTextColor={colors.BLUE_GREY.N200}
             />
         </View>
     );

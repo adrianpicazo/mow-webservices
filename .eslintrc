@@ -4,5 +4,11 @@
     "arrow-body-style": 0,
     "no-useless-constructor": 0,
     "curly": 0
+  },
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "fetch": true
   }
 }

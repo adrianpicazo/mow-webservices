@@ -9,6 +9,7 @@ import {
     LOGIN_USER_START,
     LOGOUT_USER_START, LOGOUT_USER_SUCCESS
 } from './types';
+import { HEADER, URL } from '../components/webservices/Request';
 
 export const loginReset = () => {
     return {
@@ -34,6 +35,25 @@ export const loginUser = ({ email, password }) => {
     return (dispatch) => {
         dispatch({ type: LOGIN_USER_START });
 
+        /**
+        const body = `json=${JSON.stringify({
+            email,
+            password
+        })}`;
+
+        fetch(
+            URL.concat('login'),
+            {
+                method: 'POST',
+                headers: HEADER,
+                body,
+            }
+        ).then(response => response.json())
+            .catch(error => loginUserFail(dispatch, error))
+            .then(response => loginUserSuccess(dispatch, response));
+        **/
+
+        // TODO: borrar
         firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email, password)
             .then(user => loginUserSuccess(dispatch, user))
             .catch((error) => {
@@ -50,6 +70,13 @@ const loginUserFail = (dispatch, error) => {
 };
 
 const loginUserSuccess = (dispatch, user) => {
+    /**
+    dispatch({
+        type: LOGIN_USER_SUCCESS,
+        payload: response.token
+    });
+     **/
+
     dispatch({
         type: LOGIN_USER_SUCCESS,
         payload: user

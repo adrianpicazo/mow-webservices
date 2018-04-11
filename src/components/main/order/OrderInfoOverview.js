@@ -24,14 +24,14 @@ class OrderInfoOverview extends Component {
                         value: { name: itemName, priceEuros: itemPrice }
                     })}
                 />
-                <Text style={[fonts.NORMAL_FONT, { marginLeft: 8 }]}>
+                <Text style={[fonts.NORMAL, { marginLeft: 8 }]}>
                     {itemName} ({quantity})
                 </Text>
 
                 {/* Espaciado */}
                 <View style={{ flex: 1 }} />
 
-                <Text style={fonts.NORMAL_FONT}>
+                <Text style={fonts.NORMAL}>
                     € {itemPrice * quantity}
                 </Text>
             </CardSection>
@@ -41,14 +41,14 @@ class OrderInfoOverview extends Component {
     renderExpenseRow(itemName, itemPrice, index) {
         return (
             <CardSection key={index}>
-                <Text style={fonts.NORMAL_FONT}>
+                <Text style={fonts.NORMAL}>
                     {itemName}
                 </Text>
 
                 {/* Espaciado */}
                 <View style={{ flex: 1 }} />
 
-                <Text style={fonts.NORMAL_FONT}>
+                <Text style={fonts.NORMAL}>
                     € {itemPrice}
                 </Text>
             </CardSection>
@@ -77,7 +77,7 @@ class OrderInfoOverview extends Component {
         return (
             <Card style={{ margin: 10 }}>
                 <CardSection>
-                    <Text style={fonts.HUGE_FONT}>
+                    <Text style={fonts.HUGE}>
                         RESUMEN DEL PEDIDO
                     </Text>
                 </CardSection>
@@ -90,14 +90,14 @@ class OrderInfoOverview extends Component {
                 {this.renderRule()}
 
                 <CardSection>
-                    <Text style={[fonts.BIG_FONT, { fontWeight: 'bold' }]}>
+                    <Text style={[fonts.BIG, { fontWeight: 'bold' }]}>
                         TOTAL
                     </Text>
 
                     {/* Espaciado */}
                     <View style={{ flex: 1 }} />
 
-                    <Text style={[fonts.BIG_FONT, { fontWeight: 'bold' }]}>
+                    <Text style={[fonts.BIG, { fontWeight: 'bold' }]}>
                         € {totalPrice}
                     </Text>
                 </CardSection>

@@ -24,9 +24,7 @@ const ModalBase = ({ title, titleSize, children, visible, onAccept, onDecline })
                         </CardSection>
                     </Card>
 
-                    <Card style={{ flex: 1 }}>
-                        {children}
-                    </Card>
+                    {children}
 
                     <Card>
                         <CardSection>

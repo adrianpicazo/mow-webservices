@@ -9,7 +9,7 @@ class RestaurantTypeCheckBox extends Component {
         this.setState({
             checked: !this.state.checked,
         });
-    }
+    };
 
     render() {
         return (

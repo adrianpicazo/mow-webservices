@@ -35,7 +35,7 @@ class Header extends Component {
             return (
                 <BarButton
                     image={IC_BLACK_FILTER_MENU_HORIZONTAL}
-                    onPress={() => Actions.push('restaurantListModal')}
+                    onPress={() => Actions.push('restaurantTypeSelection')}
                 />
             );
         }

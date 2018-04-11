@@ -4,18 +4,24 @@ const colorFont = colors.BLUE_GREY.N500;
 
 export const fonts = {
 
-    HUGE_FONT: {
+    HUGE: {
         fontSize: 24,
-        color: colorFont
+        color: colorFont,
+        fontStyle: 'normal',
+        fontWeight: 'normal'
     },
 
-    BIG_FONT: {
+    BIG: {
         fontSize: 18,
-        color: colorFont
+        color: colorFont,
+        fontStyle: 'normal',
+        fontWeight: 'normal'
     },
 
-    NORMAL_FONT: {
+    NORMAL: {
         fontSize: 12,
-        color: colorFont
+        color: colorFont,
+        fontStyle: 'normal',
+        fontWeight: 'normal'
     }
 };

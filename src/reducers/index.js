@@ -12,7 +12,7 @@ import OrderAddressFormReducer from './OrderAddressFormReducer';
 export default combineReducers({
     restaurantListScreen: RestaurantReducer,
     auth: AuthReducer,
-    selectedRestaurantTypes: RestaurantTypesReducer,
+    restaurantTypes: RestaurantTypesReducer,
     restaurantSelected: RestaurantSelectedReducer,
     order: OrderReducer,
     registry: RegistryReducer,

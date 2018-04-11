@@ -31,14 +31,14 @@ class OrderDoneOverview extends Component {
     renderRow(itemName, itemPrice, quantity, index) {
         return (
             <CardSection key={index}>
-                <Text style={fonts.NORMAL_FONT}>
+                <Text style={fonts.NORMAL}>
                     {itemName} {quantity === undefined ? '' : `(${quantity})`}
                 </Text>
 
                 {/* Espaciado */}
                 <View style={{ flex: 1 }} />
 
-                <Text style={fonts.NORMAL_FONT}>
+                <Text style={fonts.NORMAL}>
                     € {itemPrice}
                 </Text>
             </CardSection>
@@ -74,10 +74,10 @@ class OrderDoneOverview extends Component {
 
                     <Card>
                         <CardSection style={{ flexDirection: 'column' }}>
-                            <Text style={fonts.BIG_FONT}>
+                            <Text style={fonts.BIG}>
                                 DIRECCIÓN
                             </Text>
-                            <Text style={fonts.NORMAL_FONT}>
+                            <Text style={fonts.NORMAL}>
                                 {address}
                             </Text>
                         </CardSection>
@@ -85,7 +85,7 @@ class OrderDoneOverview extends Component {
 
                     <Card style={{ margin: 10 }}>
                         <CardSection>
-                            <Text style={fonts.HUGE_FONT}>
+                            <Text style={fonts.HUGE}>
                                 RESUMEN DEL PEDIDO
                             </Text>
                         </CardSection>
@@ -98,14 +98,14 @@ class OrderDoneOverview extends Component {
                         {this.renderRule()}
 
                         <CardSection>
-                            <Text style={[fonts.BIG_FONT, { fontWeight: 'bold' }]}>
+                            <Text style={[fonts.BIG, { fontWeight: 'bold' }]}>
                                 TOTAL
                             </Text>
 
                             {/* Espaciado */}
                             <View style={{ flex: 1 }} />
 
-                            <Text style={[fonts.BIG_FONT, { fontWeight: 'bold' }]}>
+                            <Text style={[fonts.BIG, { fontWeight: 'bold' }]}>
                                 € {totalPrice}
                             </Text>
                         </CardSection>

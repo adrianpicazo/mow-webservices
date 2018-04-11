@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { CheckBox } from 'react-native-elements';
 import { connect } from 'react-redux';
 import {
-    selectRestaurantType,
-    selectAllRestaurantTypes,
-} from '../../actions';
+    restaurantTypeSelection,
+    restaurantTypeAllSelection,
+} from '../actions/index';
 
 class Checkbox extends Component {
     render() {
@@ -27,6 +27,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default connect(mapStateToProps, {
-    selectAllRestaurantTypes,
-    selectRestaurantType
+    selectAllRestaurantTypes: restaurantTypeAllSelection,
+    selectRestaurantType: restaurantTypeSelection
 })(Checkbox);

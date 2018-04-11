@@ -26,14 +26,14 @@ class ProductListItem extends Component {
                     })}
                 />
 
-                <Text style={[fonts.BIG_FONT, { marginLeft: 10, padding: 5 }]}>
+                <Text style={[fonts.BIG, { marginLeft: 10, padding: 5 }]}>
                     {name}
                 </Text>
 
                 {/* Espaciado */}
                 <View style={{ flex: 1 }} />
 
-                <Text style={fonts.BIG_FONT}>
+                <Text style={fonts.BIG}>
                     € {priceEuros}
                 </Text>
             </CardSection>

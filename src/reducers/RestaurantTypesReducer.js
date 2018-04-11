@@ -1,43 +1,58 @@
+import _ from 'lodash';
 import {
-    SELECT_ALL_RESTAURANT_TYPES,
-    SELECT_RESTAURANT_TYPE
+    RESTAURANT_TYPES_FETCH_SUCCESS,
+    RESTAURANT_TYPE_ALL_SELECTION,
+    RESTAURANT_TYPE_SELECTION
 } from '../actions/types';
 
 const INITIAL_STATE = {
-    mexican: { label: 'Mexicana', value: true },
-    american: { label: 'Americana', value: true },
-    italian: { label: 'Italiana', value: true },
-    japanese: { label: 'Japonesa', value: true },
-    spanish: { label: 'Española', value: true },
-    colombian: { label: 'Colombiana', value: true },
-    china: { label: 'China', value: true },
-    arabian: { label: 'Árabe', value: true },
-    hindu: { label: 'Hindú', value: true },
-    greek: { label: 'Griega', value: true },
-    turkey: { label: 'Turca', value: true }
+    types: null,
+    fetched: false
 };
 
-const changeAllValuesToTheSame = (state, value) => {
+const createCheckboxStates = (state, action) => {
+    const restaurantTypesFetched = action.payload;
     const newState = { ...state };
-    Object.keys(newState).map((propKey) => {
-        newState[propKey].value = value;
-        return null;
+
+    newState.types = _.map(restaurantTypesFetched, value => ({
+          name: value,
+          selected: true
+      }));
+
+    newState.fetched = true;
+
+    return newState;
+};
+
+const changeValue = (state, action) => {
+    const newState = { ...state, types: [...state.types] };
+    const key = _.findKey(newState.types, type => type.name === action.payload);
+
+    newState.types[key] = { ...state.types[key] };
+    newState.types[key].selected = !newState.types[key].selected;
+
+    return newState;
+};
+
+const changeAllValuesToTheSame = (state, action) => {
+    const newState = { ...state, types: [...state.types] };
+
+    _.forEach(newState.types, (type, key) => {
+        newState.types[key] = { ...state.types[key] };
+        newState.types[key].selected = action.payload;
     });
+
     return newState;
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case SELECT_ALL_RESTAURANT_TYPES:
-            return changeAllValuesToTheSame(state, action.payload);
-        case SELECT_RESTAURANT_TYPE:
-            return {
-                ...state,
-                [action.payload.prop]: {
-                    ...state[action.payload.prop],
-                    value: action.payload.value
-                }
-            };
+        case RESTAURANT_TYPES_FETCH_SUCCESS:
+            return createCheckboxStates(state, action);
+        case RESTAURANT_TYPE_ALL_SELECTION:
+            return changeAllValuesToTheSame(state, action);
+        case RESTAURANT_TYPE_SELECTION:
+            return changeValue(state, action);
         default:
             return state;
     }

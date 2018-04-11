@@ -1,4 +1,5 @@
 {
+  "types": [ "Mexicana", "Americana", "Italiana", "Japonesa", "Española", "Colombiana", "China", "Árabe", "Hindú", "Griega", "Turca" ],
   "restaurants": {
     "0" : {
       "id" : 0,
@@ -150,7 +151,7 @@
   "users" : {
     "7mkovZXaOwSTjvk9XQYrgBoZMG82" : {
       "account" : {
-        "address" : "Avd/ del Mar, Nº53, 5A",
+        "addresses" : [ "Avd/ del Mar, Nº53, 5A", "Esto es una dirección bastante larga para ver cómo queda.", "Avd/ del Monte, Nº67, 6A", "Avd/ del Sol, Nº21, 5B", "Esto es una dirección larga larga larga de cojones para ver cómo queda." ],
         "email" : "test@test.com",
         "name" : "Adrián",
         "surnames": "Picazo Marín"

@@ -14,6 +14,7 @@ import {
     Success
 } from '../common/index';
 import Header from '../headers/Header';
+import InputSecure from '../common/InputSecure';
 import {
     loginReset,
     loginFieldsChanged,
@@ -113,8 +114,7 @@ class LoginForm extends Component {
                         </CardSection>
 
                         <CardSection>
-                            <InputColumn
-                                secureTextEntry
+                            <InputSecure
                                 label="Contraseña"
                                 placeholder="*******"
                                 value={this.props.password}

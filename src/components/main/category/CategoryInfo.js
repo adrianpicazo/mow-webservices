@@ -55,7 +55,7 @@ class CategoryInfo extends Component {
 
                 <Card style={cardStyle}>
                     <CardSection>
-                        <Text style={[fonts.BIG_FONT, { padding: 5 }]}>
+                        <Text style={[fonts.BIG, { padding: 5 }]}>
                             {name.toUpperCase()}
                         </Text>
                     </CardSection>

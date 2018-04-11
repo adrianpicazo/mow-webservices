@@ -1,8 +1,9 @@
-export const SELECT_RESTAURANT = 'select_restaurant';
+export const RESTAURANT_SELECTION = 'restaurant_select';
 export const RESTAURANTS_FETCH_SUCCESS = 'restaurants_fetch_success';
-export const SELECT_RESTAURANT_TYPE = 'select_restaurant_type';
-export const SELECT_ALL_RESTAURANT_TYPES = 'select_all_restaurant_types';
-export const FILTER_RESTAURANTS_BY_TYPE = 'filter_restaurants_by_type';
+export const RESTAURANT_TYPES_FETCH_SUCCESS = 'restaurant_types_fetch_success';
+export const RESTAURANT_TYPE_SELECTION = 'select_restaurant_type';
+export const RESTAURANT_TYPE_ALL_SELECTION = 'select_all_restaurant_types';
+export const RESTAURANT_FILTRATION_BY_TYPE = 'filter_restaurants_by_type';
 
 export const RESTAURANT_ITEM_SELECTION = 'restaurant_item_selection';
 
@@ -37,6 +38,9 @@ export const ADDRESS_FORM_FAILURE = 'address_form_failure';
 export const ADDRESS_UPDATE_START = 'address_update_start';
 export const ADDRESS_UPDATE_SUCCESS = 'address_update_success';
 export const ADDRESS_UPDATE_FAILURE = 'address_update_failure';
+export const ADDRESSES_FETCH_START = 'addresses_fetch_start';
+export const ADDRESSES_FETCH_SUCCESS = 'addresses_fetch_success';
+export const ADDRESSES_FETCH_FAILURE = 'addresses_fetch_failure';
 
 export const ORDER_ADDRESS_FORM_RESET = 'order_address_form_reset';
 export const ORDER_ADDRESS_FORM_CHANGE = 'order_address_form_change';

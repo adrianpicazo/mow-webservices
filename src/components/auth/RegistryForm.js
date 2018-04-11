@@ -13,6 +13,7 @@ import {
     Spinner
 } from '../common/index';
 import Header from '../headers/Header';
+import InputSecure from '../common/InputSecure';
 import {
     registryReset,
     registryFieldsChanged,
@@ -140,8 +141,7 @@ class RegistryForm extends Component {
                         </CardSection>
 
                         <CardSection>
-                            <InputColumn
-                                secureTextEntry
+                            <InputSecure
                                 label="Contraseña"
                                 placeholder="*******"
                                 value={password}
@@ -153,8 +153,7 @@ class RegistryForm extends Component {
                         </CardSection>
 
                         <CardSection>
-                            <InputColumn
-                                secureTextEntry
+                            <InputSecure
                                 label="Repita contraseña"
                                 placeholder="*******"
                                 value={repeatedPassword}

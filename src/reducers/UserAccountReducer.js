@@ -1,9 +1,10 @@
 import {
     USER_ACCOUNT_FETCH_SUCCESS,
-    ADDRESS_UPDATE_SUCCESS
+    ADDRESS_UPDATE_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_USER_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = {
+    token: '',
     name: '',
     surnames: '',
     email: '',
@@ -24,6 +25,10 @@ const setUserAccountProps = (state, action) => {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case LOGIN_USER_SUCCESS:
+            return { ...state, ...INITIAL_STATE, token: action.payload };
+        case LOGOUT_USER_SUCCESS:
+            return { ...state, ...INITIAL_STATE };
         case USER_ACCOUNT_FETCH_SUCCESS:
             return setUserAccountProps(state, action);
         case ADDRESS_UPDATE_SUCCESS:

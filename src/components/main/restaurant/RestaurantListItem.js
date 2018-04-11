@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { Card, CardSection } from '../../common/index';
+import { CardSection } from '../../common/index';
 import { restaurantItemSelection } from '../../../actions/index';
-import { colors } from '../../../res/Colors';
 
 class RestaurantListItem extends Component {
 
@@ -22,7 +21,7 @@ class RestaurantListItem extends Component {
         if (restaurantIdSelected !== -1 &&
             restaurant.id !== restaurantIdSelected &&
             hasOrderedProducts) {
-            Actions.push('orderResetWarningModal', { restaurant });
+            Actions.push('orderResetWarning', { restaurant });
         } else {
             this.props.restaurantItemSelection(restaurant);
             Actions.push('restaurantInfo');

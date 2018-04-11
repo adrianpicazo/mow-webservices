@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Image } from 'react-native';
-import { colors } from '../../res/Colors';
-import { IC_BLACK_CHECK_MARK_2 } from '../../res/images';
+import { colors } from '../res/Colors';
+import { IC_BLACK_CHECK_MARK_2 } from '../res/images/index';
 
 class CheckButton extends Component {
 
@@ -19,7 +19,7 @@ class CheckButton extends Component {
         });
 
         this.props.onPress();
-    }
+    };
 
     renderImage() {
         const { defaultImageStyle } = styles;

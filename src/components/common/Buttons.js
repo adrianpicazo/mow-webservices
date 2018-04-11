@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, Image, TouchableOpacity } from 'react-native';
 import { colors } from '../../res/Colors';
-import { IC_WHITE_MINUS } from '../../res/images';
 
 const Button = ({ onPress, children, textStyle, buttonStyle }) => {
     const { defaultButtonStyle, defaultTextStyle } = styles.button;

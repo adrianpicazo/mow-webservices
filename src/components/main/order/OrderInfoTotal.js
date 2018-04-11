@@ -19,10 +19,10 @@ class OrderInfoTotal extends Component {
         return (
             <Card style={orderCardStyle}>
                 <CardSection style={{ flexDirection: 'column' }}>
-                    <Text style={fonts.HUGE_FONT}>
+                    <Text style={fonts.HUGE}>
                         PEDIDO VACÍO
                     </Text>
-                    <Text style={fonts.NORMAL_FONT}>
+                    <Text style={fonts.NORMAL}>
                         ELIJA ALGO RICO
                     </Text>
                 </CardSection>
@@ -44,10 +44,10 @@ class OrderInfoTotal extends Component {
         return (
             <Card style={orderCardStyle}>
                 <CardSection style={{ flexDirection: 'column' }}>
-                    <Text style={fonts.HUGE_FONT}>
+                    <Text style={fonts.HUGE}>
                         TOTAL DEL PEDIDO
                     </Text>
-                    <Text style={fonts.NORMAL_FONT}>
+                    <Text style={fonts.NORMAL}>
                         {numProducts} PRODUCTOS
                     </Text>
                 </CardSection>

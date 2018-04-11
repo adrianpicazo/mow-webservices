@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import Header from '../../headers/Header';
+import UserAccountAddressItem from './UserAccountAddressItem';
 import {
     Template,
     Card,
@@ -17,7 +18,8 @@ import {
     addressFormReset,
     addressFormChange,
     addressUpdate,
-    addressFormFailure
+    addressFormFailure,
+    addressesFetch
 } from '../../../actions/index';
 import { fonts } from '../../../res/Fonts';
 
@@ -30,7 +32,11 @@ class UserAccountAddress extends Component {
     }
 
     componentWillMount() {
-        this.props.addressFormReset();
+        //this.props.addressFormReset();
+    }
+
+    componentDidMount() {
+        this.props.addressesFetch();
     }
 
     onRegisterButtonPress() {
@@ -72,15 +78,16 @@ class UserAccountAddress extends Component {
     }
 
     renderActualAddress() {
+        /*
         const { address } = this.props.account;
 
         if (address) {
             return (
                 <CardSection style={{ flexDirection: 'column' }}>
-                    <Text style={fonts.HUGE_FONT}>
+                    <Text style={fonts.HUGE}>
                         Dirección actual
                     </Text>
-                    <Text style={fonts.BIG_FONT}>
+                    <Text style={fonts.BIG}>
                         {address}
                     </Text>
                 </CardSection>
@@ -94,6 +101,7 @@ class UserAccountAddress extends Component {
                 </Warning>
             </CardSection>
         );
+        */
     }
 
     renderRegistryButton() {
@@ -115,7 +123,8 @@ class UserAccountAddress extends Component {
     }
 
     render() {
-        const { address } = this.props;
+        const { flatListStyle } = styles;
+        const { addresses } = this.props;
 
         return (
             <Template>
@@ -129,7 +138,8 @@ class UserAccountAddress extends Component {
                     {this.renderActualAddress()}
                 </Card>
 
-                <Card>
+                <Card style={{ width: '100%' }}>
+                    {/*
                     <CardSection>
                         <InputColumn
                             label="Introduzca una dirección:"
@@ -141,6 +151,14 @@ class UserAccountAddress extends Component {
                             })}
                         />
                     </CardSection>
+                    */}
+
+                    <FlatList
+                        data={addresses}
+                        renderItem={({ item }) => <UserAccountAddressItem address={item} />}
+                        keyExtractor={(item, index) => index.toString()}
+                        style={flatListStyle}
+                    />
 
                     {this.renderFormSuccess()}
                     {this.renderFormFailure()}
@@ -155,15 +173,27 @@ class UserAccountAddress extends Component {
     }
 }
 
-const mapStateToProps = ({ account, addressForm }) => {
-    const { address, error, loading, updated } = addressForm;
+const styles = {
+    flatListStyle: {
+        position: 'relative',
+        width: '100%',
+        marginTop: 5,
+        paddingLeft: 5,
+        paddingRight: 5,
+        marginBottom: 10
+    }
+};
 
-    return { account, address, error, loading, updated };
+const mapStateToProps = ({ account, addressForm }) => {
+    const { addresses, error, loading, updated } = addressForm;
+
+    return { account, addresses, error, loading, updated };
 };
 
 export default connect(mapStateToProps, {
     addressFormReset,
     addressFormChange,
     addressUpdate,
-    addressFormFailure
+    addressFormFailure,
+    addressesFetch
 })(UserAccountAddress);

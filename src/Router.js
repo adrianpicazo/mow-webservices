@@ -3,10 +3,10 @@ import { Scene, Stack, Router, Lightbox } from 'react-native-router-flux';
 import LoginForm from './components/auth/LoginForm';
 import RestaurantList from './components/main/restaurant/RestaurantList';
 import RestaurantInfo from './components/main/restaurant/RestaurantInfo';
-import RestaurantListModal from './components/main/restaurant/RestaurantListModal';
+import RestaurantTypeSelection from './components/main/restaurant/RestaurantTypeSelection';
 import CategoryInfo from './components/main/category/CategoryInfo';
 import OrderInfo from './components/main/order/OrderInfo';
-import OrderResetWarningModal from './components/main/order/OrderResetWarningModal';
+import OrderResetWarning from './components/main/order/OrderResetWarning';
 import OrderAddress from './components/main/order/OrderAddress';
 import OrderAddressMap from './components/main/order/OrderAddressMap';
 import OrderDoneOverview from './components/main/order/OrderDoneOverview';
@@ -95,12 +95,12 @@ const RouterComponent = () => {
                 </Stack>
 
                 <Scene
-                    key="restaurantListModal"
-                    component={RestaurantListModal}
+                    key="restaurantTypeSelection"
+                    component={RestaurantTypeSelection}
                 />
                 <Scene
-                    key="orderResetWarningModal"
-                    component={OrderResetWarningModal}
+                    key="orderResetWarning"
+                    component={OrderResetWarning}
                 />
             </Lightbox>
         </Router>

@@ -6,3 +6,4 @@ export * from './Confirm';
 export * from './FeedbackAlertMessages';
 export * from './Templates';
 export * from './Rules';
+export * from './ModalBase';
