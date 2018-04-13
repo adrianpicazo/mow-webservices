@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import MapView, { Marker } from 'react-native-maps';
 import { View } from 'react-native';
-import { Card, CardSection, Button } from '../../common/index';
+import { Card, CardSection, Button } from '../components/common/index';
 
 const Geolocation = undefined // navigator.geolocation;
 let watchId = 0;

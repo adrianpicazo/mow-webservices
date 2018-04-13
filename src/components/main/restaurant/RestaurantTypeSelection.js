@@ -1,10 +1,9 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { ModalBase } from '../../common/ModalBase';
-import { CardSection, Button, Spinner } from '../../common/index';
+import { ModalBase, Card, CardSection, Button, Spinner } from '../../common/index';
 import {
     restaurantTypesFetch,
     restaurantTypeSelection,
@@ -55,7 +54,7 @@ class RestaurantTypeSelection extends Component {
 
         if (!fetched) {
             return (
-                <Spinner size="large" />
+                <Spinner size="large" style={{ height: '50%' }} />
             );
         }
 
@@ -81,24 +80,28 @@ class RestaurantTypeSelection extends Component {
                 onDecline={this.onDecline}
                 titleSize={24}
             >
-                <CardSection style={cardSection}>
-                    <Button
-                        textStyle={textStyle}
-                        buttonStyle={buttonStyle}
-                        onPress={this.onAllChecked}
-                    >
-                        Todos
-                    </Button>
-                    <Button
-                        textStyle={textStyle}
-                        buttonStyle={buttonStyle}
-                        onPress={this.onAllUnchecked}
-                    >
-                        Ninguno
-                    </Button>
-                </CardSection>
+                <Card style={{ width: '100%', marginBottom: -10 }}>
+                    <CardSection style={cardSection}>
+                        <Button
+                            textStyle={textStyle}
+                            buttonStyle={buttonStyle}
+                            onPress={this.onAllChecked}
+                        >
+                            Todos
+                        </Button>
+                        <Button
+                            textStyle={textStyle}
+                            buttonStyle={buttonStyle}
+                            onPress={this.onAllUnchecked}
+                        >
+                            Ninguno
+                        </Button>
+                    </CardSection>
 
-                {this.renderRestaurantTypeList()}
+                    {this.renderRestaurantTypeList()}
+                </Card>
+
+                <View style={{ flex: 1 }} />
             </ModalBase>
         );
     }
@@ -108,9 +111,8 @@ const styles = {
     flatListStyle: {
         position: 'relative',
         width: '100%',
+        height: 270,
         marginTop: 5,
-        paddingLeft: 20,
-        paddingRight: 20,
         marginBottom: 0
     },
     topButtonsSection: {

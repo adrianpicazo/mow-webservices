@@ -6,17 +6,23 @@ import RestaurantSelectedReducer from './RestaurantSelectedReducer';
 import OrderReducer from './OrderReducer';
 import RegistryReducer from './RegistryReducer';
 import UserAccountReducer from './UserAccountReducer';
-import AddressFormReducer from './AddressFormReducer';
+import UserAddressFormReducer from './UserAddressFormReducer';
 import OrderAddressFormReducer from './OrderAddressFormReducer';
+import UserAddressesReducer from './UserAddressesReducer';
+import OrderDoneReducer from './OrderDoneReducer';
+import UserOrdersReducer from './UserOrdersReducer';
 
 export default combineReducers({
     restaurantListScreen: RestaurantReducer,
     auth: AuthReducer,
     restaurantTypes: RestaurantTypesReducer,
     restaurantSelected: RestaurantSelectedReducer,
-    order: OrderReducer,
+    userOrder: OrderReducer,
     registry: RegistryReducer,
     account: UserAccountReducer,
-    addressForm: AddressFormReducer,
-    orderAddressForm: OrderAddressFormReducer
+    userAddressForm: UserAddressFormReducer,
+    userAddresses: UserAddressesReducer,
+    orderAddressForm: OrderAddressFormReducer,
+    orderDone: OrderDoneReducer,
+    userOrders: UserOrdersReducer
 });

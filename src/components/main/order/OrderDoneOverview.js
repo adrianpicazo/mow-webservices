@@ -1,148 +1,105 @@
-import React, { Component } from 'react';
+import _ from 'lodash';
+import React from 'react';
 import { View, Text } from 'react-native';
-import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import {
-    ScrollTemplate,
-    Template,
     Card,
     CardSection,
-    Button,
-    HorizontalRule
+    HorizontalRule,
 } from '../../common/index';
-import { resetOrder } from '../../../actions/index';
-import Header from '../../headers/Header';
 import { fonts } from '../../../res/Fonts';
 
-class OrderDoneOverview extends Component {
+const renderRow = (itemName, itemPrice, quantity, index) => {
+    return (
+        <CardSection key={index}>
+            <Text style={fonts.NORMAL}>
+                {itemName} {quantity === undefined ? '' : `(${quantity})`}
+            </Text>
 
-    constructor(props, context) {
-        super(props, context);
+            {/* Espaciado */}
+            <View style={{ flex: 1 }} />
 
-        this.onButtonPress = this.onButtonPress.bind(this);
-    }
-
-    onButtonPress() {
-        this.props.resetOrder();
-
-        Actions.main({});
-    }
-
-    renderRow(itemName, itemPrice, quantity, index) {
-        return (
-            <CardSection key={index}>
-                <Text style={fonts.NORMAL}>
-                    {itemName} {quantity === undefined ? '' : `(${quantity})`}
-                </Text>
-
-                {/* Espaciado */}
-                <View style={{ flex: 1 }} />
-
-                <Text style={fonts.NORMAL}>
-                    € {itemPrice}
-                </Text>
-            </CardSection>
-        );
-    }
-
-    renderRows(items) {
-        return items.map(({ name, priceEuros, quantity }, index) =>
-            this.renderRow(name, priceEuros, quantity, index));
-    }
-
-    renderRule() {
-        return (
-            <HorizontalRule style={{ width: 275, marginTop: 5, marginBottom: 5 }} />
-        );
-    }
-
-    render() {
-        const { headerTitleContainerStyle, headerTitleTextStyle } = styles;
-
-        const { products, subtotalPrice, otherExpenses, totalPrice, address } = this.props;
-
-        return (
-            <Template>
-                <Header headerTitle="Tu pedido" />
-
-                <ScrollTemplate>
-                    <Card style={headerTitleContainerStyle}>
-                        <Text style={headerTitleTextStyle}>
-                            PEDIDO REALIZADO{'\n'}CON ÉXITO
-                        </Text>
-                    </Card>
-
-                    <Card>
-                        <CardSection style={{ flexDirection: 'column' }}>
-                            <Text style={fonts.BIG}>
-                                DIRECCIÓN
-                            </Text>
-                            <Text style={fonts.NORMAL}>
-                                {address}
-                            </Text>
-                        </CardSection>
-                    </Card>
-
-                    <Card style={{ margin: 10 }}>
-                        <CardSection>
-                            <Text style={fonts.HUGE}>
-                                RESUMEN DEL PEDIDO
-                            </Text>
-                        </CardSection>
-
-                        {this.renderRule()}
-                        {this.renderRows(products)}
-                        {this.renderRule()}
-                        {this.renderRow('SUBTOTAL', subtotalPrice)}
-                        {this.renderRows(otherExpenses)}
-                        {this.renderRule()}
-
-                        <CardSection>
-                            <Text style={[fonts.BIG, { fontWeight: 'bold' }]}>
-                                TOTAL
-                            </Text>
-
-                            {/* Espaciado */}
-                            <View style={{ flex: 1 }} />
-
-                            <Text style={[fonts.BIG, { fontWeight: 'bold' }]}>
-                                € {totalPrice}
-                            </Text>
-                        </CardSection>
-
-                        <CardSection style={{ marginTop: 10 }}>
-                            <Button onPress={this.onButtonPress}>
-                                Volver
-                            </Button>
-                        </CardSection>
-                    </Card>
-                </ScrollTemplate>
-            </Template>
-        );
-    }
-}
-
-const styles = {
-    headerTitleContainerStyle: {
-        width: '80%',
-        backgroundColor: '#6add91',
-        borderRadius: 5,
-        marginTop: 20,
-        marginBottom: 5
-    },
-    headerTitleTextStyle: {
-        width: '100%',
-        fontSize: 24,
-        textAlign: 'center',
-        color: '#ffffff',
-        fontWeight: 'bold'
-    }
+            <Text style={fonts.NORMAL}>
+                € {itemPrice}
+            </Text>
+        </CardSection>
+    );
 };
 
-const mapStateToProps = ({ order }) => {
-    const { products, subtotalPrice, otherExpenses, totalPrice, address } = order;
-
-    return { products, subtotalPrice, otherExpenses, totalPrice, address };
+const renderRows = (items) => {
+    return _.map(items,
+        ({ name, priceEuros, quantity }, index) => renderRow(name, priceEuros, quantity, index)
+    );
 };
 
-export default connect(mapStateToProps, { resetOrder })(OrderDoneOverview);
+const renderRule = () => {
+    return (
+        <HorizontalRule style={{ width: 275, marginTop: 5, marginBottom: 5 }} />
+    );
+};
+
+const renderSpaceRule = () => {
+    return (
+        <HorizontalRule style={{ width: 0, marginTop: 5, marginBottom: 5 }} />
+    );
+};
+
+const OrderDoneOverview = ({ restaurantName, address, products, otherExpenses, subtotalPrice,
+                               totalPrice }) => {
+    return (
+        <View style={{ width: '100%' }}>
+            <Card>
+                <CardSection style={{ flexDirection: 'column' }}>
+                    <Text style={fonts.BIG}>
+                        {restaurantName}
+                    </Text>
+                </CardSection>
+            </Card>
+
+            <Card style={{ margin: 10 }}>
+                <CardSection>
+                    <Text style={fonts.HUGE}>
+                        RESUMEN DEL PEDIDO
+                    </Text>
+                </CardSection>
+
+                {renderRule()}
+                {renderRows(products)}
+                {renderSpaceRule()}
+                {renderRow('SUBTOTAL', subtotalPrice)}
+                {renderRows(otherExpenses)}
+                {renderSpaceRule()}
+
+                <CardSection>
+                    <Text style={[fonts.BIG, { fontWeight: 'bold' }]}>
+                        TOTAL
+                    </Text>
+
+                    {/* Espaciado */}
+                    <View style={{ flex: 1 }} />
+
+                    <Text style={[fonts.BIG, { fontWeight: 'bold' }]}>
+                        € {totalPrice}
+                    </Text>
+                </CardSection>
+            </Card>
+
+            <Card>
+                <CardSection style={{ flexDirection: 'column' }}>
+                    <Text style={fonts.HUGE}>
+                        DIRECCIÓN DE ENVÍO
+                    </Text>
+                </CardSection>
+
+                {renderRule()}
+
+                <CardSection>
+                    <Text style={[fonts.NORMAL, { textAlign: 'center' }]}>
+                        {address}
+                    </Text>
+                </CardSection>
+            </Card>
+        </View>
+    );
+};
+
+export { OrderDoneOverview };

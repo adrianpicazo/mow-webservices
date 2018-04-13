@@ -77,8 +77,8 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ order }) => {
-    const { selectedRestaurantId, numProducts } = order;
+const mapStateToProps = ({ userOrder }) => {
+    const { selectedRestaurantId, numProducts } = userOrder;
 
     return { selectedRestaurantId, numProducts };
 };

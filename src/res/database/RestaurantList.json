@@ -151,11 +151,11 @@
   "users" : {
     "7mkovZXaOwSTjvk9XQYrgBoZMG82" : {
       "account" : {
-        "addresses" : [ "Avd/ del Mar, Nº53, 5A", "Esto es una dirección bastante larga para ver cómo queda.", "Avd/ del Monte, Nº67, 6A", "Avd/ del Sol, Nº21, 5B", "Esto es una dirección larga larga larga de cojones para ver cómo queda." ],
         "email" : "test@test.com",
         "name" : "Adrián",
         "surnames": "Picazo Marín"
-      }
+      },
+      "addresses" : [ "Avd/ del Mar, Nº53, 5A", "Esto es una dirección bastante larga para ver cómo queda.", "Avd/ del Monte, Nº67, 6A", "Avd/ del Sol, Nº21, 5B", "Esto es una dirección larga larga larga de cojones para ver cómo queda." ]
     }
   }
 }

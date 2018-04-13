@@ -24,6 +24,7 @@ export const restaurantItemSelection = (restaurant) => {
     };
 };
 
+// TODO: vigilar los errores como con las direcciones
 export const restaurantsFetch = () => {
     return (dispatch) => {
         firebase.database().ref('/restaurants')

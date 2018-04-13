@@ -62,18 +62,18 @@ class UserAccountMenu extends Component {
             <Card style={{ width: '100%', alignItems: 'flex-start' }}>
                 <UserAccountMenuItem
                     image={IC_BLACK_HOME}
-                    label="Dirección"
+                    label="Direcciones"
                     onPress={() => Actions.push('userAccountAddress')}
                 />
                 <UserAccountMenuItem
                     image={IC_BLACK_VIEW_DETAILS}
                     label="Pedidos"
-                    onPress={() => console.log('Pedidos')}
+                    onPress={() => Actions.push('userAccountOrder')}
                 />
                 <UserAccountMenuItem
                     image={IC_BLACK_SETTINGS}
                     label="Configuración"
-                    onPress={() => console.log('Configuración')}
+                    onPress={() => console.warn('Configuración')}
                 />
                 <UserAccountMenuItem
                     image={IC_BLACK_ACCOUNT_LOGOUT}

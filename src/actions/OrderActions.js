@@ -1,3 +1,6 @@
+import _ from 'lodash';
+import firebase from 'react-native-firebase';
+import { Actions } from 'react-native-router-flux';
 import {
     ORDER_ADD_RESTAURANT,
     ORDER_RESET,
@@ -6,7 +9,16 @@ import {
     ORDER_ADDRESS_ADDITION,
     ORDER_ADDRESS_FORM_RESET,
     ORDER_ADDRESS_FORM_CHANGE,
-    ORDER_ADDRESS_FORM_FAILURE
+    ORDER_ADDRESS_FORM_FAILURE,
+    ORDER_ADDRESSES_FETCH_START,
+    ORDER_ADDRESSES_FETCH_SUCCESS,
+    ORDER_ADDRESSES_FETCH_FAILURE,
+    ORDER_START,
+    ORDER_SUCCESS,
+    ORDER_FAILURE,
+    ORDERS_FETCH_START,
+    ORDERS_FETCH_SUCCESS,
+    ORDERS_FETCH_FAILURE,
 } from './types';
 
 export const addRestaurantToOrder = (restaurant) => {
@@ -44,10 +56,9 @@ export const orderAddressAddition = (address) => {
     };
 };
 
-export const orderAddressFormReset = (address) => {
+export const orderAddressFormReset = () => {
     return {
-        type: ORDER_ADDRESS_FORM_RESET,
-        payload: address
+        type: ORDER_ADDRESS_FORM_RESET
     };
 };
 
@@ -64,3 +75,95 @@ export const orderAddressFormFailure = (error) => {
         payload: error
     };
 };
+
+export const orderAddressesFetch = () => {
+    const { currentUser } = firebase.auth();
+
+    return (dispatch) => {
+        dispatch({ type: ORDER_ADDRESSES_FETCH_START });
+
+        try {
+            firebase.database()
+                .ref(`/users/${currentUser.uid}/addresses`)
+                .on('value', snapshot => {
+                    if (snapshot.exists()) {
+                        dispatch({
+                            type: ORDER_ADDRESSES_FETCH_SUCCESS,
+                            payload: snapshot.val()
+                        });
+                    } else {
+                        dispatch({
+                            type: ORDER_ADDRESSES_FETCH_FAILURE,
+                            payload: 'Snapshot is null.'
+                        });
+                    }
+                });
+        } catch (error) {
+            dispatch({
+                type: ORDER_ADDRESSES_FETCH_FAILURE,
+                payload: error.message
+            });
+        }
+    };
+};
+
+export const order = (newOrder) => {
+    const { currentUser } = firebase.auth();
+    const {
+        products,
+        subtotalPrice,
+        otherExpenses,
+        totalPrice,
+        address,
+        restaurantName
+    } = newOrder;
+
+    return (dispatch) => {
+        dispatch({ type: ORDER_START });
+
+        firebase.database()
+            .ref(`/users/${currentUser.uid}/orders`)
+            .push({ products, subtotalPrice, otherExpenses, totalPrice, address, restaurantName })
+            .then(() => {
+                dispatch({
+                    type: ORDER_SUCCESS,
+                    payload: newOrder
+                });
+            })
+            .catch(error => {
+                dispatch({
+                    type: ORDER_FAILURE,
+                    payload: error.message
+                });
+            });
+
+        Actions.push('orderDoneOverview');
+    };
+};
+
+export const ordersFetch = () => {
+    const { currentUser } = firebase.auth();
+
+    return (dispatch) => {
+        dispatch({ type: ORDERS_FETCH_START });
+
+        try {
+            firebase.database()
+                .ref(`/users/${currentUser.uid}/orders`)
+                .on('value', snapshot => {
+                    const orders = _.map(_.forEach(snapshot.val(), item => { return item; }));
+
+                    dispatch({
+                        type: ORDERS_FETCH_SUCCESS,
+                        payload: orders
+                    });
+                });
+        } catch (error) {
+            dispatch({
+                type: ORDERS_FETCH_FAILURE,
+                payload: error.message
+            });
+        }
+    };
+};
+

@@ -7,7 +7,7 @@ import {
     ORDER_ADDRESS_ADDITION
 } from '../actions/types';
 
-const INITIAL_STATE = {
+const EXAMPLE_STATE = {
     selectedRestaurantId: -1,
     products: [],
     numProducts: 0,
@@ -19,7 +19,7 @@ const INITIAL_STATE = {
 
 // EXAMPLE_STATE
 // TODO: borrar el estado ejemplo.
-const EXAMPLE_STATE = {
+const INITIAL_STATE = {
     selectedRestaurantId: 0,
     products: [
         { name: 'Calamares a la Romana', priceEuros: 6.75, quantity: 2 },

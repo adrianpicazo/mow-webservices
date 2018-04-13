@@ -8,16 +8,19 @@ import CategoryInfo from './components/main/category/CategoryInfo';
 import OrderInfo from './components/main/order/OrderInfo';
 import OrderResetWarning from './components/main/order/OrderResetWarning';
 import OrderAddress from './components/main/order/OrderAddress';
-import OrderAddressMap from './components/main/order/OrderAddressMap';
-import OrderDoneOverview from './components/main/order/OrderDoneOverview';
+import OrderAddressMap from './deprecated/OrderAddressMap';
+import OrderDone from './components/main/order/OrderDone';
 import RegistryForm from './components/auth/RegistryForm';
 import UserAccountMenu from './components/main/account/UserAccountMenu';
 import Presentation from './components/auth/Presentation';
 import UserAccountAddress from './components/main/account/UserAccountAddress';
+import UserAccountAddressForm from './components/main/account/UserAccountAddressForm';
+import UserAccountOrder from './components/main/account/UserAccountOrder';
+import UserAccountOrderInfo from './components/main/account/UserAccountOrderInfo';
 
 const RouterComponent = () => {
     return (
-        <Router>
+        <Router backAndroidHandler={() => true}>
             <Lightbox>
                 <Stack key="root" hideNavBar>
                     <Scene key="auth">
@@ -82,13 +85,23 @@ const RouterComponent = () => {
                             hideNavBar
                         />
                         <Scene
-                            key="orderDoneOverview"
-                            component={OrderDoneOverview}
+                            key="orderDone"
+                            component={OrderDone}
                             hideNavBar
                         />
                         <Scene
                             key="userAccountAddress"
                             component={UserAccountAddress}
+                            hideNavBar
+                        />
+                        <Scene
+                            key="userAccountOrder"
+                            component={UserAccountOrder}
+                            hideNavBar
+                        />
+                        <Scene
+                            key="userAccountOrderInfo"
+                            component={UserAccountOrderInfo}
                             hideNavBar
                         />
                     </Stack>
@@ -101,6 +114,10 @@ const RouterComponent = () => {
                 <Scene
                     key="orderResetWarning"
                     component={OrderResetWarning}
+                />
+                <Scene
+                    key="userAccountAddressForm"
+                    component={UserAccountAddressForm}
                 />
             </Lightbox>
         </Router>

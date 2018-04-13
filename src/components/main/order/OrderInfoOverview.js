@@ -118,8 +118,8 @@ class OrderInfoOverview extends Component {
     }
 }
 
-const mapStateToProps = ({ order }) => {
-    const { products, numProducts, subtotalPrice, otherExpenses, totalPrice } = order;
+const mapStateToProps = ({ userOrder }) => {
+    const { products, numProducts, subtotalPrice, otherExpenses, totalPrice } = userOrder;
 
     return { products, numProducts, subtotalPrice, otherExpenses, totalPrice };
 };

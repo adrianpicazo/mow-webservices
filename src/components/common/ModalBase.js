@@ -3,6 +3,7 @@ import { Modal, Text } from 'react-native';
 import { ModalTemplate, SectionTemplate, Card, CardSection, Button } from './index';
 import { colors } from '../../res/Colors';
 
+// TODO: solucionar tamaño de los modales
 const ModalBase = ({ title, titleSize, children, visible, onAccept, onDecline }) => {
     const { sectionTemplateStyle } = styles;
     const { textStyle, cardStyle } = styles.title;

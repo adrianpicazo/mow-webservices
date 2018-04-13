@@ -93,8 +93,8 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ order }) => {
-    const { numProducts, totalPrice } = order;
+const mapStateToProps = ({ userOrder }) => {
+    const { numProducts, totalPrice } = userOrder;
 
     return { numProducts, totalPrice };
 };

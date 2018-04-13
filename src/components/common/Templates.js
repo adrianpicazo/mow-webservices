@@ -82,7 +82,6 @@ const styles = {
     },
     sectionTemplate: {
         defaultStyle: {
-            flex: 1,
             position: 'relative',
             flexDirection: 'column',
             justifyContent: 'flex-start',

@@ -7,6 +7,7 @@ import { fonts } from '../../../res/Fonts';
 import { colors } from '../../../res/Colors';
 import { IC_WHITE_MINUS } from '../../../res/images';
 import InputSecure from '../../common/InputSecure';
+import { addressRemove } from '../../../actions/index';
 
 class UserAccountAddressItem extends Component {
 
@@ -17,7 +18,9 @@ class UserAccountAddressItem extends Component {
     }
 
     onRemoveButtonPress() {
-        console.warn('Apretado');
+        const { addresses, address } = this.props;
+
+        this.props.addressRemove(addresses, address);
     }
 
     render() {
@@ -33,7 +36,7 @@ class UserAccountAddressItem extends Component {
                 </View>
                 <TouchableOpacity
                     style={buttonStyle}
-                    onPress={() => console.log('Apretado!')}
+                    onPress={this.onRemoveButtonPress}
                 >
                     <Image
                         style={imageStyle}
@@ -83,4 +86,10 @@ const styles = {
     }
 };
 
-export default connect(null, { })(UserAccountAddressItem);
+const mapStateToProps = ({ account }) => {
+    const { addresses } = account;
+
+    return { addresses };
+};
+
+export default connect(mapStateToProps, { addressRemove })(UserAccountAddressItem);

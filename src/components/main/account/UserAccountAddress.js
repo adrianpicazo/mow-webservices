@@ -1,173 +1,125 @@
 import React, { Component } from 'react';
-import { View, FlatList } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import { Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import Header from '../../headers/Header';
 import UserAccountAddressItem from './UserAccountAddressItem';
 import {
     Template,
+    ScrollTemplate,
     Card,
     CardSection,
-    Button,
-    InputColumn,
+    IconButton,
     Spinner,
-    Warning,
-    Failure,
-    Success
+    Failure
 } from '../../common/index';
-import {
-    addressFormReset,
-    addressFormChange,
-    addressUpdate,
-    addressFormFailure,
-    addressesFetch
-} from '../../../actions/index';
+import { addressesFetch } from '../../../actions/index';
 import { fonts } from '../../../res/Fonts';
+import { IC_WHITE_PLUS } from '../../../res/images';
+import { colors } from '../../../res/Colors';
 
 class UserAccountAddress extends Component {
 
     constructor(props, context) {
         super(props, context);
-
-        this.onRegisterButtonPress = this.onRegisterButtonPress.bind(this);
-    }
-
-    componentWillMount() {
-        //this.props.addressFormReset();
     }
 
     componentDidMount() {
-        this.props.addressesFetch();
+        const { addresses } = this.props;
+
+        if (addresses === null)
+            this.props.addressesFetch();
     }
 
-    onRegisterButtonPress() {
-        const { address } = this.props;
+    renderFailure() {
+        const { addFailure, removeFailure } = this.props;
 
-        if (address === '') {
-            this.props.addressFormFailure('Existen campos vacíos.');
-        } else {
-            this.props.addressUpdate(address);
-        }
-    }
-
-    renderFormSuccess() {
-        const { updated } = this.props;
-
-        if (updated) {
+        if (addFailure) {
             return (
                 <CardSection>
-                    <Success title={'ÉXITO DE ACTUALIZACIÓN'}>
-                        La dirección se ha actualizado correctamente.
-                    </Success>
+                    <Failure title={'FALLO DE REGISTRO'}>
+                        {addFailure}
+                    </Failure>
                 </CardSection>
             );
         }
-    }
 
-    renderFormFailure() {
-        const { error } = this.props;
-
-        if (error) {
+        if (removeFailure) {
             return (
                 <CardSection>
-                    <Failure title={'FALLO DE ACTUALIZACIÓN'}>
-                        {error}
+                    <Failure title={'FALLO DE BORRADO'}>
+                        {removeFailure}
                     </Failure>
                 </CardSection>
             );
         }
     }
 
-    renderActualAddress() {
-        /*
-        const { address } = this.props.account;
+    renderAddressList() {
+        const { flatListStyle } = styles;
+        const { addresses, fetchLoading, fetchFailure, addLoading, removeSuccess } = this.props;
 
-        if (address) {
+        if (fetchLoading || addLoading) {
             return (
-                <CardSection style={{ flexDirection: 'column' }}>
-                    <Text style={fonts.HUGE}>
-                        Dirección actual
-                    </Text>
-                    <Text style={fonts.BIG}>
-                        {address}
-                    </Text>
+                <Spinner size="large" />
+            );
+        }
+
+        if (!removeSuccess && fetchFailure) {
+            return (
+                <CardSection>
+                    <Failure title={'FALLO DE OBTENCIÓN DE DATOS'}>
+                        {fetchFailure}
+                    </Failure>
                 </CardSection>
             );
         }
 
         return (
-            <CardSection>
-                <Warning>
-                    No se ha registrado ninguna dirección todavía.
-                </Warning>
-            </CardSection>
+            <FlatList
+                data={addresses}
+                renderItem={({ item }) => <UserAccountAddressItem address={item} index />}
+                keyExtractor={(item, index) => index.toString()}
+                style={flatListStyle}
+                extraData={this.props}
+            />
         );
-        */
     }
 
-    renderRegistryButton() {
-        const { loading } = this.props;
-
-        if (loading) {
-            return <Spinner size="large" />;
-        }
-
+    renderAddButton() {
         return (
-            <Card>
-                <CardSection>
-                    <Button onPress={this.onRegisterButtonPress}>
-                        Añadir
-                    </Button>
-                </CardSection>
-            </Card>
+            <CardSection style={{ alignSelf: 'flex-end' }}>
+                <IconButton
+                    onPress={() => Actions.push('userAccountAddressForm')}
+                    image={IC_WHITE_PLUS}
+                    buttonStyle={styles.buttonStyle}
+                    imageStyle={{ tintColor: colors.BLUE.N700 }}
+                />
+            </CardSection>
         );
     }
 
     render() {
-        const { flatListStyle } = styles;
-        const { addresses } = this.props;
-
         return (
             <Template>
                 <Header
                     renderBackButton
-                    renderUserAccountMenuButton
-                    headerTitle="Tu dirección"
+                    headerTitle="Tus direcciones"
                 />
 
-                <Card>
-                    {this.renderActualAddress()}
-                </Card>
+                <ScrollTemplate>
+                    <Card style={{ width: '100%' }}>
+                        <CardSection style={{ alignSelf: 'flex-start' }}>
+                            <Text style={fonts.HUGE}>
+                                Direcciones registradas
+                            </Text>
+                        </CardSection>
 
-                <Card style={{ width: '100%' }}>
-                    {/*
-                    <CardSection>
-                        <InputColumn
-                            label="Introduzca una dirección:"
-                            placeholder="Partida Benadresa, 90, Castelló de la Plana"
-                            value={address}
-                            onChangeText={value => this.props.addressFormChange({
-                                prop: 'address',
-                                value
-                            })}
-                        />
-                    </CardSection>
-                    */}
-
-                    <FlatList
-                        data={addresses}
-                        renderItem={({ item }) => <UserAccountAddressItem address={item} />}
-                        keyExtractor={(item, index) => index.toString()}
-                        style={flatListStyle}
-                    />
-
-                    {this.renderFormSuccess()}
-                    {this.renderFormFailure()}
-                </Card>
-
-                {/* Espacio */}
-                <View style={{ flex: 1 }} />
-
-                {this.renderRegistryButton()}
+                        {this.renderAddressList()}
+                        {this.renderAddButton()}
+                        {this.renderFailure()}
+                    </Card>
+                </ScrollTemplate>
             </Template>
         );
     }
@@ -178,22 +130,38 @@ const styles = {
         position: 'relative',
         width: '100%',
         marginTop: 5,
-        paddingLeft: 5,
-        paddingRight: 5,
-        marginBottom: 10
+        marginBottom: 5
+    },
+    buttonStyle: {
+        height: 35,
+        width: 35,
+        padding: 6,
+        borderColor: colors.BLUE.N700
     }
 };
 
-const mapStateToProps = ({ account, addressForm }) => {
-    const { addresses, error, loading, updated } = addressForm;
+const mapStateToProps = ({ userAddresses, account }) => {
+    const { addresses } = account;
+    const {
+        fetchLoading,
+        fetchFailure,
+        removeFailure,
+        removeSuccess,
+        addSuccess,
+        addFailure,
+        addLoading
+    } = userAddresses;
 
-    return { account, addresses, error, loading, updated };
+    return {
+        addresses,
+        fetchLoading,
+        fetchFailure,
+        removeFailure,
+        removeSuccess,
+        addSuccess,
+        addFailure,
+        addLoading
+    };
 };
 
-export default connect(mapStateToProps, {
-    addressFormReset,
-    addressFormChange,
-    addressUpdate,
-    addressFormFailure,
-    addressesFetch
-})(UserAccountAddress);
+export default connect(mapStateToProps, { addressesFetch })(UserAccountAddress);

@@ -13,8 +13,11 @@ class RestaurantList extends Component {
         super(props, context);
     }
 
-    componentWillMount() {
-        this.props.restaurantsFetch();
+    componentDidMount() {
+        const { restaurantsFetched } = this.props;
+
+        if (!restaurantsFetched)
+            this.props.restaurantsFetch();
     }
 
     render() {
@@ -55,11 +58,12 @@ const styles = {
 };
 
 const mapStateToProps = ({ restaurantListScreen }) => {
+    const { restaurantsFetched } = restaurantListScreen;
     const restaurants = _.map(restaurantListScreen.restaurants, (val, uid) => {
         return { ...val, uid };
     });
 
-    return { restaurants };
+    return { restaurants, restaurantsFetched };
 };
 
 export default connect(mapStateToProps, { restaurantsFetch })(RestaurantList);
