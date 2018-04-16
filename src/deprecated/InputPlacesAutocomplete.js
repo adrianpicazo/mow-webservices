@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, Image } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { IC_GREY_X_MARK } from '../../res/images/index';
+import { IC_GREY_X_MARK } from '../res/images/index';
 
 const homeAddress = {
     description: 'Home',

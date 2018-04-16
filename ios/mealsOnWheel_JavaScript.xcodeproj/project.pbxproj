@@ -29,6 +29,7 @@
 		5A12D786C3D54959BB64324B /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFB2E8EDE19C4D9E9CFF17CF /* Octicons.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6829534505864EF2AD30F528 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1BBB5C84D564576A805C2D9 /* EvilIcons.ttf */; };
+		80721D28703D4A33B9E4CF7B /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3128A3EAC4AC4CFE893CE099 /* libRCTOneSignal.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		9427EC3F67334E968623ECB7 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B08A9CE1D23C4763A6EF8233 /* Ionicons.ttf */; };
 		993186B0253F401FADC55255 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6157EF58EB64670A8517D1B /* Entypo.ttf */; };
@@ -301,6 +302,13 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		A123109E20849249008338F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53F168A4B0B74BB99CF28162 /* RCTOneSignal.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3245CDED1BFEE35C00EABF68;
+			remoteInfo = RCTOneSignal;
+		};
 		A1551BF6206553AC000D7248 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36D6D14A236C46EC8962DA85 /* AirMaps.xcodeproj */;
@@ -348,9 +356,11 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D72418FD666BB46393AE4FC /* Pods-mealsOnWheel_JavaScript.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealsOnWheel_JavaScript.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mealsOnWheel_JavaScript/Pods-mealsOnWheel_JavaScript.debug.xcconfig"; sourceTree = "<group>"; };
+		3128A3EAC4AC4CFE893CE099 /* libRCTOneSignal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOneSignal.a; sourceTree = "<group>"; };
 		36D6D14A236C46EC8962DA85 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		3A2C5C5EAE6E4AC6AA553C5A /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		461F0FF924EA4C5193D1BC2B /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		53F168A4B0B74BB99CF28162 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		549DD333D93547C680E2DEA1 /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6A1EE2ADAFE5606B2E0067F2 /* libPods-mealsOnWheel_JavaScript.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mealsOnWheel_JavaScript.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -393,6 +403,7 @@
 				51DE388E13554E7C8D764791 /* libAirMaps.a in Frameworks */,
 				1C1A63EC95EB4BB4B88C1721 /* libRNFirebase.a in Frameworks */,
 				38D6821DBBBBDB8B83F93048 /* libPods-mealsOnWheel_JavaScript.a in Frameworks */,
+				80721D28703D4A33B9E4CF7B /* libRCTOneSignal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +572,7 @@
 				7D4FBD3212834361A863B4FF /* RNVectorIcons.xcodeproj */,
 				36D6D14A236C46EC8962DA85 /* AirMaps.xcodeproj */,
 				939CDDAA5B0F4989B98E068F /* RNFirebase.xcodeproj */,
+				53F168A4B0B74BB99CF28162 /* RCTOneSignal.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -623,6 +635,7 @@
 				D015A2C4B21F43C4944346BA /* libRNVectorIcons.a */,
 				549DD333D93547C680E2DEA1 /* libAirMaps.a */,
 				0EC90F9123D94726BCAEE70F /* libRNFirebase.a */,
+				3128A3EAC4AC4CFE893CE099 /* libRCTOneSignal.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -631,6 +644,14 @@
 			isa = PBXGroup;
 			children = (
 				A114BD43206169E6008FC4C7 /* libRNVectorIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A123109B20849248008338F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A123109F20849249008338F2 /* libRCTOneSignal.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -749,6 +770,10 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
+				},
+				{
+					ProductGroup = A123109B20849248008338F2 /* Products */;
+					ProjectRef = 53F168A4B0B74BB99CF28162 /* RCTOneSignal.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -1046,6 +1071,13 @@
 			remoteRef = A114BD42206169E6008FC4C7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		A123109F20849249008338F2 /* libRCTOneSignal.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTOneSignal.a;
+			remoteRef = A123109E20849249008338F2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		A1551BF7206553AC000D7248 /* libAirMaps.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1168,11 +1200,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 				);
 				INFOPLIST_FILE = mealsOnWheel_JavaScript/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/mealsOnWheel_JavaScript\"",
 					"\"$(SRCROOT)/mealsOnWheel_JavaScript\"",
 					"\"$(SRCROOT)/mealsOnWheel_JavaScript\"",
 				);
@@ -1203,11 +1237,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 				);
 				INFOPLIST_FILE = mealsOnWheel_JavaScript/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/mealsOnWheel_JavaScript\"",
 					"\"$(SRCROOT)/mealsOnWheel_JavaScript\"",
 					"\"$(SRCROOT)/mealsOnWheel_JavaScript\"",
 				);
