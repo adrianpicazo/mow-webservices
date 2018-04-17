@@ -36,10 +36,10 @@ class OrderAddress extends Component {
     }
 
     componentDidMount() {
-        const { addresses } = this.props;
+        const { uid, addresses } = this.props;
 
         if (addresses === null)
-            this.props.orderAddressesFetch();
+            this.props.orderAddressesFetch(uid);
     }
 
     onPressButton() {
@@ -168,7 +168,7 @@ const styles = {
 };
 
 const mapStateToProps = ({ account, orderAddressForm }) => {
-    const { addresses } = account;
+    const { uid, addresses } = account;
     const { fetchLoading, fetchFailure, formAddress, formError } = orderAddressForm;
 
     return { addresses, fetchLoading, fetchFailure, formAddress, formError };

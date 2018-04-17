@@ -1,42 +1,26 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { applyMiddleware } from 'redux';
+import Reactotron from 'reactotron-react-native';
+import { reactotronRedux } from 'reactotron-redux';
 import ReduxThunk from 'redux-thunk';
-import OneSignal from 'react-native-onesignal';
 import reducers from './reducers';
 import Router from './Router';
 
 class App extends Component {
 
     componentWillMount() {
-        OneSignal.addEventListener('received', this.onReceived);
-        OneSignal.addEventListener('opened', this.onOpened);
-        OneSignal.addEventListener('ids', this.onIds);
-    }
-
-    componentWillUnmount() {
-        OneSignal.removeEventListener('received', this.onReceived);
-        OneSignal.removeEventListener('opened', this.onOpened);
-        OneSignal.removeEventListener('ids', this.onIds);
-    }
-
-    onReceived(notification) {
-        console.warn('Notification received: ', notification);
-    }
-
-    onOpened(openResult) {
-        console.warn('Message: ', openResult.notification.payload.body);
-        console.warn('Data: ', openResult.notification.payload.additionalData);
-        console.warn('isActive: ', openResult.isAppInFocus);
-        console.warn('openResult: ', openResult);
-    }
-
-    onIds(device) {
-        console.warn('Device info: ', device);
+        Reactotron
+            .configure() // controls connection & communication settings
+            .useReactNative() // add all built-in react native plugins
+            .use(reactotronRedux()) //  <- here i am!
+            .configure({ host: '192.168.5.106' })
+            .connect(); // let's connect!
     }
 
     render() {
-        const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+        const store = Reactotron.createStore(reducers, applyMiddleware(ReduxThunk));
+        // const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
         return (
             <Provider store={store}>

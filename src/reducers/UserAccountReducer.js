@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import {
-    USER_ACCOUNT_FETCH_SUCCESS,
     LOGIN_USER_SUCCESS,
     LOGOUT_USER_SUCCESS,
     ADDRESS_ADD_SUCCESS,
@@ -8,9 +7,10 @@ import {
     ADDRESSES_FETCH_SUCCESS,
     ADDRESS_REMOVE_SUCCESS, ORDERS_FETCH_SUCCESS, ORDER_SUCCESS
 } from '../actions/types';
+import AsyncStorage, { AUTH_DATA } from '../utils/AsyncStorage';
 
 const INITIAL_STATE = {
-    token: '',
+    uid: '',
     name: '',
     surnames: '',
     email: '',
@@ -19,12 +19,17 @@ const INITIAL_STATE = {
 };
 
 const setUserAccountProps = (state, action) => {
-    const { name, surnames, email } = action.payload;
+    const { uid, name, surnames, email } = action.payload;
     const newState = { ...state };
 
+    newState.uid = uid;
     newState.name = name;
     newState.surnames = surnames;
     newState.email = email;
+
+    AsyncStorage.set(AUTH_DATA, { uid, name, surnames, email })
+        .then(() => {})
+        .catch(error => console.warn(error));
 
     return newState;
 };
@@ -41,11 +46,9 @@ const addOrderToOrders = (state, action) => {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case LOGIN_USER_SUCCESS:
-            return { ...state, ...INITIAL_STATE, token: action.payload };
+            return setUserAccountProps(state, action);
         case LOGOUT_USER_SUCCESS:
             return { ...state, ...INITIAL_STATE };
-        case USER_ACCOUNT_FETCH_SUCCESS:
-            return setUserAccountProps(state, action);
         case ADDRESSES_FETCH_SUCCESS:
         case ORDER_ADDRESSES_FETCH_SUCCESS:
         case ADDRESS_REMOVE_SUCCESS:

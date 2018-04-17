@@ -76,15 +76,13 @@ export const orderAddressFormFailure = (error) => {
     };
 };
 
-export const orderAddressesFetch = () => {
-    const { currentUser } = firebase.auth();
-
+export const orderAddressesFetch = (uid) => {
     return (dispatch) => {
         dispatch({ type: ORDER_ADDRESSES_FETCH_START });
 
         try {
             firebase.database()
-                .ref(`/users/${currentUser.uid}/addresses`)
+                .ref(`/users/${uid}/addresses`)
                 .on('value', snapshot => {
                     if (snapshot.exists()) {
                         dispatch({
@@ -107,8 +105,7 @@ export const orderAddressesFetch = () => {
     };
 };
 
-export const order = (newOrder) => {
-    const { currentUser } = firebase.auth();
+export const order = (uid, newOrder) => {
     const {
         products,
         subtotalPrice,
@@ -122,7 +119,7 @@ export const order = (newOrder) => {
         dispatch({ type: ORDER_START });
 
         firebase.database()
-            .ref(`/users/${currentUser.uid}/orders`)
+            .ref(`/users/${uid}/orders`)
             .push({ products, subtotalPrice, otherExpenses, totalPrice, address, restaurantName })
             .then(() => {
                 dispatch({
@@ -141,16 +138,16 @@ export const order = (newOrder) => {
     };
 };
 
-export const ordersFetch = () => {
-    const { currentUser } = firebase.auth();
-
+export const ordersFetch = (uid) => {
     return (dispatch) => {
         dispatch({ type: ORDERS_FETCH_START });
 
         try {
             firebase.database()
-                .ref(`/users/${currentUser.uid}/orders`)
+                .ref(`/users/${uid}/orders`)
                 .on('value', snapshot => {
+                    console.warn(snapshot.val());
+
                     const orders = _.map(_.forEach(snapshot.val(), item => { return item; }));
 
                     dispatch({

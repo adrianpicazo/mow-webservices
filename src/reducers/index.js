@@ -11,6 +11,7 @@ import OrderAddressFormReducer from './OrderAddressFormReducer';
 import UserAddressesReducer from './UserAddressesReducer';
 import OrderDoneReducer from './OrderDoneReducer';
 import UserOrdersReducer from './UserOrdersReducer';
+import PresentationReducer from './PresentationReducer';
 
 export default combineReducers({
     restaurantListScreen: RestaurantReducer,
@@ -24,5 +25,6 @@ export default combineReducers({
     userAddresses: UserAddressesReducer,
     orderAddressForm: OrderAddressFormReducer,
     orderDone: OrderDoneReducer,
-    userOrders: UserOrdersReducer
+    userOrders: UserOrdersReducer,
+    presentation: PresentationReducer
 });

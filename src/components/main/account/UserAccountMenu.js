@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import { Text, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Template, Card, CardSection } from '../../common/index';
-import { userAccountFetch, logoutUser } from '../../../actions/index';
+import { logoutUser } from '../../../actions/index';
 import {
     IC_BLACK_CONTACT,
     IC_BLACK_ACCOUNT_LOGOUT,
@@ -21,10 +21,6 @@ class UserAccountMenu extends Component {
         super(props, context);
 
         this.onDisconnectButtonPress = this.onDisconnectButtonPress.bind(this);
-    }
-
-    componentWillMount() {
-        this.props.userAccountFetch();
     }
 
     onDisconnectButtonPress() {
@@ -121,7 +117,4 @@ const mapStateToProps = ({ account }) => {
     return { name, surnames, email };
 };
 
-export default connect(mapStateToProps, {
-    userAccountFetch,
-    logoutUser
-})(UserAccountMenu);
+export default connect(mapStateToProps, { logoutUser })(UserAccountMenu);

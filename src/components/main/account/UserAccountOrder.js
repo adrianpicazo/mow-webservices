@@ -24,10 +24,10 @@ class UserAccountOrder extends Component {
     }
 
     componentDidMount() {
-        const { orders } = this.props;
+        const { uid, orders } = this.props;
 
         if (orders === null)
-            this.props.ordersFetch();
+            this.props.ordersFetch(uid);
     }
 
     renderOrdersList() {
@@ -113,10 +113,10 @@ const styles = {
 };
 
 const mapStateToProps = ({ account, userOrders }) => {
-    const { orders } = account;
+    const { uid, orders } = account;
     const { fetchLoading, fetchSuccess, fetchFailure } = userOrders;
 
-    return { orders, fetchLoading, fetchSuccess, fetchFailure };
+    return { uid, orders, fetchLoading, fetchSuccess, fetchFailure };
 };
 
 export default connect(mapStateToProps, { ordersFetch })(UserAccountOrder);

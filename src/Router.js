@@ -12,7 +12,7 @@ import OrderAddressMap from './deprecated/OrderAddressMap';
 import OrderDone from './components/main/order/OrderDone';
 import RegistryForm from './components/auth/RegistryForm';
 import UserAccountMenu from './components/main/account/UserAccountMenu';
-import Presentation from './components/auth/Presentation';
+import Presentation from './components/Presentation';
 import UserAccountAddress from './components/main/account/UserAccountAddress';
 import UserAccountAddressForm from './components/main/account/UserAccountAddressForm';
 import UserAccountOrder from './components/main/account/UserAccountOrder';

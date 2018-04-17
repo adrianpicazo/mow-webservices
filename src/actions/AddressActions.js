@@ -35,15 +35,13 @@ export const addressFormError = (error) => {
     };
 };
 
-export const addressesFetch = () => {
-    const { currentUser } = firebase.auth();
-
+export const addressesFetch = (uid) => {
     return (dispatch) => {
         dispatch({ type: ADDRESSES_FETCH_START });
 
         try {
             firebase.database()
-                .ref(`/users/${currentUser.uid}/addresses`)
+                .ref(`/users/${uid}/addresses`)
                 .on('value', snapshot => {
                     if (snapshot.exists()) {
                         dispatch({

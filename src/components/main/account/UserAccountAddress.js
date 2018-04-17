@@ -25,10 +25,10 @@ class UserAccountAddress extends Component {
     }
 
     componentDidMount() {
-        const { addresses } = this.props;
+        const { uid, addresses } = this.props;
 
         if (addresses === null)
-            this.props.addressesFetch();
+            this.props.addressesFetch(uid);
     }
 
     renderFailure() {
@@ -141,7 +141,7 @@ const styles = {
 };
 
 const mapStateToProps = ({ userAddresses, account }) => {
-    const { addresses } = account;
+    const { uid, addresses } = account;
     const {
         fetchLoading,
         fetchFailure,
@@ -153,6 +153,7 @@ const mapStateToProps = ({ userAddresses, account }) => {
     } = userAddresses;
 
     return {
+        uid,
         addresses,
         fetchLoading,
         fetchFailure,

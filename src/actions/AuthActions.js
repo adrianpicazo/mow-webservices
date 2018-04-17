@@ -7,9 +7,13 @@ import {
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
     LOGIN_USER_START,
-    LOGOUT_USER_START, LOGOUT_USER_SUCCESS
+    LOGOUT_USER_START,
+    LOGOUT_USER_SUCCESS,
+    LOGOUT_USER_FAILURE,
+    SKIP_LOGIN_USER_START,
+    SKIP_LOGIN_USER_FINISH
 } from './types';
-import { HEADER, URL } from '../components/webservices/Request';
+import AsyncStorage, { AUTH_DATA } from '../utils/AsyncStorage';
 
 export const loginReset = () => {
     return {
@@ -31,35 +35,58 @@ export const loginUserError = ({ error }) => {
     };
 };
 
+export const skipLoginUser = () => {
+    return (dispatch) => {
+        dispatch({ type: SKIP_LOGIN_USER_START });
+
+        AsyncStorage.get(AUTH_DATA)
+            .then(data => {
+                if (data) {
+                    dispatch({
+                        type: LOGIN_USER_SUCCESS,
+                        payload: data
+                    });
+
+                    Actions.push('main');
+                } else Actions.push('login');
+            })
+            .catch(error => {
+                console.warn(error);
+                Actions.push('login');
+            });
+
+        dispatch({ type: SKIP_LOGIN_USER_FINISH });
+    };
+};
+
 export const loginUser = ({ email, password }) => {
     return (dispatch) => {
         dispatch({ type: LOGIN_USER_START });
 
-        /**
-        const body = `json=${JSON.stringify({
-            email,
-            password
-        })}`;
-
-        fetch(
-            URL.concat('login'),
-            {
-                method: 'POST',
-                headers: HEADER,
-                body,
-            }
-        ).then(response => response.json())
-            .catch(error => loginUserFail(dispatch, error))
-            .then(response => loginUserSuccess(dispatch, response));
-        **/
-
-        // TODO: borrar
-        firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email, password)
-            .then(user => loginUserSuccess(dispatch, user))
+        firebase.auth()
+            .signInAndRetrieveDataWithEmailAndPassword(email, password)
+            .then(userInfo => loginUserSuccess(dispatch, userInfo))
             .catch((error) => {
                 loginUserFail(dispatch, error);
             });
     };
+};
+
+const loginUserSuccess = (dispatch, userInfo) => {
+    const { uid } = userInfo.user;
+
+    firebase.database()
+        .ref(`/users/${uid}/account`)
+        .on('value', snapshot => {
+            const { name, surnames, email } = snapshot.val();
+
+            dispatch({
+                type: LOGIN_USER_SUCCESS,
+                payload: { uid, name, surnames, email }
+            });
+        });
+
+    Actions.push('main');
 };
 
 const loginUserFail = (dispatch, error) => {
@@ -67,22 +94,6 @@ const loginUserFail = (dispatch, error) => {
         type: LOGIN_USER_FAIL,
         payload: error.message
     });
-};
-
-const loginUserSuccess = (dispatch, user) => {
-    /**
-    dispatch({
-        type: LOGIN_USER_SUCCESS,
-        payload: response.token
-    });
-     **/
-
-    dispatch({
-        type: LOGIN_USER_SUCCESS,
-        payload: user
-    });
-
-    Actions.main({});
 };
 
 export const logoutUser = () => {
@@ -98,9 +109,19 @@ export const logoutUser = () => {
 };
 
 const logoutUserSuccess = (dispatch) => {
-    dispatch({
-        type: LOGOUT_USER_SUCCESS
-    });
+    AsyncStorage.delete(AUTH_DATA)
+        .then(() => {
+            dispatch({
+                type: LOGOUT_USER_SUCCESS
+            });
 
-    Actions.push('login');
+            Actions.push('presentation');
+        })
+        .catch(error => {
+            dispatch({
+                type: LOGOUT_USER_FAILURE
+            });
+
+            console.warn(error);
+        });
 };

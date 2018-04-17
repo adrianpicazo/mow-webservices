@@ -24,10 +24,19 @@ class OrderDone extends Component {
     }
 
     componentWillMount() {
-        const { products, subtotalPrice, otherExpenses, totalPrice, address, name } = this.props;
+        const {
+            uid,
+            products,
+            subtotalPrice,
+            otherExpenses,
+            totalPrice,
+            address,
+            name
+        } = this.props;
+
         const restaurantName = name;
 
-        this.props.order({
+        this.props.order(uid, {
             products, subtotalPrice, otherExpenses, totalPrice, address, restaurantName
         });
     }
@@ -125,12 +134,14 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ userOrder, orderDone, restaurantSelected }) => {
+const mapStateToProps = ({ account, userOrder, orderDone, restaurantSelected }) => {
     const { orderLoading, orderSuccess, orderFailure } = orderDone;
     const { products, subtotalPrice, otherExpenses, totalPrice, address } = userOrder;
     const { name } = restaurantSelected;
+    const { uid } = account;
 
     return {
+        uid,
         products,
         subtotalPrice,
         otherExpenses,
