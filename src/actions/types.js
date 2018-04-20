@@ -1,12 +1,12 @@
-export const RESTAURANT_ITEM_SELECTION = 'restaurant_item_selection';
 export const RESTAURANTS_FETCH_SUCCESS = 'restaurants_fetch_success';
 export const RESTAURANT_TYPES_FETCH_SUCCESS = 'restaurant_types_fetch_success';
 export const RESTAURANT_TYPE_SELECTION = 'select_restaurant_type';
 export const RESTAURANT_TYPE_ALL_SELECTION = 'select_all_restaurant_types';
 export const RESTAURANT_FILTRATION_BY_TYPE = 'filter_restaurants_by_type';
 
-export const SKIP_LOGIN_USER_START = 'skip_login_user_start';
-export const SKIP_LOGIN_USER_FINISH = 'skip_login_user_finish';
+export const USER_ACCOUNT_FETCH_START = 'user_account_fetch_start';
+export const USER_ACCOUNT_FETCH_SUCCESS = 'user_account_fetch_success';
+export const USER_ACCOUNT_FETCH_FAILURE = 'user_account_fetch_failure';
 
 export const LOGIN_RESET = 'login_reset';
 export const LOGIN_FIELDS_CHANGED = 'login_fields_changed';

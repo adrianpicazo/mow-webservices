@@ -44,6 +44,7 @@ class UserAccountOrderInfo extends Component {
 }
 
 InputSecure.propTypes = {
+    orderUid: PropTypes.string,
     order: PropTypes.shape({
         address: PropTypes.string,
         otherExpenses: PropTypes.arrayOf(PropTypes.object),

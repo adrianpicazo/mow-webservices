@@ -171,7 +171,7 @@ const mapStateToProps = ({ account, orderAddressForm }) => {
     const { uid, addresses } = account;
     const { fetchLoading, fetchFailure, formAddress, formError } = orderAddressForm;
 
-    return { addresses, fetchLoading, fetchFailure, formAddress, formError };
+    return { uid, addresses, fetchLoading, fetchFailure, formAddress, formError };
 };
 
 export default connect(mapStateToProps, {

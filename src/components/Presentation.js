@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import OneSignal from 'react-native-onesignal';
+import { Actions } from 'react-native-router-flux';
+import { analyticsTracker } from '../App';
 import { Template, Card, CardSection, Button, Spinner } from './common/index';
 import { colors } from '../res/Colors';
-import { skipLoginUser } from '../actions/index';
-import AsyncStorage, { AUTH_DATA } from '../utils/AsyncStorage';
+import { userAccountFetchFromAsyncStorage } from '../actions/index';
 import { notificationCenter } from '../utils/NotificationCenter';
+
+// const tracker = new GoogleAnalyticsTracker('UA-117937530-1');
 
 class Presentation extends Component {
 
@@ -19,10 +22,15 @@ class Presentation extends Component {
     }
 
     componentWillMount() {
-        console.warn('hola');
-        OneSignal.addEventListener('received', this.onReceived);
-        OneSignal.addEventListener('opened', this.onOpened);
-        OneSignal.addEventListener('ids', this.onIds);
+        this.props.userAccountFetchFromAsyncStorage(() => {
+            OneSignal.addEventListener('received', this.onReceived);
+            OneSignal.addEventListener('opened', this.onOpened);
+            OneSignal.addEventListener('ids', this.onIds);
+        });
+    }
+
+    componentDidMount() {
+        analyticsTracker.trackScreenView('Presentation');
     }
 
     componentWillUnmount() {
@@ -36,12 +44,14 @@ class Presentation extends Component {
     }
 
     onOpened(openResult) {
+        const { uid } = this.props;
+
         console.log('Message: ', openResult.notification.payload.body);
         console.log('Data: ', openResult.notification.payload.additionalData);
         console.log('isActive: ', openResult.notification.isAppInFocus);
         console.log('openResult: ', openResult);
 
-        AsyncStorage.get(AUTH_DATA).then(user => notificationCenter(user, openResult));
+        notificationCenter(uid, openResult);
     }
 
     onIds(device) {
@@ -49,7 +59,11 @@ class Presentation extends Component {
     }
 
     onButtonPress() {
-        this.props.skipLoginUser();
+        const { uid } = this.props;
+
+        if (uid === '')
+            Actions.push('login');
+        else Actions.push('main');
     }
 
     render() {
@@ -111,10 +125,11 @@ const styles = {
     }
 };
 
-const stateMapToProps = ({ presentation }) => {
-    const { loading } = presentation;
+const stateMapToProps = ({ presentation, account }) => {
+    const { loading, error } = presentation;
+    const { uid } = account;
 
-    return { loading };
+    return { loading, error, uid };
 };
 
-export default connect(stateMapToProps, { skipLoginUser })(Presentation);
+export default connect(stateMapToProps, { userAccountFetchFromAsyncStorage })(Presentation);

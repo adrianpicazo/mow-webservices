@@ -10,8 +10,9 @@ import {
     LOGOUT_USER_START,
     LOGOUT_USER_SUCCESS,
     LOGOUT_USER_FAILURE,
-    SKIP_LOGIN_USER_START,
-    SKIP_LOGIN_USER_FINISH
+    USER_ACCOUNT_FETCH_START,
+    USER_ACCOUNT_FETCH_SUCCESS,
+    USER_ACCOUNT_FETCH_FAILURE
 } from './types';
 import AsyncStorage, { AUTH_DATA } from '../utils/AsyncStorage';
 
@@ -35,65 +36,42 @@ export const loginUserError = ({ error }) => {
     };
 };
 
-export const skipLoginUser = () => {
-    return (dispatch) => {
-        dispatch({ type: SKIP_LOGIN_USER_START });
-
-        AsyncStorage.get(AUTH_DATA)
-            .then(data => {
-                if (data) {
-                    dispatch({
-                        type: LOGIN_USER_SUCCESS,
-                        payload: data
-                    });
-
-                    Actions.push('main');
-                } else Actions.push('login');
-            })
-            .catch(error => {
-                console.warn(error);
-                Actions.push('login');
-            });
-
-        dispatch({ type: SKIP_LOGIN_USER_FINISH });
-    };
-};
-
 export const loginUser = ({ email, password }) => {
     return (dispatch) => {
         dispatch({ type: LOGIN_USER_START });
 
         firebase.auth()
             .signInAndRetrieveDataWithEmailAndPassword(email, password)
-            .then(userInfo => loginUserSuccess(dispatch, userInfo))
+            .then(userInfo => {
+                const { uid } = userInfo.user;
+
+                try {
+                    firebase.database()
+                        .ref(`/users/${uid}/account`)
+                        .on('value', snapshot => {
+                            const { name, surnames } = snapshot.val();
+
+                            dispatch({
+                                type: LOGIN_USER_SUCCESS,
+                                payload: { uid, name, surnames, email }
+                            });
+
+                            Actions.push('main');
+                        });
+                } catch (error) {
+                    dispatch({
+                        type: LOGIN_USER_FAIL,
+                        payload: error.message
+                    });
+                }
+            })
             .catch((error) => {
-                loginUserFail(dispatch, error);
+                dispatch({
+                    type: LOGIN_USER_FAIL,
+                    payload: error.message
+                });
             });
     };
-};
-
-const loginUserSuccess = (dispatch, userInfo) => {
-    const { uid } = userInfo.user;
-
-    firebase.database()
-        .ref(`/users/${uid}/account`)
-        .on('value', snapshot => {
-            const { name, surnames, email } = snapshot.val();
-
-            dispatch({
-                type: LOGIN_USER_SUCCESS,
-                payload: { uid, name, surnames, email }
-            });
-        });
-
-    Actions.push('main');
-};
-
-const loginUserFail = (dispatch, error) => {
-    dispatch({
-        type: LOGIN_USER_FAIL,
-        payload: error.message
-    });
 };
 
 export const logoutUser = () => {
@@ -101,27 +79,51 @@ export const logoutUser = () => {
         dispatch({ type: LOGOUT_USER_START });
 
         firebase.auth().signOut()
-            .then(() => logoutUserSuccess(dispatch))
+            .then(() => {
+                AsyncStorage.delete(AUTH_DATA)
+                    .then(() => {
+                        dispatch({
+                            type: LOGOUT_USER_SUCCESS
+                        });
+
+                        Actions.push('presentation');
+                    })
+                    .catch(error => {
+                        dispatch({
+                            type: LOGOUT_USER_FAILURE,
+                            payload: error.message
+                        });
+                    });
+            })
             .catch((error) => {
-                console.log(error);
+                dispatch({
+                    type: LOGOUT_USER_FAILURE,
+                    payload: error.message
+                });
             });
     };
 };
 
-const logoutUserSuccess = (dispatch) => {
-    AsyncStorage.delete(AUTH_DATA)
-        .then(() => {
-            dispatch({
-                type: LOGOUT_USER_SUCCESS
-            });
+export const userAccountFetchFromAsyncStorage = (addEventListeners) => {
+    return (dispatch) => {
+        dispatch({ type: USER_ACCOUNT_FETCH_START });
 
-            Actions.push('presentation');
-        })
-        .catch(error => {
-            dispatch({
-                type: LOGOUT_USER_FAILURE
-            });
+        AsyncStorage.get(AUTH_DATA)
+            .then(data => {
+                dispatch({
+                    type: USER_ACCOUNT_FETCH_SUCCESS,
+                    payload: data
+                });
 
-            console.warn(error);
-        });
+                addEventListeners();
+            })
+            .catch(error => {
+                dispatch({
+                    type: USER_ACCOUNT_FETCH_FAILURE,
+                    payload: error.message
+                });
+
+                addEventListeners();
+            });
+    };
 };

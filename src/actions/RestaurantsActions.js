@@ -1,28 +1,12 @@
 import _ from 'lodash';
 import firebase from 'react-native-firebase';
 import {
-    RESTAURANT_SELECTION,
-    RESTAURANT_ITEM_SELECTION,
     RESTAURANTS_FETCH_SUCCESS,
     RESTAURANT_TYPES_FETCH_SUCCESS,
     RESTAURANT_TYPE_ALL_SELECTION,
     RESTAURANT_TYPE_SELECTION,
     RESTAURANT_FILTRATION_BY_TYPE
 } from './types';
-
-export const selectRestaurant = (restaurantId) => {
-    return {
-        type: RESTAURANT_SELECTION,
-        payload: restaurantId
-    };
-};
-
-export const restaurantItemSelection = (restaurant) => {
-    return {
-        type: RESTAURANT_ITEM_SELECTION,
-        payload: restaurant
-    };
-};
 
 // TODO: vigilar los errores como con las direcciones
 export const restaurantsFetch = () => {

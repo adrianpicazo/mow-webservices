@@ -7,4 +7,8 @@ target 'mealsOnWheel_JavaScript' do
 
   # Pods for mealsOnWheel_JavaScript
   pod 'Firebase/Core'
+  pod 'react-native-network-info', :path => '../node_modules/react-native-network-info'
+
+  pod 'react-native-google-analytics-bridge', :path => '../node_modules/react-native-google-analytics-bridge'
+
 end

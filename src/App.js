@@ -4,23 +4,25 @@ import { applyMiddleware } from 'redux';
 import Reactotron from 'reactotron-react-native';
 import { reactotronRedux } from 'reactotron-redux';
 import ReduxThunk from 'redux-thunk';
+import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
 import reducers from './reducers';
 import Router from './Router';
+
+export const analyticsTracker = new GoogleAnalyticsTracker('UA-117937530-1');
 
 class App extends Component {
 
     componentWillMount() {
         Reactotron
-            .configure() // controls connection & communication settings
-            .useReactNative() // add all built-in react native plugins
-            .use(reactotronRedux()) //  <- here i am!
-            .configure({ host: '192.168.5.106' })
-            .connect(); // let's connect!
+            .configure()
+            .useReactNative()
+            .use(reactotronRedux())
+            .configure({ host: '192.168.5.114' })
+            .connect();
     }
 
     render() {
         const store = Reactotron.createStore(reducers, applyMiddleware(ReduxThunk));
-        // const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
         return (
             <Provider store={store}>

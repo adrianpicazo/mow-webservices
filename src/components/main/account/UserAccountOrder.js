@@ -26,8 +26,9 @@ class UserAccountOrder extends Component {
     componentDidMount() {
         const { uid, orders } = this.props;
 
-        if (orders === null)
+        if (orders === null && uid) {
             this.props.ordersFetch(uid);
+        }
     }
 
     renderOrdersList() {

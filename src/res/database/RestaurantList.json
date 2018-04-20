@@ -5,7 +5,7 @@
       "id" : 0,
       "name" : "Kebab La Union",
       "type" : "Turca",
-      "thumbnail_image" : "https://upload.wikimedia.org/wikipedia/commons/1/12/Hot_dog_icon.png",
+      "image" : "https://upload.wikimedia.org/wikipedia/commons/1/12/Hot_dog_icon.png",
       "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : [
         {
@@ -56,7 +56,7 @@
       "id" : 1,
       "name": "100 Montaditos",
       "type": "Española",
-      "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/French_fries_icon.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/French_fries_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : [
         {
@@ -74,7 +74,7 @@
       "id" : 2,
       "name": "Karacas Sushi Bar",
       "type": "Japonesa",
-      "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamburger_icon.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamburger_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : [
         {
@@ -87,7 +87,7 @@
       "id" : 3,
       "name": "Asador Castillo",
       "type": "Española",
-      "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Hot_dog_icon.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Hot_dog_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : []
     },
@@ -95,7 +95,7 @@
       "id" : 4,
       "name": "Sushi Angel",
       "type": "Japonesa",
-      "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamburger_icon.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamburger_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : []
     },
@@ -103,7 +103,7 @@
       "id" : 5,
       "name": "Pizzería Bocatería Marisol",
       "type": "Española, Italiana",
-      "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Pizza_slice_icon.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Pizza_slice_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : []
     },
@@ -111,7 +111,7 @@
       "id" : 6,
       "name": "Tucken Takki",
       "type": "Americana",
-      "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Hot_dog_icon.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Hot_dog_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : []
     },
@@ -119,7 +119,7 @@
       "id" : 7,
       "name": "Restaurante Cafeteria Casa Li",
       "type": "China",
-      "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamburger_icon.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamburger_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : []
     },
@@ -127,7 +127,7 @@
       "id" : 8,
       "name": "Can Tony",
       "type": "Italiana",
-      "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Pizza_slice_icon.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Pizza_slice_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : []
     },
@@ -135,7 +135,7 @@
       "id" : 9,
       "name": "Danubio",
       "type": "Italiana",
-      "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Pizza_slice_icon.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Pizza_slice_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : []
     },
@@ -143,7 +143,7 @@
       "id" : 10,
       "name": "Colombia Gourmet",
       "type": "Colombiana",
-      "thumbnail_image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/French_fries_icon.png",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/French_fries_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
       "categories" : []
     }

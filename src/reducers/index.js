@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import RestaurantReducer from './RestaurantReducer';
 import AuthReducer from './AuthReducer';
 import RestaurantTypesReducer from './RestaurantTypesReducer';
-import RestaurantSelectedReducer from './RestaurantSelectedReducer';
 import OrderReducer from './OrderReducer';
 import RegistryReducer from './RegistryReducer';
 import UserAccountReducer from './UserAccountReducer';
@@ -17,7 +16,6 @@ export default combineReducers({
     restaurantListScreen: RestaurantReducer,
     auth: AuthReducer,
     restaurantTypes: RestaurantTypesReducer,
-    restaurantSelected: RestaurantSelectedReducer,
     userOrder: OrderReducer,
     registry: RegistryReducer,
     account: UserAccountReducer,

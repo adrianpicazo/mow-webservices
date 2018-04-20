@@ -146,8 +146,6 @@ export const ordersFetch = (uid) => {
             firebase.database()
                 .ref(`/users/${uid}/orders`)
                 .on('value', snapshot => {
-                    console.warn(snapshot.val());
-
                     const orders = _.map(_.forEach(snapshot.val(), item => { return item; }));
 
                     dispatch({
@@ -163,4 +161,3 @@ export const ordersFetch = (uid) => {
         }
     };
 };
-

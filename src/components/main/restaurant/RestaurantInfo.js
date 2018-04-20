@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, Image, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Card, CardSection, Template, ScrollTemplate, HorizontalRule, Warning } from '../../common';
 import OrderBanner from '../order/OrderBanner';
 import Header from '../../headers/Header';
 import { addRestaurantToOrder } from '../../../actions/index';
 import CategoryListItem from './CategoryListItem';
+import InputSecure from '../../common/InputSecure';
 
 class RestaurantInfo extends Component {
 
@@ -13,15 +15,14 @@ class RestaurantInfo extends Component {
         super(props, context);
     }
 
-    componentWillMount() {
-        const { id, name, type, thumbnail_image, description, categories } = this.props;
-        const restaurant = { id, name, type, thumbnail_image, description, categories };
+    componentDidMount() {
+        const { restaurant } = this.props;
 
         this.props.addRestaurantToOrder(restaurant);
     }
 
     renderCategoryList() {
-        const { categories } = this.props;
+        const { categories } = this.props.restaurant;
         const { categoryListStyle } = styles;
 
         if (categories === undefined) {
@@ -36,12 +37,11 @@ class RestaurantInfo extends Component {
             );
         }
 
-        // TODO: revisar la key
         return (
             <FlatList
                 data={categories}
                 renderItem={({ item }) => <CategoryListItem category={item} />}
-                keyExtractor={item => item.name}
+                keyExtractor={(item, index) => index.toString()}
                 style={categoryListStyle}
                 ItemSeparatorComponent={() => <HorizontalRule />}
             />
@@ -57,7 +57,7 @@ class RestaurantInfo extends Component {
             headerTextStyle
         } = styles.restaurant;
 
-        const { name, type, image, description } = this.props;
+        const { name, type, image, description } = this.props.restaurant;
 
         return (
             <Template>
@@ -136,10 +136,15 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ restaurantSelected }) => {
-    const { id, name, type, image, description, categories } = restaurantSelected;
-
-    return { id, name, type, image, description, categories };
+InputSecure.propTypes = {
+    restaurant: PropTypes.shape({
+        id: PropTypes.int,
+        name: PropTypes.string,
+        type: PropTypes.string,
+        image: PropTypes.string,
+        description: PropTypes.string,
+        categories: PropTypes.arrayOf(PropTypes.object)
+    })
 };
 
-export default connect(mapStateToProps, { addRestaurantToOrder })(RestaurantInfo);
+export default connect(null, { addRestaurantToOrder })(RestaurantInfo);

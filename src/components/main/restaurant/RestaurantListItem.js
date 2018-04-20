@@ -3,7 +3,6 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { CardSection } from '../../common/index';
-import { restaurantItemSelection } from '../../../actions/index';
 
 class RestaurantListItem extends Component {
 
@@ -23,8 +22,7 @@ class RestaurantListItem extends Component {
             hasOrderedProducts) {
             Actions.push('orderResetWarning', { restaurant });
         } else {
-            this.props.restaurantItemSelection(restaurant);
-            Actions.push('restaurantInfo');
+            Actions.push('restaurantInfo', { restaurant });
         }
     }
 
@@ -35,7 +33,7 @@ class RestaurantListItem extends Component {
             headerContentStyle,
             headerTextStyle
         } = styles;
-        const { name, type, thumbnail_image } = this.props.restaurant;
+        const { name, type, image } = this.props.restaurant;
 
         return (
             <TouchableOpacity onPress={this.onRestaurantItemPress}>
@@ -43,7 +41,7 @@ class RestaurantListItem extends Component {
                     <View style={imageContainerStyle}>
                         <Image
                             style={imageStyle}
-                            source={{ uri: thumbnail_image }}
+                            source={{ uri: image }}
                             resizeMode="contain"
                         />
                     </View>
@@ -83,4 +81,4 @@ const mapStateToProps = ({ userOrder }) => {
     return { selectedRestaurantId, numProducts };
 };
 
-export default connect(mapStateToProps, { restaurantItemSelection })(RestaurantListItem);
+export default connect(mapStateToProps, { })(RestaurantListItem);

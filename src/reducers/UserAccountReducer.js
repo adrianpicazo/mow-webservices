@@ -5,7 +5,9 @@ import {
     ADDRESS_ADD_SUCCESS,
     ORDER_ADDRESSES_FETCH_SUCCESS,
     ADDRESSES_FETCH_SUCCESS,
-    ADDRESS_REMOVE_SUCCESS, ORDERS_FETCH_SUCCESS, ORDER_SUCCESS
+    ADDRESS_REMOVE_SUCCESS,
+    ORDERS_FETCH_SUCCESS,
+    ORDER_SUCCESS, USER_ACCOUNT_FETCH_SUCCESS
 } from '../actions/types';
 import AsyncStorage, { AUTH_DATA } from '../utils/AsyncStorage';
 
@@ -19,19 +21,23 @@ const INITIAL_STATE = {
 };
 
 const setUserAccountProps = (state, action) => {
-    const { uid, name, surnames, email } = action.payload;
     const newState = { ...state };
+    const { uid, name, surnames, email } = action.payload;
 
     newState.uid = uid;
     newState.name = name;
     newState.surnames = surnames;
     newState.email = email;
 
+    return newState;
+};
+
+const setUserAccountAsyncDataStorage = (state, action) => {
+    const { uid, name, surnames, email } = action.payload;
+
     AsyncStorage.set(AUTH_DATA, { uid, name, surnames, email })
         .then(() => {})
-        .catch(error => console.warn(error));
-
-    return newState;
+        .catch(error => console.log(error));
 };
 
 const addOrderToOrders = (state, action) => {
@@ -43,9 +49,15 @@ const addOrderToOrders = (state, action) => {
     return newState;
 };
 
+
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case USER_ACCOUNT_FETCH_SUCCESS:
+            if (action.payload === null || action.payload === undefined)
+                return state;
+            return setUserAccountProps(state, action);
         case LOGIN_USER_SUCCESS:
+            setUserAccountAsyncDataStorage(state, action);
             return setUserAccountProps(state, action);
         case LOGOUT_USER_SUCCESS:
             return { ...state, ...INITIAL_STATE };
