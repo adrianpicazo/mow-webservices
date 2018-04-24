@@ -8,6 +8,7 @@ import Header from '../../headers/Header';
 import { addRestaurantToOrder } from '../../../actions/index';
 import CategoryListItem from './CategoryListItem';
 import InputSecure from '../../common/InputSecure';
+import { analyticsTracker } from '../../../App';
 
 class RestaurantInfo extends Component {
 
@@ -16,6 +17,8 @@ class RestaurantInfo extends Component {
     }
 
     componentDidMount() {
+        analyticsTracker.trackScreenView('Restaurant Info');
+
         const { restaurant } = this.props;
 
         this.props.addRestaurantToOrder(restaurant);

@@ -5,11 +5,20 @@ import { connect } from 'react-redux';
 import { Card, CardSection } from '../../common/index';
 import { IC_WHITE_SHOPPING_BASKET } from '../../../res/images/index';
 import { colors } from '../../../res/Colors';
+import { analyticsTracker } from '../../../App';
 
 class OrderBanner extends Component {
 
     constructor(props, context) {
         super(props, context);
+
+        this.onPress = this.onPress.bind(this);
+    }
+
+    onPress() {
+        analyticsTracker.trackEvent('Order Banner', 'Pressed');
+
+        Actions.push('orderInfo');
     }
 
     render() {
@@ -25,7 +34,7 @@ class OrderBanner extends Component {
         return (
             <Card style={{ width: '100%' }}>
                 <TouchableOpacity
-                    onPress={() => Actions.push('orderInfo')}
+                    onPress={this.onPress}
                     style={bannerStyle}
                 >
                     <CardSection>

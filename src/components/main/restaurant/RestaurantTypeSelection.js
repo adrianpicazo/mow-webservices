@@ -12,6 +12,13 @@ import {
 } from '../../../actions/index';
 import { colors } from '../../../res/Colors';
 import RestaurantTypesModalItem from './RestaurantTypeSelectionItem';
+import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_BUTTON_ALL,
+    TR_BUTTON_NONE,
+    TR_HEADER_MODAL_RESTAURANT_TYPES
+} from '../../../i18n/constants';
 
 class RestaurantTypeSelection extends Component {
 
@@ -25,6 +32,8 @@ class RestaurantTypeSelection extends Component {
     }
 
     componentDidMount() {
+        analyticsTracker.trackScreenView('Restaurant Type Selection');
+
         const { fetched } = this.props;
 
         if (!fetched)
@@ -75,7 +84,7 @@ class RestaurantTypeSelection extends Component {
         return (
             <ModalBase
                 visible
-                title="Tipos de restaurante"
+                title={I18nUtils.tr(TR_HEADER_MODAL_RESTAURANT_TYPES)}
                 onAccept={this.onAccept}
                 onDecline={this.onDecline}
                 titleSize={24}
@@ -87,14 +96,14 @@ class RestaurantTypeSelection extends Component {
                             buttonStyle={buttonStyle}
                             onPress={this.onAllChecked}
                         >
-                            Todos
+                            {I18nUtils.tr(TR_BUTTON_ALL)}
                         </Button>
                         <Button
                             textStyle={textStyle}
                             buttonStyle={buttonStyle}
                             onPress={this.onAllUnchecked}
                         >
-                            Ninguno
+                            {I18nUtils.tr(TR_BUTTON_NONE)}
                         </Button>
                     </CardSection>
 

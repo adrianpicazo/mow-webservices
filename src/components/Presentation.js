@@ -8,8 +8,8 @@ import { Template, Card, CardSection, Button, Spinner } from './common/index';
 import { colors } from '../res/Colors';
 import { userAccountFetchFromAsyncStorage } from '../actions/index';
 import { notificationCenter } from '../utils/NotificationCenter';
-
-// const tracker = new GoogleAnalyticsTracker('UA-117937530-1');
+import { I18nUtils } from '../utils/I18nUtils';
+import { TR_APP_NAME, TR_BUTTON_LOG_IN, TR_WELCOME } from '../i18n/constants';
 
 class Presentation extends Component {
 
@@ -85,10 +85,10 @@ class Presentation extends Component {
                             <CardSection>
                                 <View style={textContainerStyle}>
                                     <Text style={[textStyle, { fontSize: 35 }]}>
-                                        Wheels On Meals
+                                        {I18nUtils.tr(TR_APP_NAME)}
                                     </Text>
                                     <Text style={textStyle}>
-                                        Bienvenido
+                                        {I18nUtils.tr(TR_WELCOME)}
                                     </Text>
                                 </View>
                             </CardSection>
@@ -100,7 +100,7 @@ class Presentation extends Component {
                         <Card>
                             <CardSection>
                                 <Button onPress={this.onButtonPress}>
-                                    Acceder
+                                    {I18nUtils.tr(TR_BUTTON_LOG_IN)}
                                 </Button>
                             </CardSection>
                         </Card>

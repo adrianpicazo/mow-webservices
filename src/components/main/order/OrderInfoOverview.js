@@ -6,11 +6,20 @@ import { Card, CardSection, Button, HorizontalRule, IconButton } from '../../com
 import { IC_WHITE_MINUS } from '../../../res/images/index';
 import { removeProductFromOrder } from '../../../actions/index';
 import { fonts } from '../../../res/Fonts';
+import { analyticsTracker } from '../../../App';
 
 class OrderInfoOverview extends Component {
 
     constructor(props, context) {
         super(props, context);
+
+        this.onButtonPress = this.onButtonPress.bind(this);
+    }
+
+    onButtonPress() {
+        analyticsTracker.trackEvent('MakeAnOrder Button', 'Pressed');
+
+        Actions.push('orderAddress');
     }
 
     renderProductRow(itemName, itemPrice, quantity, index) {
@@ -103,7 +112,7 @@ class OrderInfoOverview extends Component {
                 </CardSection>
 
                 <CardSection style={{ marginTop: 10 }}>
-                    <Button onPress={() => Actions.push('orderAddress')}>
+                    <Button onPress={this.onButtonPress}>
                         Realizar pedido
                     </Button>
                 </CardSection>

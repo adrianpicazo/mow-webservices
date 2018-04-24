@@ -7,7 +7,7 @@ import {
     ADDRESSES_FETCH_SUCCESS,
     ADDRESS_REMOVE_SUCCESS,
     ORDERS_FETCH_SUCCESS,
-    ORDER_SUCCESS, USER_ACCOUNT_FETCH_SUCCESS
+    USER_ACCOUNT_FETCH_SUCCESS
 } from '../actions/types';
 import AsyncStorage, { AUTH_DATA } from '../utils/AsyncStorage';
 
@@ -40,16 +40,6 @@ const setUserAccountAsyncDataStorage = (state, action) => {
         .catch(error => console.log(error));
 };
 
-const addOrderToOrders = (state, action) => {
-    const newOrder = action.payload;
-    const newState = { ...state };
-
-    newState.orders = newState.orders === null ? [newOrder] : _.concat(newState.orders, newOrder);
-
-    return newState;
-};
-
-
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case USER_ACCOUNT_FETCH_SUCCESS:
@@ -68,8 +58,6 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, addresses: action.payload };
         case ORDERS_FETCH_SUCCESS:
             return { ...state, orders: action.payload };
-        case ORDER_SUCCESS:
-            return addOrderToOrders(state, action);
         default:
             return state;
     }

@@ -20,6 +20,24 @@ import {
     registryUserError,
     registryUser
 } from '../../actions/index';
+import { analyticsTracker } from '../../App';
+import { I18nUtils } from '../../utils/I18nUtils';
+import {
+    TR_BUTTON_SIGN_IN,
+    TR_ERROR_EMPTY_FIELDS, TR_ERROR_PASSWORDS_NOT_MATCH,
+    TR_FEEDBACK_TITLE_SIGN_IN_FAILURE,
+    TR_HEADER_SIGN_IN_TITLE,
+    TR_LABEL_EMAIL,
+    TR_LABEL_NAME,
+    TR_LABEL_PASSWORD,
+    TR_LABEL_REPEAT_PASSWORD,
+    TR_LABEL_SURNAMES,
+    TR_PLACEHOLDER_EMAIL,
+    TR_PLACEHOLDER_NAME,
+    TR_PLACEHOLDER_PASSWORD,
+    TR_PLACEHOLDER_REPEAT_PASSWORD,
+    TR_PLACEHOLDER_SURNAMES
+} from '../../i18n/constants';
 
 class RegistryForm extends Component {
 
@@ -33,11 +51,15 @@ class RegistryForm extends Component {
         this.props.registryReset();
     }
 
+    componentDidMount() {
+        analyticsTracker.trackScreenView('Registry');
+    }
+
     onRegistryButtonPress() {
         if (this.areThereEmptyFields()) {
-            this.props.registryUserError({ error: 'Existen campos vacíos.' });
+            this.props.registryUserError({ error: I18nUtils.tr(TR_ERROR_EMPTY_FIELDS) });
         } else if (this.areTheyDifferentPasswords()) {
-            this.props.registryUserError({ error: 'Las contraseñas no coinciden.' });
+            this.props.registryUserError({ error: I18nUtils.tr(TR_ERROR_PASSWORDS_NOT_MATCH) });
             this.props.registryFieldsChanged({ prop: 'repeatedPassword', value: '' });
         } else {
             const { name, surnames, email, password } = this.props.formFields;
@@ -66,7 +88,7 @@ class RegistryForm extends Component {
         if (error) {
             return (
                 <CardSection>
-                    <Failure title={'FALLO DE REGISTRO'}>
+                    <Failure title={I18nUtils.tr(TR_FEEDBACK_TITLE_SIGN_IN_FAILURE)}>
                         {error}
                     </Failure>
                 </CardSection>
@@ -85,7 +107,7 @@ class RegistryForm extends Component {
             <Card>
                 <CardSection>
                     <Button onPress={this.onRegistryButtonPress}>
-                        Registrar
+                        {I18nUtils.tr(TR_BUTTON_SIGN_IN)}
                     </Button>
                 </CardSection>
             </Card>
@@ -99,15 +121,15 @@ class RegistryForm extends Component {
             <Template>
                 <Header
                     renderBackButton
-                    headerTitle="Registro"
+                    headerTitle={I18nUtils.tr(TR_HEADER_SIGN_IN_TITLE)}
                 />
 
                 <ScrollTemplate>
                     <Card>
                         <CardSection>
                             <InputColumn
-                                label="Nombre"
-                                placeholder="Adrián"
+                                label={I18nUtils.tr(TR_LABEL_NAME)}
+                                placeholder={I18nUtils.tr(TR_PLACEHOLDER_NAME)}
                                 value={name}
                                 onChangeText={value => this.props.registryFieldsChanged({
                                     prop: 'name',
@@ -118,8 +140,8 @@ class RegistryForm extends Component {
 
                         <CardSection>
                             <InputColumn
-                                label="Apellidos"
-                                placeholder="Picazo Marín"
+                                label={I18nUtils.tr(TR_LABEL_SURNAMES)}
+                                placeholder={I18nUtils.tr(TR_PLACEHOLDER_SURNAMES)}
                                 value={surnames}
                                 onChangeText={value => this.props.registryFieldsChanged({
                                     prop: 'surnames',
@@ -130,8 +152,8 @@ class RegistryForm extends Component {
 
                         <CardSection>
                             <InputColumn
-                                label="Correo electrónico"
-                                placeholder="email@gmail.com"
+                                llabel={I18nUtils.tr(TR_LABEL_EMAIL)}
+                                placeholder={I18nUtils.tr(TR_PLACEHOLDER_EMAIL)}
                                 value={email}
                                 onChangeText={value => this.props.registryFieldsChanged({
                                     prop: 'email',
@@ -142,8 +164,8 @@ class RegistryForm extends Component {
 
                         <CardSection>
                             <InputSecure
-                                label="Contraseña"
-                                placeholder="*******"
+                                label={I18nUtils.tr(TR_LABEL_PASSWORD)}
+                                placeholder={I18nUtils.tr(TR_PLACEHOLDER_PASSWORD)}
                                 value={password}
                                 onChangeText={value => this.props.registryFieldsChanged({
                                     prop: 'password',
@@ -154,8 +176,8 @@ class RegistryForm extends Component {
 
                         <CardSection>
                             <InputSecure
-                                label="Repita contraseña"
-                                placeholder="*******"
+                                label={I18nUtils.tr(TR_LABEL_REPEAT_PASSWORD)}
+                                placeholder={I18nUtils.tr(TR_PLACEHOLDER_REPEAT_PASSWORD)}
                                 value={repeatedPassword}
                                 onChangeText={value => this.props.registryFieldsChanged({
                                     prop: 'repeatedPassword',

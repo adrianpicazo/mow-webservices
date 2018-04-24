@@ -5,11 +5,16 @@ import OrderBanner from '../order/OrderBanner';
 import Header from '../../headers/Header';
 import ProductListItem from './ProductListItem';
 import { fonts } from '../../../res/Fonts';
+import { analyticsTracker } from '../../../App';
 
 class CategoryInfo extends Component {
 
     constructor(props, context) {
         super(props, context);
+    }
+
+    componentDidMount() {
+        analyticsTracker.trackScreenView('Category Info');
     }
 
     renderProductList() {

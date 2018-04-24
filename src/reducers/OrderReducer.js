@@ -8,29 +8,13 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-    selectedRestaurantId: -1,
+    restaurantSelected: null,
     products: [],
     numProducts: 0,
     subtotalPrice: 0.0,
     otherExpenses: [{ name: 'Gastos de entrega', priceEuros: 0.0 }],
     totalPrice: 0.0,
     address: ''
-};
-
-// EXAMPLE_STATE
-// TODO: borrar el estado ejemplo.
-const EXAMPLE_STATE = {
-    selectedRestaurantId: 0,
-    products: [
-        { name: 'Calamares a la Romana', priceEuros: 6.75, quantity: 2 },
-        { name: 'Puntillas', priceEuros: 7.75, quantity: 1 },
-        { name: 'Ensalada de aguacate', priceEuros: 4.75, quantity: 1 }
-    ],
-    numProducts: 5,
-    subtotalPrice: 33.75,
-    otherExpenses: [{ name: 'Gastos de entrega', priceEuros: 0.0 }],
-    totalPrice: 33.75,
-    address: 'Partida Benadresa, 90, Castelló de la Plana'
 };
 
 const addProduct = (state, action) => {
@@ -79,7 +63,7 @@ const removeProduct = (state, action) => {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case ORDER_ADD_RESTAURANT:
-            return { ...state, selectedRestaurantId: action.payload.id };
+            return { ...state, restaurantSelected: action.payload };
         case ORDER_RESET:
             return { ...state, ...INITIAL_STATE };
         case ORDER_ADD_PRODUCT:

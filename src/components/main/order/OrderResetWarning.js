@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { ModalBase, Card, CardSection } from '../../common/index';
 import { resetOrder } from '../../../actions/index';
 import { fonts } from '../../../res/Fonts';
+import { analyticsTracker } from '../../../App';
 
 class OrderResetWarning extends Component {
 
@@ -13,6 +14,10 @@ class OrderResetWarning extends Component {
 
         this.onAccept = this.onAccept.bind(this);
         this.onDecline = this.onDecline.bind(this);
+    }
+
+    componentDidMount() {
+        analyticsTracker.trackScreenView('Order Reset Warning');
     }
 
     onAccept() {

@@ -17,6 +17,7 @@ import { addressesFetch } from '../../../actions/index';
 import { fonts } from '../../../res/Fonts';
 import { IC_WHITE_PLUS } from '../../../res/images';
 import { colors } from '../../../res/Colors';
+import { analyticsTracker } from '../../../App';
 
 class UserAccountAddress extends Component {
 
@@ -25,6 +26,8 @@ class UserAccountAddress extends Component {
     }
 
     componentDidMount() {
+        analyticsTracker.trackScreenView('User Account Address');
+
         const { uid, addresses } = this.props;
 
         if (addresses === null)

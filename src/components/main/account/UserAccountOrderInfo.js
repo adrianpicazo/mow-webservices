@@ -4,11 +4,16 @@ import { OrderDoneOverview } from '../order/OrderDoneOverview';
 import Header from '../../headers/Header';
 import { ScrollTemplate, Template } from '../../common';
 import InputSecure from '../../common/InputSecure';
+import { analyticsTracker } from '../../../App';
 
 class UserAccountOrderInfo extends Component {
 
     constructor(props, context) {
         super(props, context);
+    }
+
+    componentDidMount() {
+        analyticsTracker.trackScreenView('User Account Order Info');
     }
 
     render() {

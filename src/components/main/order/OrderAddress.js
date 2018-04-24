@@ -22,6 +22,7 @@ import {
 } from '../../../actions/index';
 import { OrderAddressItem } from './OrderAddressItem';
 import { fonts } from '../../../res/Fonts';
+import { analyticsTracker } from '../../../App';
 
 class OrderAddress extends Component {
 
@@ -36,6 +37,8 @@ class OrderAddress extends Component {
     }
 
     componentDidMount() {
+        analyticsTracker.trackScreenView('Order Address');
+
         const { uid, addresses } = this.props;
 
         if (addresses === null)
@@ -48,6 +51,8 @@ class OrderAddress extends Component {
         if (formAddress === '') {
             this.props.orderAddressFormFailure('Existen campos vacíos.');
         } else {
+            analyticsTracker.trackEvent('FinishOrder Button', 'Pressed');
+
             this.props.orderAddressAddition(formAddress);
             Actions.push('orderDone');
         }

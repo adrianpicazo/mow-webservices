@@ -11,9 +11,10 @@ import {
     Failure,
     Spinner
 } from '../../common/index';
-import { resetOrder, order } from '../../../actions/index';
+import { resetOrder, order, restaurantFetch } from '../../../actions/index';
 import Header from '../../headers/Header';
 import { OrderDoneOverview } from './OrderDoneOverview';
+import { analyticsTracker } from '../../../App';
 
 class OrderDone extends Component {
 
@@ -26,19 +27,21 @@ class OrderDone extends Component {
     componentWillMount() {
         const {
             uid,
+            restaurantName,
             products,
             subtotalPrice,
             otherExpenses,
             totalPrice,
-            address,
-            name
+            address
         } = this.props;
-
-        const restaurantName = name;
 
         this.props.order(uid, {
             products, subtotalPrice, otherExpenses, totalPrice, address, restaurantName
         });
+    }
+
+    componentDidMount() {
+        analyticsTracker.trackScreenView('Order Done');
     }
 
     onButtonPress() {
@@ -50,7 +53,14 @@ class OrderDone extends Component {
     renderOrderOverview() {
         const { headerTitleContainerStyle, headerTitleTextStyle } = styles;
 
-        const { products, subtotalPrice, otherExpenses, totalPrice, address, name } = this.props;
+        const {
+            products,
+            subtotalPrice,
+            otherExpenses,
+            totalPrice,
+            address,
+            restaurantName
+        } = this.props;
 
         return (
             <View style={{ width: '100%' }}>
@@ -66,7 +76,7 @@ class OrderDone extends Component {
                     otherExpenses={otherExpenses}
                     subtotalPrice={subtotalPrice}
                     totalPrice={totalPrice}
-                    restaurantName={name}
+                    restaurantName={restaurantName}
                 />
             </View>
         );
@@ -134,24 +144,26 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ account, userOrder, orderDone, restaurantSelected }) => {
+const mapStateToProps = ({ account, userOrder, orderDone }) => {
     const { orderLoading, orderSuccess, orderFailure } = orderDone;
     const { products, subtotalPrice, otherExpenses, totalPrice, address } = userOrder;
-    const { name } = restaurantSelected;
     const { uid } = account;
+
+    const restaurantName =
+        userOrder.restaurantSelected == null ? '' : userOrder.restaurantSelected.name;
 
     return {
         uid,
+        restaurantName,
         products,
         subtotalPrice,
         otherExpenses,
         totalPrice,
         address,
-        name,
         orderLoading,
         orderSuccess,
         orderFailure
     };
 };
 
-export default connect(mapStateToProps, { resetOrder, order })(OrderDone);
+export default connect(mapStateToProps, { resetOrder, order, restaurantFetch })(OrderDone);

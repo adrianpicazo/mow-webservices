@@ -16,6 +16,7 @@ import {
 import { ordersFetch } from '../../../actions/index';
 import { fonts } from '../../../res/Fonts';
 import { UserAccountOrderItem } from './UserAccountOrderItem';
+import { analyticsTracker } from '../../../App';
 
 class UserAccountOrder extends Component {
 
@@ -24,9 +25,11 @@ class UserAccountOrder extends Component {
     }
 
     componentDidMount() {
-        const { uid, orders } = this.props;
+        analyticsTracker.trackScreenView('User Account Order');
 
-        if (orders === null && uid) {
+        const { uid } = this.props;
+
+        if (uid) {
             this.props.ordersFetch(uid);
         }
     }

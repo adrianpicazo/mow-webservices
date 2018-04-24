@@ -2,6 +2,11 @@ import React from 'react';
 import { Modal, Text } from 'react-native';
 import { ModalTemplate, SectionTemplate, Card, CardSection, Button } from './index';
 import { colors } from '../../res/Colors';
+import { I18nUtils } from '../../utils/I18nUtils';
+import {
+    TR_BUTTON_ACCEPT,
+    TR_BUTTON_CANCEL,
+} from '../../i18n/constants';
 
 // TODO: solucionar tamaño de los modales
 const ModalBase = ({ title, titleSize, children, visible, onAccept, onDecline }) => {
@@ -29,10 +34,14 @@ const ModalBase = ({ title, titleSize, children, visible, onAccept, onDecline })
 
                     <Card>
                         <CardSection>
-                            <Button onPress={onAccept}>Aceptar</Button>
+                            <Button onPress={onAccept}>
+                                {I18nUtils.tr(TR_BUTTON_ACCEPT)}
+                            </Button>
                         </CardSection>
                         <CardSection>
-                            <Button onPress={onDecline}>Cancelar</Button>
+                            <Button onPress={onDecline}>
+                                {I18nUtils.tr(TR_BUTTON_CANCEL)}
+                            </Button>
                         </CardSection>
                     </Card>
                 </SectionTemplate>

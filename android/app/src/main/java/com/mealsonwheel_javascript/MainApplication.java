@@ -3,6 +3,7 @@ package com.mealsonwheel_javascript;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import io.invertase.firebase.RNFirebasePackage;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new RNI18nPackage(),
         new GoogleAnalyticsBridgePackage(),
         new ReactNativeOneSignalPackage(),
         new RNFirebasePackage(),

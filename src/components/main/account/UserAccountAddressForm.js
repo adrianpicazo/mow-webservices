@@ -10,6 +10,7 @@ import {
     addressAdd
 } from '../../../actions/index';
 import { colors } from '../../../res/Colors';
+import { analyticsTracker } from '../../../App';
 
 class UserAccountAddressForm extends Component {
 
@@ -22,6 +23,10 @@ class UserAccountAddressForm extends Component {
 
     componentWillMount() {
         this.props.addressFormReset();
+    }
+
+    componentDidMount() {
+        analyticsTracker.trackScreenView('User Account Address Form');
     }
 
     onAccept() {

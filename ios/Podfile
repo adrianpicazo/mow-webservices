@@ -11,4 +11,6 @@ target 'mealsOnWheel_JavaScript' do
 
   pod 'react-native-google-analytics-bridge', :path => '../node_modules/react-native-google-analytics-bridge'
 
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+
 end

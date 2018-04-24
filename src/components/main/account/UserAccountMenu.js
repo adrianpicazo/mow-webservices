@@ -14,6 +14,14 @@ import {
 import { colors } from '../../../res/Colors';
 import { UserAccountMenuItem } from './UserAccountMenuItem';
 import { fonts } from '../../../res/Fonts';
+import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_MENU_ADDRESSES,
+    TR_MENU_LOGOUT,
+    TR_MENU_ORDERS,
+    TR_MENU_SETTINGS
+} from '../../../i18n/constants';
 
 class UserAccountMenu extends Component {
 
@@ -21,6 +29,10 @@ class UserAccountMenu extends Component {
         super(props, context);
 
         this.onDisconnectButtonPress = this.onDisconnectButtonPress.bind(this);
+    }
+
+    componentDidMount() {
+        analyticsTracker.trackScreenView('User Account Menu');
     }
 
     onDisconnectButtonPress() {
@@ -58,22 +70,22 @@ class UserAccountMenu extends Component {
             <Card style={{ width: '100%', alignItems: 'flex-start' }}>
                 <UserAccountMenuItem
                     image={IC_BLACK_HOME}
-                    label="Direcciones"
+                    label={I18nUtils.tr(TR_MENU_ADDRESSES)}
                     onPress={() => Actions.push('userAccountAddress')}
                 />
                 <UserAccountMenuItem
                     image={IC_BLACK_VIEW_DETAILS}
-                    label="Pedidos"
+                    label={I18nUtils.tr(TR_MENU_ORDERS)}
                     onPress={() => Actions.push('userAccountOrder')}
                 />
                 <UserAccountMenuItem
                     image={IC_BLACK_SETTINGS}
-                    label="Configuración"
+                    label={I18nUtils.tr(TR_MENU_SETTINGS)}
                     onPress={() => console.warn('Configuración')}
                 />
                 <UserAccountMenuItem
                     image={IC_BLACK_ACCOUNT_LOGOUT}
-                    label="Desconectar"
+                    label={I18nUtils.tr(TR_MENU_LOGOUT)}
                     onPress={() => this.onDisconnectButtonPress()}
                 />
             </Card>

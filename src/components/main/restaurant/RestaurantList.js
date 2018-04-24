@@ -6,6 +6,9 @@ import Header from '../../headers/Header';
 import { restaurantsFetch } from '../../../actions/index';
 import RestaurantListItem from './RestaurantListItem';
 import { Template, HorizontalRule } from '../../common';
+import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import { TR_HEADER_RESTAURANT_LIST } from '../../../i18n/constants';
 
 class RestaurantList extends Component {
 
@@ -14,6 +17,8 @@ class RestaurantList extends Component {
     }
 
     componentDidMount() {
+        analyticsTracker.trackScreenView('Restaurant List');
+
         const { restaurantsFetched } = this.props;
 
         if (!restaurantsFetched)
@@ -28,7 +33,7 @@ class RestaurantList extends Component {
                 <Header
                     renderFilterMenuButton
                     renderUserAccountMenuButton
-                    headerTitle="Restaurantes"
+                    headerTitle={I18nUtils.tr(TR_HEADER_RESTAURANT_LIST)}
                 />
 
                 <FlatList

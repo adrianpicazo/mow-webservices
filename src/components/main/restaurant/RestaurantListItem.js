@@ -14,7 +14,8 @@ class RestaurantListItem extends Component {
 
     onRestaurantItemPress() {
         const restaurant = this.props.restaurant;
-        const restaurantIdSelected = this.props.selectedRestaurantId;
+        const restaurantIdSelected =
+            this.props.restaurantSelected == null ? -1 : this.props.restaurantSelected.id;
         const hasOrderedProducts = this.props.numProducts > 0;
 
         if (restaurantIdSelected !== -1 &&
@@ -76,9 +77,9 @@ const styles = {
 };
 
 const mapStateToProps = ({ userOrder }) => {
-    const { selectedRestaurantId, numProducts } = userOrder;
+    const { restaurantSelected, numProducts } = userOrder;
 
-    return { selectedRestaurantId, numProducts };
+    return { restaurantSelected, numProducts };
 };
 
 export default connect(mapStateToProps, { })(RestaurantListItem);

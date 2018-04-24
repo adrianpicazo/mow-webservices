@@ -1,5 +1,6 @@
 import React from 'react';
-import { Scene, Stack, Router, Lightbox } from 'react-native-router-flux';
+import { Scene, Stack, Router, Lightbox, Reducer } from 'react-native-router-flux';
+import { analyticsTracker } from './App';
 import LoginForm from './components/auth/LoginForm';
 import RestaurantList from './components/main/restaurant/RestaurantList';
 import RestaurantInfo from './components/main/restaurant/RestaurantInfo';
@@ -8,7 +9,6 @@ import CategoryInfo from './components/main/category/CategoryInfo';
 import OrderInfo from './components/main/order/OrderInfo';
 import OrderResetWarning from './components/main/order/OrderResetWarning';
 import OrderAddress from './components/main/order/OrderAddress';
-import OrderAddressMap from './deprecated/OrderAddressMap';
 import OrderDone from './components/main/order/OrderDone';
 import RegistryForm from './components/auth/RegistryForm';
 import UserAccountMenu from './components/main/account/UserAccountMenu';
@@ -18,9 +18,20 @@ import UserAccountAddressForm from './components/main/account/UserAccountAddress
 import UserAccountOrder from './components/main/account/UserAccountOrder';
 import UserAccountOrderInfo from './components/main/account/UserAccountOrderInfo';
 
+
+const reducerCreate = (params) => {
+    const defaultReducer = new Reducer(params);
+    return (state, action) => {
+        if (action.type === 'REACT_NATIVE_ROUTER_FLUX_FOCUS')
+            analyticsTracker.trackScreenView(action.routeName);
+
+        return defaultReducer(state, action);
+    };
+};
+
 const RouterComponent = () => {
     return (
-        <Router backAndroidHandler={() => true}>
+        <Router backAndroidHandler={() => true} createReducer={reducerCreate}>
             <Lightbox>
                 <Stack key="root" hideNavBar>
                     <Scene key="auth">
@@ -77,11 +88,6 @@ const RouterComponent = () => {
                         <Scene
                             key="orderAddress"
                             component={OrderAddress}
-                            hideNavBar
-                        />
-                        <Scene
-                            key="orderAddressMap"
-                            component={OrderAddressMap}
                             hideNavBar
                         />
                         <Scene
