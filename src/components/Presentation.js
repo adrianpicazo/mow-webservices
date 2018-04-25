@@ -9,7 +9,7 @@ import { colors } from '../res/Colors';
 import { userAccountFetchFromAsyncStorage } from '../actions/index';
 import { notificationCenter } from '../utils/NotificationCenter';
 import { I18nUtils } from '../utils/I18nUtils';
-import { TR_APP_NAME, TR_BUTTON_LOG_IN, TR_WELCOME } from '../i18n/constants';
+import { TR_APP_NAME, TR_BUTTON_LOGIN, TR_WELCOME } from '../i18n/constants';
 
 class Presentation extends Component {
 
@@ -100,7 +100,7 @@ class Presentation extends Component {
                         <Card>
                             <CardSection>
                                 <Button onPress={this.onButtonPress}>
-                                    {I18nUtils.tr(TR_BUTTON_LOG_IN)}
+                                    {I18nUtils.tr(TR_BUTTON_LOGIN)}
                                 </Button>
                             </CardSection>
                         </Card>

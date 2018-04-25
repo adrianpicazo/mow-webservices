@@ -9,6 +9,8 @@ import { addRestaurantToOrder } from '../../../actions/index';
 import CategoryListItem from './CategoryListItem';
 import InputSecure from '../../common/InputSecure';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import { TR_HEADER_RESTAURANT_INFO } from '../../../i18n/constants';
 
 class RestaurantInfo extends Component {
 
@@ -66,7 +68,7 @@ class RestaurantInfo extends Component {
             <Template>
                 <Header
                     renderBackButton
-                    headerTitle="Información del restaurante"
+                    headerTitle={I18nUtils.tr(TR_HEADER_RESTAURANT_INFO)}
                     newHeaderTextStyle={{ fontSize: 20 }}
                 />
 

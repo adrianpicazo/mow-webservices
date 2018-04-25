@@ -11,6 +11,13 @@ import {
 } from '../../../actions/index';
 import { colors } from '../../../res/Colors';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_ERROR_EMPTY_FIELDS,
+    TR_HEADER_MODAL_ADDRESS_FORM,
+    TR_PLACEHOLDER_ADDRESS,
+    TR_TITLE_FAILURE_FORM
+} from '../../../i18n/constants';
 
 class UserAccountAddressForm extends Component {
 
@@ -30,14 +37,14 @@ class UserAccountAddressForm extends Component {
     }
 
     onAccept() {
-        const { addresses, formAddress } = this.props;
+        const { uid, addresses, formAddress } = this.props;
 
         if (formAddress === '') {
-            this.props.addressFormError('Existen campos vacíos.');
+            this.props.addressFormError(I18nUtils.tr(TR_ERROR_EMPTY_FIELDS));
             return;
         }
 
-        this.props.addressAdd(addresses, formAddress);
+        this.props.addressAdd(uid, addresses, formAddress);
 
         Actions.pop();
     }
@@ -52,7 +59,7 @@ class UserAccountAddressForm extends Component {
         if (formError) {
             return (
                 <CardSection>
-                    <Failure title={'FALLO DE FORMULARIO'}>
+                    <Failure title={I18nUtils.tr(TR_TITLE_FAILURE_FORM)}>
                         {formError}
                     </Failure>
                 </CardSection>
@@ -67,7 +74,7 @@ class UserAccountAddressForm extends Component {
         return (
             <ModalBase
                 visible
-                title="Introduzca una dirección"
+                title={I18nUtils.tr(TR_HEADER_MODAL_ADDRESS_FORM)}
                 onAccept={this.onAccept}
                 onDecline={this.onDecline}
                 titleSize={22}
@@ -75,7 +82,7 @@ class UserAccountAddressForm extends Component {
                 <Card>
                     <CardSection>
                         <TextInput
-                            placeholder="Partida Benadresa, 90, Castelló de la Plana"
+                            placeholder={I18nUtils.tr(TR_PLACEHOLDER_ADDRESS)}
                             autoCorrect={false}
                             style={[inputStyle, { width: '100%' }]}
                             value={formAddress}
@@ -105,10 +112,10 @@ const styles = {
 };
 
 const mapStateToProps = ({ userAddressForm, account }) => {
-    const { addresses } = account;
+    const { uid, addresses } = account;
     const { formAddress, formError } = userAddressForm;
 
-    return { addresses, formAddress, formError };
+    return { uid, addresses, formAddress, formError };
 };
 
 export default connect(mapStateToProps, {

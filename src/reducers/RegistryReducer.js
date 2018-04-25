@@ -17,17 +17,6 @@ const INITIAL_STATE = {
     loading: false
 };
 
-// TODO: borrar el estado ejemplo.
-const EXAMPLE_STATE = {
-    name: 'Adrián',
-    surnames: 'Picazo',
-    email: 'testRegistro@test.com',
-    password: '123456',
-    repeatedPassword: '123456',
-    error: '',
-    loading: false
-};
-
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case REGISTRY_RESET:

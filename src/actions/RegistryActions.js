@@ -50,13 +50,15 @@ const registryUserFail = (dispatch, error) => {
     });
 };
 
+// TODO: registrar lenguaje
 const registryUserSuccess = (dispatch, user, registryForm) => {
     const { name, surnames, email, password } = registryForm;
     const { uid } = user;
+    const language = 'es';
     const address = '';
 
     firebase.database().ref('/users').child(`/${uid}/account`)
-        .set({ name, surnames, email, address })
+        .set({ name, surnames, email, address, language })
         .then(() => {
             dispatch({
                 type: REGISTRY_USER_SUCCESS,

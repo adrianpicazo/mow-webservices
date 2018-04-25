@@ -5,6 +5,10 @@ import Header from '../../headers/Header';
 import { ScrollTemplate, Template } from '../../common';
 import InputSecure from '../../common/InputSecure';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_HEADER_USER_ORDER_DONE
+} from '../../../i18n/constants';
 
 class UserAccountOrderInfo extends Component {
 
@@ -30,10 +34,10 @@ class UserAccountOrderInfo extends Component {
             <Template>
                 <Header
                     renderBackButton
-                    headerTitle="Tu pedido realizado"
+                    headerTitle={I18nUtils.tr(TR_HEADER_USER_ORDER_DONE)}
                 />
 
-                <ScrollTemplate>
+                <ScrollTemplate style={{ paddingTop: 20 }}>
                     <OrderDoneOverview
                         address={address}
                         products={products}

@@ -5,40 +5,27 @@ import { connect } from 'react-redux';
 import { CardSection } from '../../common/index';
 import { fonts } from '../../../res/Fonts';
 import { colors } from '../../../res/Colors';
-import { IC_BLACK_CHECK_MARK_2 } from '../../../res/images';
+import { IC_BLACK_CIRCLE } from '../../../res/images';
 import { restaurantTypeSelection } from '../../../actions';
 
-class RestaurantTypeSelectionItem extends Component {
+// TODO: borrar
+class UserAccountLanguageSelectionItem extends Component {
 
     constructor(props, context) {
         super(props, context);
 
-        this.onRestaurantTypeItemPress = this.onRestaurantTypeItemPress.bind(this);
+        this.onItemPress = this.onItemPress.bind(this);
     }
 
-    onRestaurantTypeItemPress() {
-        const { name } = this.props.type;
+    onItemPress() {
 
-        this.props.restaurantTypeSelection(name);
-    }
-
-    renderImage() {
-        const { imageStyle } = styles;
-        const { selected } = this.props.type;
-
-        if (selected)
-            return (
-                <Image
-                    style={imageStyle}
-                    source={IC_BLACK_CHECK_MARK_2}
-                    resizeMode="contain"
-                />
-            );
     }
 
     render() {
-        const { buttonStyle } = styles;
-        const { name } = this.props.type;
+        const { buttonStyle, imageStyle } = styles;
+        const { selected, name } = this.props.language.item;
+
+        console.log(this.props);
 
         return (
             <CardSection style={{ justifyContent: 'space-between' }}>
@@ -47,20 +34,29 @@ class RestaurantTypeSelectionItem extends Component {
                 </Text>
 
                 <TouchableOpacity
-                    onPress={this.onRestaurantTypeItemPress}
+                    onPress={this.onItemPress}
                     style={buttonStyle}
                 >
-                    {this.renderImage()}
+                    {selected ?
+                        <Image
+                            style={imageStyle}
+                            source={IC_BLACK_CIRCLE}
+                            resizeMode="contain"
+                        />
+                     : null}
                 </TouchableOpacity >
             </CardSection>
         );
     }
 }
 
-RestaurantTypeSelectionItem.propTypes = {
-    type: PropTypes.shape({
-        name: PropTypes.string,
-        selected: PropTypes.boolean
+UserAccountLanguageSelectionItem.propTypes = {
+    language: PropTypes.shape({
+        item: PropTypes.shape({
+            name: PropTypes.string,
+            selected: PropTypes.boolean
+        }),
+        index: PropTypes.number
     })
 };
 
@@ -75,11 +71,11 @@ const styles = {
         width: 30,
         marginRight: 5,
         marginLeft: 5,
-        padding: 3,
+        padding: 8,
         borderWidth: 1,
-        borderRadius: 3,
+        borderRadius: 10,
         borderColor: colors.BLUE_GREY.N500
     }
 };
 
-export default connect(null, { restaurantTypeSelection })(RestaurantTypeSelectionItem);
+export default connect(null, { restaurantTypeSelection })(UserAccountLanguageSelectionItem);

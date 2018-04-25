@@ -58,3 +58,6 @@ export const ORDER_ADDRESSES_FETCH_FAILURE = 'oder_addresses_fetch_failure';
 export const ORDERS_FETCH_START = 'orders_fetch_start';
 export const ORDERS_FETCH_SUCCESS = 'orders_fetch_success';
 export const ORDERS_FETCH_FAILURE = 'orders_fetch_failure';
+
+export const LANGUAGE_SELECTION = 'language_selection';
+export const LANGUAGE_SELECTION_SUCCESS = 'language_selection_success';

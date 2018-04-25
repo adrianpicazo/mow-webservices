@@ -6,6 +6,8 @@ import Header from '../../headers/Header';
 import ProductListItem from './ProductListItem';
 import { fonts } from '../../../res/Fonts';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import { TR_HEADER_CATEGORY_INFO } from '../../../i18n/constants';
 
 class CategoryInfo extends Component {
 
@@ -33,12 +35,11 @@ class CategoryInfo extends Component {
             );
         }
 
-        // TODO: revisar la key
         return (
             <FlatList
                 data={products}
                 renderItem={({ item }) => <ProductListItem product={item} />}
-                keyExtractor={item => item.name}
+                keyExtractor={(item, index) => index.toString()}
                 style={productListStyle}
                 ItemSeparatorComponent={() => <HorizontalRule />}
             />
@@ -53,7 +54,7 @@ class CategoryInfo extends Component {
             <Template>
                 <Header
                     renderBackButton
-                    headerTitle="Productos"
+                    headerTitle={I18nUtils.tr(TR_HEADER_CATEGORY_INFO)}
                 />
 
                 <OrderBanner />

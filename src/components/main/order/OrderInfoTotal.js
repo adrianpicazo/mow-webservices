@@ -6,6 +6,14 @@ import { Card, CardSection } from '../../common/index';
 import { Button } from '../../common/Buttons';
 import { colors } from '../../../res/Colors';
 import { fonts } from '../../../res/Fonts';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_BODY_ORDER_CHOOSE_SOMETHING,
+    TR_BODY_ORDER_EMPTY,
+    TR_BODY_ORDER_PRODUCTS,
+    TR_BODY_ORDER_TOTAL_TITLE,
+    TR_BUTTON_ADD_DISHES
+} from '../../../i18n/constants';
 
 class OrderInfoTotal extends Component {
 
@@ -20,16 +28,16 @@ class OrderInfoTotal extends Component {
             <Card style={orderCardStyle}>
                 <CardSection style={{ flexDirection: 'column' }}>
                     <Text style={fonts.HUGE}>
-                        PEDIDO VACÍO
+                        {I18nUtils.tr(TR_BODY_ORDER_EMPTY).toUpperCase()}
                     </Text>
                     <Text style={fonts.NORMAL}>
-                        ELIJA ALGO RICO
+                        {I18nUtils.tr(TR_BODY_ORDER_CHOOSE_SOMETHING).toUpperCase()}
                     </Text>
                 </CardSection>
 
                 <CardSection>
                     <Button onPress={() => Actions.pop()}>
-                        Añadir platos
+                        {I18nUtils.tr(TR_BUTTON_ADD_DISHES)}
                     </Button>
                 </CardSection>
             </Card>
@@ -45,10 +53,11 @@ class OrderInfoTotal extends Component {
             <Card style={orderCardStyle}>
                 <CardSection style={{ flexDirection: 'column' }}>
                     <Text style={fonts.HUGE}>
-                        TOTAL DEL PEDIDO
+                        {I18nUtils.tr(TR_BODY_ORDER_TOTAL_TITLE).toUpperCase()}
                     </Text>
                     <Text style={fonts.NORMAL}>
-                        {numProducts} PRODUCTOS
+                        {`${numProducts} `}
+                        {I18nUtils.tr(TR_BODY_ORDER_PRODUCTS).toUpperCase()}
                     </Text>
                 </CardSection>
 
@@ -66,7 +75,7 @@ class OrderInfoTotal extends Component {
 
                 <CardSection>
                     <Button onPress={() => Actions.pop()}>
-                        Añadir platos
+                        {I18nUtils.tr(TR_BUTTON_ADD_DISHES)}
                     </Button>
                 </CardSection>
             </Card>

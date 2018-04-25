@@ -49,11 +49,11 @@ export const loginUser = ({ email, password }) => {
                     firebase.database()
                         .ref(`/users/${uid}/account`)
                         .on('value', snapshot => {
-                            const { name, surnames } = snapshot.val();
+                            const { language, name, surnames } = snapshot.val();
 
                             dispatch({
                                 type: LOGIN_USER_SUCCESS,
-                                payload: { uid, name, surnames, email }
+                                payload: { uid, language, name, surnames, email }
                             });
 
                             Actions.push('main');

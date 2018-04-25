@@ -6,6 +6,8 @@ import { Card, CardSection } from '../../common/index';
 import { IC_WHITE_SHOPPING_BASKET } from '../../../res/images/index';
 import { colors } from '../../../res/Colors';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import { TR_BODY_ORDER_TOTAL } from '../../../i18n/constants';
 
 class OrderBanner extends Component {
 
@@ -49,7 +51,8 @@ class OrderBanner extends Component {
                     </CardSection>
 
                     <CardSection>
-                        <Text style={bannerTextStyle}>Total: € {totalPrice}</Text>
+                        <Text style={bannerTextStyle}>
+                            {I18nUtils.tr(TR_BODY_ORDER_TOTAL)}: € {totalPrice}</Text>
                     </CardSection>
                 </TouchableOpacity>
             </Card>

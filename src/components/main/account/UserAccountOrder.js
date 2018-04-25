@@ -17,6 +17,12 @@ import { ordersFetch } from '../../../actions/index';
 import { fonts } from '../../../res/Fonts';
 import { UserAccountOrderItem } from './UserAccountOrderItem';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_BODY_REGISTERED_ORDERS,
+    TR_HEADER_USER_ORDERS,
+    TR_TITLE_FAILURE_OBTAINING_DATA
+} from '../../../i18n/constants';
 
 class UserAccountOrder extends Component {
 
@@ -47,7 +53,7 @@ class UserAccountOrder extends Component {
         if (fetchFailure) {
             return (
                 <CardSection>
-                    <Failure title={'FALLO DE OBTENCIÓN DE DATOS'}>
+                    <Failure title={I18nUtils.tr(TR_TITLE_FAILURE_OBTAINING_DATA)}>
                         {fetchFailure}
                     </Failure>
                 </CardSection>
@@ -88,14 +94,14 @@ class UserAccountOrder extends Component {
             <Template>
                 <Header
                     renderBackButton
-                    headerTitle="Tus pedidos"
+                    headerTitle={I18nUtils.tr(TR_HEADER_USER_ORDERS)}
                 />
 
                 <ScrollTemplate>
                     <Card style={{ width: '100%' }}>
                         <CardSection style={{ alignSelf: 'flex-start' }}>
                             <Text style={fonts.HUGE}>
-                                Pedidos registrados
+                                {I18nUtils.tr(TR_BODY_REGISTERED_ORDERS)}
                             </Text>
                         </CardSection>
 

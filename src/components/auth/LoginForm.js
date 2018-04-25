@@ -24,13 +24,13 @@ import {
 import { analyticsTracker } from '../../App';
 import { I18nUtils } from '../../utils/I18nUtils';
 import {
-    TR_BUTTON_LOG_IN,
+    TR_BUTTON_LOGIN,
     TR_BUTTON_SIGN_IN,
     TR_ERROR_EMPTY_FIELDS,
-    TR_FEEDBACK_BODY_SIGN_IN_SUCCESS,
-    TR_FEEDBACK_TITLE_LOG_IN_FAILURE,
-    TR_FEEDBACK_TITLE_SIGN_IN_SUCCESS,
-    TR_HEADER_LOGIN_TITLE,
+    TR_BODY_SUCCESS_SIGN_IN,
+    TR_TITLE_SUCCESS_SIGN_IN,
+    TR_TITLE_FAILURE_LOGIN,
+    TR_HEADER_LOGIN,
     TR_LABEL_EMAIL,
     TR_LABEL_PASSWORD,
     TR_PLACEHOLDER_EMAIL,
@@ -70,7 +70,7 @@ class LoginForm extends Component {
         if (this.props.error) {
             return (
                 <CardSection>
-                    <Failure title={I18nUtils.tr(TR_FEEDBACK_TITLE_LOG_IN_FAILURE)}>
+                    <Failure title={I18nUtils.tr(TR_TITLE_FAILURE_LOGIN)}>
                         {this.props.error}
                     </Failure>
                 </CardSection>
@@ -82,8 +82,8 @@ class LoginForm extends Component {
         if (this.props.registrySuccess) {
             return (
                 <CardSection>
-                    <Success title={I18nUtils.tr(TR_FEEDBACK_TITLE_SIGN_IN_SUCCESS)}>
-                        {I18nUtils.tr(TR_FEEDBACK_BODY_SIGN_IN_SUCCESS)}
+                    <Success title={I18nUtils.tr(TR_TITLE_SUCCESS_SIGN_IN)}>
+                        {I18nUtils.tr(TR_BODY_SUCCESS_SIGN_IN)}
                     </Success>
                 </CardSection>
             );
@@ -99,7 +99,7 @@ class LoginForm extends Component {
             <Card>
                 <CardSection>
                     <Button onPress={this.onLoginButtonPress}>
-                        {I18nUtils.tr(TR_BUTTON_LOG_IN)}
+                        {I18nUtils.tr(TR_BUTTON_LOGIN)}
                     </Button>
                 </CardSection>
                 <CardSection>
@@ -114,7 +114,7 @@ class LoginForm extends Component {
     render() {
         return (
             <Template>
-                <Header headerTitle={I18nUtils.tr(TR_HEADER_LOGIN_TITLE)} />
+                <Header headerTitle={I18nUtils.tr(TR_HEADER_LOGIN)} />
 
                 <ScrollTemplate>
                     <Card>

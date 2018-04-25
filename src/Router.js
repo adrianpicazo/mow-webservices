@@ -17,6 +17,8 @@ import UserAccountAddress from './components/main/account/UserAccountAddress';
 import UserAccountAddressForm from './components/main/account/UserAccountAddressForm';
 import UserAccountOrder from './components/main/account/UserAccountOrder';
 import UserAccountOrderInfo from './components/main/account/UserAccountOrderInfo';
+import UserAccountSettings from './components/main/account/UserAccountSettings';
+import UserAccountLanguageSelection from './components/main/account/UserAccountLanguageSelection';
 
 
 const reducerCreate = (params) => {
@@ -31,7 +33,7 @@ const reducerCreate = (params) => {
 
 const RouterComponent = () => {
     return (
-        <Router backAndroidHandler={() => true} createReducer={reducerCreate}>
+        <Router backAndroidHandler={() => true} createReducer={reducerCreate} key={'es'}>
             <Lightbox>
                 <Stack key="root" hideNavBar>
                     <Scene key="auth">
@@ -110,6 +112,11 @@ const RouterComponent = () => {
                             component={UserAccountOrderInfo}
                             hideNavBar
                         />
+                        <Scene
+                            key="userAccountSettings"
+                            component={UserAccountSettings}
+                            hideNavBar
+                        />
                     </Stack>
                 </Stack>
 
@@ -124,6 +131,10 @@ const RouterComponent = () => {
                 <Scene
                     key="userAccountAddressForm"
                     component={UserAccountAddressForm}
+                />
+                <Scene
+                    key="userAccountLanguageSelection"
+                    component={UserAccountLanguageSelection}
                 />
             </Lightbox>
         </Router>

@@ -14,6 +14,8 @@ import {
     ADDRESS_REMOVE_START,
     ADDRESS_REMOVE_SUCCESS
 } from './types';
+import { I18nUtils } from '../utils/I18nUtils';
+import { TR_ERROR_NO_DATA, TR_ERROR_REPEATED_ADDRESS } from '../i18n/constants';
 
 export const addressFormReset = () => {
     return {
@@ -51,7 +53,7 @@ export const addressesFetch = (uid) => {
                     } else {
                         dispatch({
                             type: ADDRESSES_FETCH_FAILURE,
-                            payload: 'Snapshot is null.'
+                            payload: I18nUtils.tr(TR_ERROR_NO_DATA)
                         });
                     }
                 });
@@ -64,16 +66,14 @@ export const addressesFetch = (uid) => {
     };
 };
 
-export const addressAdd = (addressList, address) => {
-    const { currentUser } = firebase.auth();
-
+export const addressAdd = (uid, addressList, address) => {
     let addresses;
 
     if (addressList !== null) {
         if (_.find(addressList, item => { return item === address; })) {
             return {
                 type: ADDRESS_ADD_FAILURE,
-                payload: 'Dirección repetida'
+                payload: I18nUtils.tr(TR_ERROR_REPEATED_ADDRESS)
             };
         }
         addresses = _.concat(addressList, address);
@@ -84,7 +84,7 @@ export const addressAdd = (addressList, address) => {
     return (dispatch) => {
         dispatch({ type: ADDRESS_ADD_START });
 
-        firebase.database().ref(`/users/${currentUser.uid}`)
+        firebase.database().ref(`/users/${uid}`)
             .update({ addresses })
             .then(() => {
                 dispatch({
@@ -93,26 +93,21 @@ export const addressAdd = (addressList, address) => {
                 });
             })
             .catch(error => {
-                addressAddFailure(dispatch, error);
+                dispatch({
+                    type: ADDRESS_ADD_FAILURE,
+                    payload: error.message
+                });
             });
     };
 };
 
-const addressAddFailure = (dispatch, error) => {
-    dispatch({
-        type: ADDRESS_ADD_FAILURE,
-        payload: error.message
-    });
-};
-
-export const addressRemove = (addressList, address) => {
-    const { currentUser } = firebase.auth();
+export const addressRemove = (uid, addressList, address) => {
     const addresses = _.filter(addressList, item => { return item !== address; });
 
     return (dispatch) => {
         dispatch({ type: ADDRESS_REMOVE_START });
 
-        firebase.database().ref(`/users/${currentUser.uid}`)
+        firebase.database().ref(`/users/${uid}`)
             .update({ addresses })
             .then(() => {
                 dispatch({
@@ -121,14 +116,10 @@ export const addressRemove = (addressList, address) => {
                 });
             })
             .catch(error => {
-                addressRemoveFailure(dispatch, error);
+                dispatch({
+                    type: ADDRESS_REMOVE_FAILURE,
+                    payload: error.message
+                });
             });
     };
-};
-
-const addressRemoveFailure = (dispatch, error) => {
-    dispatch({
-        type: ADDRESS_REMOVE_FAILURE,
-        payload: error.message
-    });
 };

@@ -6,6 +6,12 @@ import { ModalBase, Card, CardSection } from '../../common/index';
 import { resetOrder } from '../../../actions/index';
 import { fonts } from '../../../res/Fonts';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_BODY_MODAL_ORDER_RESET_1,
+    TR_BODY_MODAL_ORDER_RESET_2,
+    TR_HEADER_MODAL_ORDER_RESET,
+} from '../../../i18n/constants';
 
 class OrderResetWarning extends Component {
 
@@ -34,7 +40,7 @@ class OrderResetWarning extends Component {
         return (
             <ModalBase
                 visible
-                title="Pedido pendiente"
+                title={I18nUtils.tr(TR_HEADER_MODAL_ORDER_RESET)}
                 onAccept={this.onAccept}
                 onDecline={this.onDecline}
                 titleSize={24}
@@ -42,13 +48,12 @@ class OrderResetWarning extends Component {
                 <Card>
                     <CardSection>
                         <Text style={fonts.BIG}>
-                            Todavía tiene un pedido pendiente con otro restaurante.
-                            Si accede a otro restaurante el pedido pendiente se cancelará.
+                            {I18nUtils.tr(TR_BODY_MODAL_ORDER_RESET_1)}
                         </Text>
                     </CardSection>
                     <CardSection>
                         <Text style={fonts.BIG}>
-                            ¿Desea continuar y cancelar el pedido pendiente?
+                            {I18nUtils.tr(TR_BODY_MODAL_ORDER_RESET_2)}
                         </Text>
                     </CardSection>
                 </Card>

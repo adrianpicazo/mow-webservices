@@ -81,7 +81,7 @@ class UserAccountMenu extends Component {
                 <UserAccountMenuItem
                     image={IC_BLACK_SETTINGS}
                     label={I18nUtils.tr(TR_MENU_SETTINGS)}
-                    onPress={() => console.warn('Configuración')}
+                    onPress={() => Actions.push('userAccountSettings')}
                 />
                 <UserAccountMenuItem
                     image={IC_BLACK_ACCOUNT_LOGOUT}

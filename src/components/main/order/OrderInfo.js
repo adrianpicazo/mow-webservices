@@ -4,6 +4,8 @@ import OrderInfoOverview from './OrderInfoOverview';
 import Header from '../../headers/Header';
 import { ScrollTemplate, Template } from '../../common';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import { TR_HEADER_USER_ORDER } from '../../../i18n/constants';
 
 class OrderInfo extends Component {
 
@@ -20,7 +22,7 @@ class OrderInfo extends Component {
             <Template>
                 <Header
                     renderBackButton
-                    headerTitle="Tu pedido"
+                    headerTitle={I18nUtils.tr(TR_HEADER_USER_ORDER)}
                 />
 
                 <ScrollTemplate>

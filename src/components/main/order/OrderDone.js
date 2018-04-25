@@ -11,10 +11,20 @@ import {
     Failure,
     Spinner
 } from '../../common/index';
-import { resetOrder, order, restaurantFetch } from '../../../actions/index';
+import { resetOrder, order } from '../../../actions/index';
 import Header from '../../headers/Header';
 import { OrderDoneOverview } from './OrderDoneOverview';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_BODY_FAILURE_ORDER_1,
+    TR_BODY_FAILURE_ORDER_2,
+    TR_BODY_FAILURE_ORDER_3,
+    TR_BODY_ORDER_SUCCESS,
+    TR_BUTTON_BACK_TO_RESTAURANTS,
+    TR_HEADER_USER_ORDER,
+    TR_TITLE_FAILURE_ORDER
+} from '../../../i18n/constants';
 
 class OrderDone extends Component {
 
@@ -66,7 +76,7 @@ class OrderDone extends Component {
             <View style={{ width: '100%' }}>
                 <Card style={headerTitleContainerStyle}>
                     <Text style={headerTitleTextStyle}>
-                        PEDIDO REALIZADO{'\n'}CON ÉXITO
+                        {I18nUtils.tr(TR_BODY_ORDER_SUCCESS).toUpperCase()}
                     </Text>
                 </Card>
 
@@ -88,9 +98,14 @@ class OrderDone extends Component {
         return (
             <Card>
                 <CardSection>
-                    <Failure title={'FALLO EN EL PEDIDO'}>
-                        {`¡Lo sentimos mucho!\n\nSe ha producido un fallo en el pedido.
-                        \nERROR: ${orderFailure}\n\nRealice el pedido de nuevo.`}
+                    <Failure title={I18nUtils.tr(TR_TITLE_FAILURE_ORDER)}>
+                        {I18nUtils.tr(TR_BODY_FAILURE_ORDER_1)}
+                        {'\n\n'}
+                        {I18nUtils.tr(TR_BODY_FAILURE_ORDER_2)}
+                        {'\n\nERROR: '}
+                        ${orderFailure}
+                        {'\n\n'}
+                        {I18nUtils.tr(TR_BODY_FAILURE_ORDER_3)}
                     </Failure>
                 </CardSection>
             </Card>
@@ -102,7 +117,7 @@ class OrderDone extends Component {
 
         return (
             <Template>
-                <Header headerTitle="Tu pedido" />
+                <Header headerTitle={I18nUtils.tr(TR_HEADER_USER_ORDER)} />
 
                 {orderLoading ?
                     <Spinner size="large" />
@@ -115,7 +130,7 @@ class OrderDone extends Component {
                         <Card>
                             <CardSection style={{ marginTop: 10 }}>
                                 <Button onPress={this.onButtonPress}>
-                                    Volver
+                                    {I18nUtils.tr(TR_BUTTON_BACK_TO_RESTAURANTS)}
                                 </Button>
                             </CardSection>
                         </Card>
@@ -166,4 +181,4 @@ const mapStateToProps = ({ account, userOrder, orderDone }) => {
     };
 };
 
-export default connect(mapStateToProps, { resetOrder, order, restaurantFetch })(OrderDone);
+export default connect(mapStateToProps, { resetOrder, order })(OrderDone);

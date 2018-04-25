@@ -18,9 +18,9 @@ class UserAccountAddressItem extends Component {
     }
 
     onRemoveButtonPress() {
-        const { addresses, address } = this.props;
+        const { uid, addresses, address } = this.props;
 
-        this.props.addressRemove(addresses, address);
+        this.props.addressRemove(uid, addresses, address);
     }
 
     render() {
@@ -87,9 +87,9 @@ const styles = {
 };
 
 const mapStateToProps = ({ account }) => {
-    const { addresses } = account;
+    const { uid, addresses } = account;
 
-    return { addresses };
+    return { uid, addresses };
 };
 
 export default connect(mapStateToProps, { addressRemove })(UserAccountAddressItem);

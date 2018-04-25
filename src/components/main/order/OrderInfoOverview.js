@@ -7,6 +7,13 @@ import { IC_WHITE_MINUS } from '../../../res/images/index';
 import { removeProductFromOrder } from '../../../actions/index';
 import { fonts } from '../../../res/Fonts';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_BODY_ORDER_SUBTOTAL,
+    TR_BODY_ORDER_SUMMARY,
+    TR_BODY_ORDER_TOTAL,
+    TR_BUTTON_ORDERING
+} from '../../../i18n/constants';
 
 class OrderInfoOverview extends Component {
 
@@ -87,20 +94,23 @@ class OrderInfoOverview extends Component {
             <Card style={{ margin: 10 }}>
                 <CardSection>
                     <Text style={fonts.HUGE}>
-                        RESUMEN DEL PEDIDO
+                        {I18nUtils.tr(TR_BODY_ORDER_SUMMARY).toUpperCase()}
                     </Text>
                 </CardSection>
 
                 {this.renderRule()}
                 {this.renderProductRows(products)}
                 {this.renderRule()}
-                {this.renderExpenseRow('SUBTOTAL', subtotalPrice)}
+                {this.renderExpenseRow(
+                    I18nUtils.tr(TR_BODY_ORDER_SUBTOTAL).toUpperCase(),
+                    subtotalPrice
+                )}
                 {this.renderExpenseRows(otherExpenses)}
                 {this.renderRule()}
 
                 <CardSection>
                     <Text style={[fonts.BIG, { fontWeight: 'bold' }]}>
-                        TOTAL
+                        {I18nUtils.tr(TR_BODY_ORDER_TOTAL).toUpperCase()}
                     </Text>
 
                     {/* Espaciado */}
@@ -113,7 +123,7 @@ class OrderInfoOverview extends Component {
 
                 <CardSection style={{ marginTop: 10 }}>
                     <Button onPress={this.onButtonPress}>
-                        Realizar pedido
+                        {I18nUtils.tr(TR_BUTTON_ORDERING).toUpperCase()}
                     </Button>
                 </CardSection>
             </Card>

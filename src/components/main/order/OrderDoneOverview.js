@@ -7,6 +7,13 @@ import {
     HorizontalRule,
 } from '../../common/index';
 import { fonts } from '../../../res/Fonts';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_BODY_ORDER_SUBTOTAL,
+    TR_BODY_ORDER_SUMMARY,
+    TR_BODY_ORDER_TOTAL,
+    TR_BODY_ORDER_SHIPPING_ADDRESS,
+} from '../../../i18n/constants';
 
 const renderRow = (itemName, itemPrice, quantity, index) => {
     return (
@@ -58,20 +65,20 @@ const OrderDoneOverview = ({ restaurantName, address, products, otherExpenses, s
             <Card style={{ margin: 10 }}>
                 <CardSection>
                     <Text style={fonts.HUGE}>
-                        RESUMEN DEL PEDIDO
+                        {I18nUtils.tr(TR_BODY_ORDER_SUMMARY).toUpperCase()}
                     </Text>
                 </CardSection>
 
                 {renderRule()}
                 {renderRows(products)}
                 {renderSpaceRule()}
-                {renderRow('SUBTOTAL', subtotalPrice)}
+                {renderRow(I18nUtils.tr(TR_BODY_ORDER_SUBTOTAL).toUpperCase(), subtotalPrice)}
                 {renderRows(otherExpenses)}
                 {renderSpaceRule()}
 
                 <CardSection>
                     <Text style={[fonts.BIG, { fontWeight: 'bold' }]}>
-                        TOTAL
+                        {I18nUtils.tr(TR_BODY_ORDER_TOTAL).toUpperCase()}
                     </Text>
 
                     {/* Espaciado */}
@@ -86,7 +93,7 @@ const OrderDoneOverview = ({ restaurantName, address, products, otherExpenses, s
             <Card>
                 <CardSection style={{ flexDirection: 'column' }}>
                     <Text style={fonts.HUGE}>
-                        DIRECCIÓN DE ENVÍO
+                        {I18nUtils.tr(TR_BODY_ORDER_SHIPPING_ADDRESS).toUpperCase()}
                     </Text>
                 </CardSection>
 

@@ -23,6 +23,17 @@ import {
 import { OrderAddressItem } from './OrderAddressItem';
 import { fonts } from '../../../res/Fonts';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_BODY_ORDER_SHIPPING_ADDRESS,
+    TR_BODY_REGISTERED_ADDRESSES,
+    TR_BUTTON_COMPLETE_ORDER,
+    TR_ERROR_EMPTY_FIELDS,
+    TR_ERROR_NO_ADDRESSES,
+    TR_LABEL_ENTER_ADDRESS,
+    TR_PLACEHOLDER_ADDRESS,
+    TR_TITLE_FAILURE_FORM
+} from '../../../i18n/constants';
 
 class OrderAddress extends Component {
 
@@ -49,7 +60,7 @@ class OrderAddress extends Component {
         const { formAddress } = this.props;
 
         if (formAddress === '') {
-            this.props.orderAddressFormFailure('Existen campos vacíos.');
+            this.props.orderAddressFormFailure(I18nUtils.tr(TR_ERROR_EMPTY_FIELDS));
         } else {
             analyticsTracker.trackEvent('FinishOrder Button', 'Pressed');
 
@@ -72,7 +83,7 @@ class OrderAddress extends Component {
             return (
                 <CardSection>
                     <Warning>
-                        No existen direcciones registradas.
+                        {I18nUtils.tr(TR_ERROR_NO_ADDRESSES)}
                     </Warning>
                 </CardSection>
             );
@@ -103,8 +114,8 @@ class OrderAddress extends Component {
             <Card>
                 <CardSection>
                     <InputColumn
-                        label="Introduzca su dirección:"
-                        placeholder="Partida Benadresa, 90, Castelló de la Plana"
+                        label={I18nUtils.tr(TR_LABEL_ENTER_ADDRESS)}
+                        placeholder={I18nUtils.tr(TR_PLACEHOLDER_ADDRESS)}
                         value={formAddress}
                         onChangeText={value => this.props.orderAddressFormChange({
                             prop: 'formAddress',
@@ -115,7 +126,7 @@ class OrderAddress extends Component {
 
                 {formError ? (
                     <CardSection>
-                        <Failure title={'FALLO DE FORMULARIO'}>
+                        <Failure title={I18nUtils.tr(TR_TITLE_FAILURE_FORM)}>
                             {formError}
                         </Failure>
                     </CardSection>
@@ -129,7 +140,7 @@ class OrderAddress extends Component {
             <Card>
                 <CardSection>
                     <Button onPress={this.onPressButton}>
-                        Finalizar pedido
+                        {I18nUtils.tr(TR_BUTTON_COMPLETE_ORDER)}
                     </Button>
                 </CardSection>
             </Card>
@@ -141,7 +152,7 @@ class OrderAddress extends Component {
             <Template>
                 <Header
                     renderBackButton
-                    headerTitle="Dirección del pedido"
+                    headerTitle={I18nUtils.tr(TR_BODY_ORDER_SHIPPING_ADDRESS)}
                     newHeaderTextStyle={{ fontSize: 20 }}
                 />
 
@@ -150,7 +161,7 @@ class OrderAddress extends Component {
                 <Card style={{ width: '100%', flex: 1 }}>
                     <CardSection style={{ width: '100%' }}>
                         <Text style={fonts.HUGE}>
-                            Direcciones registradas
+                            {I18nUtils.tr(TR_BODY_REGISTERED_ADDRESSES)}
                         </Text>
                     </CardSection>
 

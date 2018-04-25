@@ -20,6 +20,8 @@ import {
     ORDERS_FETCH_SUCCESS,
     ORDERS_FETCH_FAILURE,
 } from './types';
+import { I18nUtils } from '../utils/I18nUtils';
+import { TR_ERROR_NO_DATA } from '../i18n/constants';
 
 export const addRestaurantToOrder = (restaurant) => {
     return {
@@ -92,7 +94,7 @@ export const orderAddressesFetch = (uid) => {
                     } else {
                         dispatch({
                             type: ORDER_ADDRESSES_FETCH_FAILURE,
-                            payload: 'Snapshot is null.'
+                            payload: I18nUtils.tr(TR_ERROR_NO_DATA)
                         });
                     }
                 });

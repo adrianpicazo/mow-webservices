@@ -8,7 +8,6 @@ import {
     TR_BUTTON_CANCEL,
 } from '../../i18n/constants';
 
-// TODO: solucionar tamaño de los modales
 const ModalBase = ({ title, titleSize, children, visible, onAccept, onDecline }) => {
     const { sectionTemplateStyle } = styles;
     const { textStyle, cardStyle } = styles.title;

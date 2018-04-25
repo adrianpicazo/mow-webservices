@@ -18,6 +18,14 @@ import { fonts } from '../../../res/Fonts';
 import { IC_WHITE_PLUS } from '../../../res/images';
 import { colors } from '../../../res/Colors';
 import { analyticsTracker } from '../../../App';
+import { I18nUtils } from '../../../utils/I18nUtils';
+import {
+    TR_BODY_REGISTERED_ADDRESSES,
+    TR_HEADER_USER_ADDRESSES,
+    TR_TITLE_FAILURE_ERASING,
+    TR_TITLE_FAILURE_OBTAINING_DATA,
+    TR_TITLE_FAILURE_REGISTRATION
+} from '../../../i18n/constants';
 
 class UserAccountAddress extends Component {
 
@@ -40,7 +48,7 @@ class UserAccountAddress extends Component {
         if (addFailure) {
             return (
                 <CardSection>
-                    <Failure title={'FALLO DE REGISTRO'}>
+                    <Failure title={I18nUtils.tr(TR_TITLE_FAILURE_REGISTRATION)}>
                         {addFailure}
                     </Failure>
                 </CardSection>
@@ -50,7 +58,7 @@ class UserAccountAddress extends Component {
         if (removeFailure) {
             return (
                 <CardSection>
-                    <Failure title={'FALLO DE BORRADO'}>
+                    <Failure title={I18nUtils.tr(TR_TITLE_FAILURE_ERASING)}>
                         {removeFailure}
                     </Failure>
                 </CardSection>
@@ -71,7 +79,7 @@ class UserAccountAddress extends Component {
         if (!removeSuccess && fetchFailure) {
             return (
                 <CardSection>
-                    <Failure title={'FALLO DE OBTENCIÓN DE DATOS'}>
+                    <Failure title={I18nUtils.tr(TR_TITLE_FAILURE_OBTAINING_DATA)}>
                         {fetchFailure}
                     </Failure>
                 </CardSection>
@@ -107,14 +115,14 @@ class UserAccountAddress extends Component {
             <Template>
                 <Header
                     renderBackButton
-                    headerTitle="Tus direcciones"
+                    headerTitle={I18nUtils.tr(TR_HEADER_USER_ADDRESSES)}
                 />
 
                 <ScrollTemplate>
                     <Card style={{ width: '100%' }}>
                         <CardSection style={{ alignSelf: 'flex-start' }}>
                             <Text style={fonts.HUGE}>
-                                Direcciones registradas
+                                {I18nUtils.tr(TR_BODY_REGISTERED_ADDRESSES)}
                             </Text>
                         </CardSection>
 

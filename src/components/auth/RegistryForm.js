@@ -24,9 +24,10 @@ import { analyticsTracker } from '../../App';
 import { I18nUtils } from '../../utils/I18nUtils';
 import {
     TR_BUTTON_SIGN_IN,
-    TR_ERROR_EMPTY_FIELDS, TR_ERROR_PASSWORDS_NOT_MATCH,
-    TR_FEEDBACK_TITLE_SIGN_IN_FAILURE,
-    TR_HEADER_SIGN_IN_TITLE,
+    TR_ERROR_EMPTY_FIELDS,
+    TR_ERROR_PASSWORDS_NOT_MATCH,
+    TR_HEADER_SIGN_IN,
+    TR_TITLE_FAILURE_SIGN_IN,
     TR_LABEL_EMAIL,
     TR_LABEL_NAME,
     TR_LABEL_PASSWORD,
@@ -88,7 +89,7 @@ class RegistryForm extends Component {
         if (error) {
             return (
                 <CardSection>
-                    <Failure title={I18nUtils.tr(TR_FEEDBACK_TITLE_SIGN_IN_FAILURE)}>
+                    <Failure title={I18nUtils.tr(TR_TITLE_FAILURE_SIGN_IN)}>
                         {error}
                     </Failure>
                 </CardSection>
@@ -121,7 +122,7 @@ class RegistryForm extends Component {
             <Template>
                 <Header
                     renderBackButton
-                    headerTitle={I18nUtils.tr(TR_HEADER_SIGN_IN_TITLE)}
+                    headerTitle={I18nUtils.tr(TR_HEADER_SIGN_IN)}
                 />
 
                 <ScrollTemplate>
@@ -152,7 +153,7 @@ class RegistryForm extends Component {
 
                         <CardSection>
                             <InputColumn
-                                llabel={I18nUtils.tr(TR_LABEL_EMAIL)}
+                                label={I18nUtils.tr(TR_LABEL_EMAIL)}
                                 placeholder={I18nUtils.tr(TR_PLACEHOLDER_EMAIL)}
                                 value={email}
                                 onChangeText={value => this.props.registryFieldsChanged({

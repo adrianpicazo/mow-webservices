@@ -1,6 +1,7 @@
 export const IC_BLACK_ACCOUNT_LOGOUT = require('./ic_black_account_logout.png');
 export const IC_BLACK_CHECK_MARK_1 = require('./ic_black_check_mark_1.png');
 export const IC_BLACK_CHECK_MARK_2 = require('./ic_black_check_mark_2.png');
+export const IC_BLACK_CIRCLE = require('./ic_black_circle.png');
 export const IC_BLACK_CONTACT = require('./ic_black_contact.png');
 export const IC_BLACK_EYE = require('./ic_black_eye.png');
 export const IC_BLACK_FILTER_MENU_FRAMED = require('./ic_black_filter_menu_framed.png');
