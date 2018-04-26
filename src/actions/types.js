@@ -60,4 +60,6 @@ export const ORDERS_FETCH_SUCCESS = 'orders_fetch_success';
 export const ORDERS_FETCH_FAILURE = 'orders_fetch_failure';
 
 export const LANGUAGE_SELECTION = 'language_selection';
-export const LANGUAGE_SELECTION_SUCCESS = 'language_selection_success';
+export const LANGUAGE_CHANGE_START = 'language_change_start';
+export const LANGUAGE_CHANGE_SUCCESS = 'language_change_success';
+export const LANGUAGE_CHANGE_FAILURE = 'language_change_failure';

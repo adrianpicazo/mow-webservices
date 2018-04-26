@@ -7,6 +7,7 @@ import ReduxThunk from 'redux-thunk';
 import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
 import reducers from './reducers';
 import Router from './Router';
+import { I18nUtils } from './utils/I18nUtils';
 
 export const analyticsTracker = new GoogleAnalyticsTracker('UA-117937530-1');
 
@@ -17,12 +18,14 @@ class App extends Component {
             .configure()
             .useReactNative()
             .use(reactotronRedux())
-            .configure({ host: '192.168.5.126' })
+            .configure({ host: '192.168.5.107' })
             .connect();
     }
 
     render() {
         const store = Reactotron.createStore(reducers, applyMiddleware(ReduxThunk));
+
+        I18nUtils.setDeviceLocale();
 
         return (
             <Provider store={store}>

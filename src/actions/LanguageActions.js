@@ -1,18 +1,39 @@
+import firebase from 'react-native-firebase';
 import { I18nUtils } from '../utils/I18nUtils';
-import { LANGUAGE_SELECTION, LANGUAGE_SELECTION_SUCCESS } from './types';
+import {
+    LANGUAGE_CHANGE_FAILURE,
+    LANGUAGE_CHANGE_START,
+    LANGUAGE_CHANGE_SUCCESS,
+    LANGUAGE_SELECTION
+} from './types';
 
-export const languageSelection = (languageSelected) => {
+export const languageSelection = (language) => {
     return {
         type: LANGUAGE_SELECTION,
-        payload: languageSelected
+        payload: language
     };
 };
 
-export const languageSelectionDone = (languageSelected) => {
-    I18nUtils.setLocale(languageSelected);
+export const languageSelectionDone = (uid, language) => {
+    return (dispatch) => {
+        dispatch({ type: LANGUAGE_CHANGE_START });
 
-    return {
-        type: LANGUAGE_SELECTION_SUCCESS,
-        payload: languageSelected
+        firebase.database()
+            .ref(`/users/${uid}/account`)
+            .update({ language })
+            .then(() => {
+                I18nUtils.setLocale(language);
+
+                dispatch({
+                    type: LANGUAGE_CHANGE_SUCCESS,
+                    payload: language
+                });
+            })
+            .catch(error => {
+                dispatch({
+                    type: LANGUAGE_CHANGE_FAILURE,
+                    payload: error.message
+                });
+            });
     };
 };

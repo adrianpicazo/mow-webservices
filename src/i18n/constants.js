@@ -103,6 +103,7 @@ export const TR_ERROR_NO_DATA = 'TR_ERROR_NO_DATA';
 export const TR_ERROR_REPEATED_ADDRESS = 'TR_ERROR_REPEATED_ADDRESS';
 export const TR_ERROR_NO_ADDRESSES = 'TR_ERROR_NO_ADDRESSES';
 
+
 // --- LANGUAGES -----------------------------------------------------------------------------------
 
 export const TR_LANGUAGE_SPANISH = 'TR_LANGUAGE_SPANISH';

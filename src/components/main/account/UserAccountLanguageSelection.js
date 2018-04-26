@@ -26,7 +26,7 @@ class UserAccountLanguageSelection extends Component {
     }
 
     componentWillMount() {
-        this.props.languageSelection('es');
+        this.props.languageSelection(I18nUtils.getLanguage());
     }
 
     componentDidMount() {
@@ -34,10 +34,10 @@ class UserAccountLanguageSelection extends Component {
     }
 
     onAccept() {
-        const { languages } = this.props;
+        const { uid, languages } = this.props;
         const languageCode = _.findKey(languages, item => item);
 
-        this.props.languageSelectionDone(languageCode);
+        this.props.languageSelectionDone(uid, languageCode);
 
         Actions.pop();
     }
@@ -122,8 +122,10 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ languages }) => {
-    return { languages };
+const mapStateToProps = ({ languages, account }) => {
+    const { uid } = account;
+
+    return { uid, languages };
 };
 
 export default connect(mapStateToProps, {

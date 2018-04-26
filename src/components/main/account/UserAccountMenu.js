@@ -94,7 +94,7 @@ class UserAccountMenu extends Component {
 
     render() {
         return (
-            <Template>
+            <Template key={this.props.language}>
                 {this.renderHeader()}
                 {this.renderMenuList()}
             </Template>
@@ -124,9 +124,9 @@ const headerStyles = {
 };
 
 const mapStateToProps = ({ account }) => {
-    const { name, surnames, email } = account;
+    const { language, name, surnames, email } = account;
 
-    return { name, surnames, email };
+    return { language, name, surnames, email };
 };
 
 export default connect(mapStateToProps, { logoutUser })(UserAccountMenu);

@@ -15,6 +15,7 @@ import {
     USER_ACCOUNT_FETCH_FAILURE
 } from './types';
 import AsyncStorage, { AUTH_DATA } from '../utils/AsyncStorage';
+import { I18nUtils } from '../utils/I18nUtils';
 
 export const loginReset = () => {
     return {
@@ -51,6 +52,8 @@ export const loginUser = ({ email, password }) => {
                         .on('value', snapshot => {
                             const { language, name, surnames } = snapshot.val();
 
+                            I18nUtils.setLocale(language);
+
                             dispatch({
                                 type: LOGIN_USER_SUCCESS,
                                 payload: { uid, language, name, surnames, email }
@@ -86,6 +89,8 @@ export const logoutUser = () => {
                             type: LOGOUT_USER_SUCCESS
                         });
 
+                        I18nUtils.setDeviceLocale();
+
                         Actions.push('presentation');
                     })
                     .catch(error => {
@@ -110,6 +115,8 @@ export const userAccountFetchFromAsyncStorage = (addEventListeners) => {
 
         AsyncStorage.get(AUTH_DATA)
             .then(data => {
+                if (data) I18nUtils.setLocale(data.language);
+
                 dispatch({
                     type: USER_ACCOUNT_FETCH_SUCCESS,
                     payload: data

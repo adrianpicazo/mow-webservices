@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {
     LOGIN_USER_SUCCESS,
     LOGOUT_USER_SUCCESS,
@@ -8,7 +7,7 @@ import {
     ADDRESS_REMOVE_SUCCESS,
     ORDERS_FETCH_SUCCESS,
     USER_ACCOUNT_FETCH_SUCCESS,
-    LANGUAGE_SELECTION_SUCCESS
+    LANGUAGE_CHANGE_SUCCESS
 } from '../actions/types';
 import AsyncStorage, { AUTH_DATA } from '../utils/AsyncStorage';
 
@@ -43,6 +42,21 @@ const setUserAccountAsyncDataStorage = (state, action) => {
         .catch(error => console.log(error));
 };
 
+const setUserAccountLanguage = (state, action) => {
+    const newState = { ...state };
+    const language = action.payload;
+
+    newState.language = language;
+
+    const { uid, name, surnames, email } = newState;
+
+    AsyncStorage.set(AUTH_DATA, { uid, language, name, surnames, email })
+        .then(() => {})
+        .catch(error => console.log(error));
+
+    return newState;
+};
+
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case USER_ACCOUNT_FETCH_SUCCESS:
@@ -61,8 +75,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, addresses: action.payload };
         case ORDERS_FETCH_SUCCESS:
             return { ...state, orders: action.payload };
-        case LANGUAGE_SELECTION_SUCCESS:
-            return { ...state, language: action.payload };
+        case LANGUAGE_CHANGE_SUCCESS:
+            return setUserAccountLanguage(state, action);
         default:
             return state;
     }

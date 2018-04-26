@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import Header from '../../headers/Header';
 import { connect } from 'react-redux';
+import Header from '../../headers/Header';
 import {
     Template,
     ScrollTemplate,
@@ -14,7 +14,8 @@ import { I18nUtils } from '../../../utils/I18nUtils';
 import SettingsOption from '../../common/SettingsOption';
 import {
     TR_BODY_SETTINGS_CHANGE,
-    TR_BODY_SETTINGS_LANGUAGE
+    TR_BODY_SETTINGS_LANGUAGE,
+    TR_HEADER_USER_SETTINGS
 } from '../../../i18n/constants';
 
 class UserAccountSettings extends Component {
@@ -29,12 +30,13 @@ class UserAccountSettings extends Component {
 
     render() {
         const { cardStyle, cardSectionStyle } = styles;
+        const { language } = this.props;
 
         return (
-            <Template key={this.props.language}>
+            <Template key={language}>
                 <Header
                     renderBackButton
-                    headerTitle={'Configuración'}
+                    headerTitle={I18nUtils.tr(TR_HEADER_USER_SETTINGS)}
                 />
 
                 <ScrollTemplate>
@@ -43,7 +45,7 @@ class UserAccountSettings extends Component {
                             <SettingsOption
                                 textHeader={I18nUtils.tr(TR_BODY_SETTINGS_LANGUAGE)}
                                 textButton={I18nUtils.tr(TR_BODY_SETTINGS_CHANGE)}
-                                textBody="Español"
+                                textBody={I18nUtils.getLanguageName(language)}
                                 onButtonPress={() => Actions.push('userAccountLanguageSelection')}
                             />
                         </CardSection>
