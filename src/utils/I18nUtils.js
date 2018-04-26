@@ -8,7 +8,7 @@ import {
 } from '../i18n/constants';
 
 I18n.fallback = true;
-I18n.locale = 'en';
+I18n.locale = '';
 I18n.translations = { es, en };
 
 export class I18nUtils {
@@ -18,7 +18,7 @@ export class I18nUtils {
             const languageCodes = _.map(languages, language => language.substring(0, 2));
             const deviceLanguageCode = _.find(languageCodes,
                     languageCode => languageCode in I18n.translations);
-            I18n.locale = deviceLanguageCode;
+            I18n.locale = deviceLanguageCode || 'en';
         });
     }
 

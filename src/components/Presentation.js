@@ -11,6 +11,9 @@ import { notificationCenter } from '../utils/NotificationCenter';
 import { I18nUtils } from '../utils/I18nUtils';
 import { TR_APP_NAME, TR_BUTTON_LOGIN, TR_WELCOME } from '../i18n/constants';
 
+import I18n, { getLanguages } from 'react-native-i18n';
+
+
 class Presentation extends Component {
 
     constructor(props, context) {
@@ -89,6 +92,9 @@ class Presentation extends Component {
                                     </Text>
                                     <Text style={textStyle}>
                                         {I18nUtils.tr(TR_WELCOME)}
+                                    </Text>
+                                    <Text>
+                                        Recordatorio: cambiar id notificacion pedido
                                     </Text>
                                 </View>
                             </CardSection>

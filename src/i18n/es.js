@@ -50,6 +50,7 @@ translations[TR.TR_PLACEHOLDER_ADDRESS] = 'Partida Benadresa, 90, Castelló de l
 translations[TR.TR_HEADER_LOGIN] = 'Acceso';
 translations[TR.TR_HEADER_SIGN_IN] = 'Registro';
 translations[TR.TR_HEADER_RESTAURANT_LIST] = 'Restaurantes';
+translations[TR.TR_HEADER_RESTAURANT_LIST_MAP] = 'Mapa de restaurantes';
 translations[TR.TR_HEADER_RESTAURANT_INFO] = 'Información del restaurante';
 translations[TR.TR_HEADER_CATEGORY_INFO] = 'Productos';
 translations[TR.TR_HEADER_USER_ADDRESSES] = 'Mis direcciones';
@@ -76,6 +77,7 @@ translations[TR.TR_BODY_ORDER_SHIPPING_ADDRESS] = 'Dirección de envío';
 translations[TR.TR_BODY_ORDER_SUCCESS] = 'Pedido realizado\ncon éxito';
 translations[TR.TR_BODY_SETTINGS_LANGUAGE] = 'Lenguaje';
 translations[TR.TR_BODY_SETTINGS_CHANGE] = 'Cambiar';
+translations[TR.TR_BODY_GOTO] = 'Ir a ';
 
 translations[TR.TR_BODY_MODAL_ORDER_RESET_1] = 'Todavía tiene un pedido pendiente con otro ' +
     'restaurante. Si accede a otro restaurante el pedido pendiente se cancelará.';

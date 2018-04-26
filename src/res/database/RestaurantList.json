@@ -50,7 +50,11 @@
           "name": "Otros",
           "products": []
         }
-      ]
+      ],
+      "position" : {
+        "latitude" : 40.000000,
+        "longitude" : -0.070000
+      }
     },
     "1" : {
       "id" : 1,
@@ -68,7 +72,11 @@
             }
           ]
         }
-      ]
+      ],
+      "position" : {
+        "latitude" : 39.984017,
+        "longitude" : -0.027545
+      }
     },
     "2" : {
       "id" : 2,
@@ -81,7 +89,11 @@
           "name": "Sushi",
           "products": []
         }
-      ]
+      ],
+      "position" : {
+        "latitude" : 39.992870,
+        "longitude" : -0.036294
+      }
     },
     "3" : {
       "id" : 3,
@@ -89,7 +101,11 @@
       "type": "Española",
       "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Hot_dog_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
-      "categories" : []
+      "categories" : [],
+      "position" : {
+        "latitude" : 39.989548,
+        "longitude" : -0.048353
+      }
     },
     "4" : {
       "id" : 4,
@@ -97,7 +113,11 @@
       "type": "Japonesa",
       "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamburger_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
-      "categories" : []
+      "categories" : [],
+      "position" : {
+        "latitude" : 39.964288,
+        "longitude" : -0.065262
+      }
     },
     "5" : {
       "id" : 5,
@@ -105,7 +125,11 @@
       "type": "Española, Italiana",
       "image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Pizza_slice_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
-      "categories" : []
+      "categories" : [],
+      "position" : {
+        "latitude" : 40.001743,
+        "longitude" : -0.047581
+      }
     },
     "6" : {
       "id" : 6,
@@ -113,7 +137,11 @@
       "type": "Americana",
       "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Hot_dog_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
-      "categories" : []
+      "categories" : [],
+      "position" : {
+        "latitude" : 39.996319,
+        "longitude" : -0.026510
+      }
     },
     "7" : {
       "id" : 7,
@@ -121,7 +149,11 @@
       "type": "China",
       "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Hamburger_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
-      "categories" : []
+      "categories" : [],
+      "position" : {
+        "latitude" : 39.988429,
+        "longitude" : -0.040500
+      }
     },
     "8" : {
       "id" : 8,
@@ -129,7 +161,11 @@
       "type": "Italiana",
       "image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Pizza_slice_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
-      "categories" : []
+      "categories" : [],
+      "position" : {
+        "latitude" : 39.981557,
+        "longitude" : -0.053632
+      }
     },
     "9" : {
       "id" : 9,
@@ -137,7 +173,8 @@
       "type": "Italiana",
       "image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Pizza_slice_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
-      "categories" : []
+      "categories" : [],
+      "position" : null
     },
     "10" : {
       "id" : 10,
@@ -145,7 +182,8 @@
       "type": "Colombiana",
       "image": "https://upload.wikimedia.org/wikipedia/commons/5/5d/French_fries_icon.png",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fermentum maximus tortor, sit amet imperdiet lorem fringilla in. Quisque ut est lacus. Nullam condimentum erat urna, ullamcorper porta augue posuere non. Vivamus vel ligula sem. Mauris vitae velit tellus. Aenean dapibus nec purus non vehicula. Morbi dignissim euismod arcu, et bibendum orci consectetur non. Mauris et justo aliquet, finibus ipsum nec, tempus sem.",
-      "categories" : []
+      "categories" : [],
+      "position" : null
     }
   },
   "users" : {
@@ -153,7 +191,8 @@
       "account" : {
         "email" : "test@test.com",
         "name" : "Adrián",
-        "surnames": "Picazo Marín"
+        "surnames": "Picazo Marín",
+        "language": "en"
       },
       "addresses" : [ "Avd/ del Mar, Nº53, 5A", "Esto es una dirección bastante larga para ver cómo queda.", "Avd/ del Monte, Nº67, 6A", "Avd/ del Sol, Nº21, 5B", "Esto es una dirección larga larga larga de cojones para ver cómo queda." ]
     }

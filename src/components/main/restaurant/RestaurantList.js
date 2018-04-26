@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import Header from '../../headers/Header';
-import { restaurantsFetch } from '../../../actions/index';
+import { restaurantsFetch, restaurantMap } from '../../../actions/index';
 import RestaurantListItem from './RestaurantListItem';
-import { Template, HorizontalRule } from '../../common';
+import { Template, HorizontalRule, FloatingButton } from '../../common';
 import { analyticsTracker } from '../../../App';
 import { I18nUtils } from '../../../utils/I18nUtils';
 import { TR_HEADER_RESTAURANT_LIST } from '../../../i18n/constants';
+import { IC_BLACK_WORLDWIDE_LOCATION } from '../../../res/images';
 
 class RestaurantList extends Component {
 
@@ -27,6 +28,7 @@ class RestaurantList extends Component {
 
     render() {
         const { flatListStyle } = styles;
+        const { restaurants } = this.props;
 
         return (
             <Template>
@@ -37,7 +39,7 @@ class RestaurantList extends Component {
                 />
 
                 <FlatList
-                    data={this.props.restaurants}
+                    data={restaurants}
                     renderItem={({ item }) => <RestaurantListItem restaurant={item} />}
                     keyExtractor={item => item.id.toString()}
                     style={flatListStyle}
@@ -45,6 +47,11 @@ class RestaurantList extends Component {
                         marginLeft={65}
                         marginRight={30}
                     />}
+                />
+
+                <FloatingButton
+                    onPress={() => this.props.restaurantMap(restaurants)}
+                    image={IC_BLACK_WORLDWIDE_LOCATION}
                 />
             </Template>
         );
@@ -71,4 +78,7 @@ const mapStateToProps = ({ restaurantListScreen }) => {
     return { restaurants, restaurantsFetched };
 };
 
-export default connect(mapStateToProps, { restaurantsFetch })(RestaurantList);
+export default connect(mapStateToProps, {
+    restaurantsFetch,
+    restaurantMap
+})(RestaurantList);

@@ -14,6 +14,7 @@ export const IC_BLACK_LEFT_ARROW = require('./ic_black_left_arrow.png');
 export const IC_BLACK_LEFT_ARROW_FRAMED = require('./ic_black_left_arrow_framed.png');
 export const IC_BLACK_SETTINGS = require('./ic_black_settings.png');
 export const IC_BLACK_VIEW_DETAILS = require('./ic_black_view_details.png');
+export const IC_BLACK_WORLDWIDE_LOCATION = require('./ic_black_worldwide_location.png');
 
 export const IC_GREY_X_MARK = require('./ic_grey_x_mark.png');
 export const IC_SETUP = require('./ic_setup.png');

@@ -12,6 +12,7 @@ import OrderDoneReducer from './OrderDoneReducer';
 import UserOrdersReducer from './UserOrdersReducer';
 import PresentationReducer from './PresentationReducer';
 import LanguageReducer from './LanguageReducer';
+import RestaurantMapReducer from './RestaurantMapReducer';
 
 export default combineReducers({
     restaurantListScreen: RestaurantReducer,
@@ -26,5 +27,6 @@ export default combineReducers({
     orderDone: OrderDoneReducer,
     userOrders: UserOrdersReducer,
     presentation: PresentationReducer,
-    languages: LanguageReducer
+    languages: LanguageReducer,
+    restaurantMap: RestaurantMapReducer
 });

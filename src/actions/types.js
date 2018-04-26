@@ -4,6 +4,11 @@ export const RESTAURANT_TYPE_SELECTION = 'select_restaurant_type';
 export const RESTAURANT_TYPE_ALL_SELECTION = 'select_all_restaurant_types';
 export const RESTAURANT_FILTRATION_BY_TYPE = 'filter_restaurants_by_type';
 
+export const RESTAURANT_SETTING_MAP_START = 'restaurant_setting_map_start';
+export const RESTAURANT_SETTING_MAP_SUCCESS = 'restaurant_setting_map_success';
+export const RESTAURANT_SETTING_MAP_FAILURE = 'restaurant_setting_map_failure';
+export const RESTAURANT_MAP_SELECTION = 'restaurant_map_selection';
+
 export const USER_ACCOUNT_FETCH_START = 'user_account_fetch_start';
 export const USER_ACCOUNT_FETCH_SUCCESS = 'user_account_fetch_success';
 export const USER_ACCOUNT_FETCH_FAILURE = 'user_account_fetch_failure';

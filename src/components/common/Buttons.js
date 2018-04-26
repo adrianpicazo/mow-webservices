@@ -28,6 +28,20 @@ const IconButton = ({ onPress, image, buttonStyle, imageStyle }) => {
     );
 };
 
+const FloatingButton = ({ onPress, image, buttonStyle, imageStyle }) => {
+    const { defaultButtonStyle, defaultImageStyle } = styles.floatingButton;
+
+    return (
+        <TouchableOpacity onPress={onPress} style={[defaultButtonStyle, buttonStyle]}>
+            <Image
+                style={[defaultImageStyle, imageStyle]}
+                source={image}
+                resizeMode="contain"
+            />
+        </TouchableOpacity>
+    );
+};
+
 const styles = {
     button: {
         defaultTextStyle: {
@@ -60,6 +74,31 @@ const styles = {
             tintColor: colors.BLUE_GREY.N400
         }
     },
+    floatingButton: {
+        defaultButtonStyle: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'absolute',
+            backgroundColor: colors.BLUE.N700,
+            bottom: 20,
+            right: 20,
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            elevation: 8,
+            shadowColor: colors.BLACK,
+            shadowOpacity: 0.4,
+            shadowOffset: {
+                width: 1,
+                height: 5,
+            },
+        },
+        defaultImageStyle: {
+            height: 35,
+            width: 35,
+            tintColor: colors.WHITE
+        },
+    }
 };
 
-export { Button, IconButton };
+export { Button, IconButton, FloatingButton };

@@ -19,6 +19,7 @@ import UserAccountOrder from './components/main/account/UserAccountOrder';
 import UserAccountOrderInfo from './components/main/account/UserAccountOrderInfo';
 import UserAccountSettings from './components/main/account/UserAccountSettings';
 import UserAccountLanguageSelection from './components/main/account/UserAccountLanguageSelection';
+import RestaurantListMap from './components/main/restaurant/RestaurantListMap';
 
 
 const reducerCreate = (params) => {
@@ -115,6 +116,11 @@ const RouterComponent = () => {
                         <Scene
                             key="userAccountSettings"
                             component={UserAccountSettings}
+                            hideNavBar
+                        />
+                        <Scene
+                            key="restaurantListMap"
+                            component={RestaurantListMap}
                             hideNavBar
                         />
                     </Stack>
