@@ -93,9 +93,6 @@ class Presentation extends Component {
                                     <Text style={textStyle}>
                                         {I18nUtils.tr(TR_WELCOME)}
                                     </Text>
-                                    <Text>
-                                        Recordatorio: cambiar id notificacion pedido
-                                    </Text>
                                 </View>
                             </CardSection>
                         </Card>

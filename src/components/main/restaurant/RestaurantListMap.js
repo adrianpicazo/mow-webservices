@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import MapView, { Marker } from 'react-native-maps';
 import Header from '../../headers/Header';
@@ -16,13 +16,20 @@ import {
     checkRestaurantSelection
 } from '../../../actions';
 
-class RestaurantListMap extends Component {
+type RestaurantListMapProps = {
+    restaurants: any[]
+}
+
+class RestaurantListMap extends Component<RestaurantListMapProps, { fadeAnim: any }> {
 
     constructor(props, context) {
         super(props, context);
-
         this.onLinkPress = this.onLinkPress.bind(this);
     }
+
+    state = {
+        fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
+    };
 
     componentWillMount() {
         this.props.restaurantMapReset();
@@ -39,38 +46,54 @@ class RestaurantListMap extends Component {
             mapRestaurantSelected, restaurantSelected, numProducts > 0);
     }
 
+    onMarkerClick = () => {
+        Animated.timing(                  // Animate over time
+            this.state.fadeAnim,            // The animated value to drive
+            {
+                toValue: 1,                   // Animate to opacity: 1 (opaque)
+                duration: 1000,              // Make it take a while
+            }
+        )
+            .start();
+    };
+
     renderMarkers() {
         const { restaurants } = this.props;
 
         return _.map(restaurants, (mapRes, index) => {
             const { position } = mapRes;
 
-            if (position !== undefined)
+            if (position !== undefined) {
                 return (<Marker
                     key={index}
                     title={mapRes.name}
                     coordinate={mapRes.position}
                     onPress={() => {
                         this.props.restaurantMapSelection(mapRes);
+                        this.onMarkerClick();
                     }}
                 />);
+            }
         });
     }
 
     renderRestaurantLink() {
-        const { restaurantLinkStyle } = styles;
+        const { viewStyle, touchableOpacityStyle } = styles.restaurantLinkStyle;
         const { mapRestaurantSelected } = this.props;
 
         if (mapRestaurantSelected !== null && mapRestaurantSelected !== undefined) {
             return (
-                <TouchableOpacity
-                    onPress={() => this.onLinkPress(mapRestaurantSelected)}
-                    style={restaurantLinkStyle}
-                >
-                    <Text style={[fonts.BIG, { color: colors.WHITE }]}>
-                        {I18nUtils.tr(TR_BODY_GOTO).concat(mapRestaurantSelected.name)}
-                    </Text>
-                </TouchableOpacity>
+                <Animated.View style={[viewStyle, { opacity: this.state.fadeAnim }]}>
+                    <TouchableOpacity
+                        onPress={() => this.onLinkPress(mapRestaurantSelected)}
+                        style={touchableOpacityStyle}
+                    >
+                        <Text style={[fonts.BIG, { color: colors.WHITE }]}>
+                            {I18nUtils.tr(TR_BODY_GOTO)
+                                .concat(mapRestaurantSelected.name)}
+                        </Text>
+                    </TouchableOpacity>
+                </Animated.View>
             );
         }
     }
@@ -116,23 +139,30 @@ const styles = {
         height: '100%'
     },
     restaurantLinkStyle: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        backgroundColor: colors.BLUE.N700,
-        bottom: 20,
-        right: 20,
-        left: 20,
-        padding: 10,
-        height: 40,
-        borderRadius: 5,
-        elevation: 8,
-        shadowColor: colors.BLACK,
-        shadowOpacity: 0.4,
-        shadowOffset: {
-            width: 1,
-            height: 5,
+        viewStyle: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'absolute',
+            bottom: 20,
+            right: 20,
+            left: 20,
+            height: 40
         },
+        touchableOpacityStyle: {
+            backgroundColor: colors.BLUE.N700,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 10,
+            borderRadius: 5,
+            elevation: 8,
+            shadowColor: colors.BLACK,
+            shadowOpacity: 0.4,
+            shadowOffset: {
+                width: 1,
+                height: 5,
+            }
+        }
     }
 };
 
