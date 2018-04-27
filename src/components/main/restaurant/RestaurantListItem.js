@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import { CardSection } from '../../common/index';
+import { checkRestaurantSelection } from '../../../actions/index';
 
 class RestaurantListItem extends Component {
 
@@ -13,18 +13,9 @@ class RestaurantListItem extends Component {
     }
 
     onRestaurantItemPress() {
-        const restaurant = this.props.restaurant;
-        const restaurantIdSelected =
-            this.props.restaurantSelected == null ? -1 : this.props.restaurantSelected.id;
-        const hasOrderedProducts = this.props.numProducts > 0;
+        const { restaurant, restaurantSelected, numProducts } = this.props;
 
-        if (restaurantIdSelected !== -1 &&
-            restaurant.id !== restaurantIdSelected &&
-            hasOrderedProducts) {
-            Actions.push('orderResetWarning', { restaurant });
-        } else {
-            Actions.push('restaurantInfo', { restaurant });
-        }
+        this.props.checkRestaurantSelection(restaurant, restaurantSelected, numProducts > 0);
     }
 
     render() {
@@ -82,4 +73,4 @@ const mapStateToProps = ({ userOrder }) => {
     return { restaurantSelected, numProducts };
 };
 
-export default connect(mapStateToProps, { })(RestaurantListItem);
+export default connect(mapStateToProps, { checkRestaurantSelection })(RestaurantListItem);

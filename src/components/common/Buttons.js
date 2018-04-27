@@ -57,8 +57,13 @@ const styles = {
             alignSelf: 'stretch',
             backgroundColor: colors.BLUE.N700,
             borderRadius: 5,
-            borderWidth: 1,
-            borderColor: colors.WHITE
+            elevation: 8,
+            shadowColor: colors.BLACK,
+            shadowOpacity: 0.4,
+            shadowOffset: {
+                width: 1,
+                height: 5,
+            }
         }
     },
     iconButton: {
@@ -91,7 +96,7 @@ const styles = {
             shadowOffset: {
                 width: 1,
                 height: 5,
-            },
+            }
         },
         defaultImageStyle: {
             height: 35,

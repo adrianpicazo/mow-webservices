@@ -16,7 +16,7 @@ translations[TR.TR_BUTTON_ALL] = 'Todos';
 translations[TR.TR_BUTTON_NONE] = 'Ninguno';
 translations[TR.TR_BUTTON_ADD_DISHES] = 'Añadir platos';
 translations[TR.TR_BUTTON_ORDERING] = 'Realizar el pedido';
-translations[TR.TR_BUTTON_COMPLETE_ORDER] = 'Finaliar el pedido';
+translations[TR.TR_BUTTON_COMPLETE_ORDER] = 'Finalizar el pedido';
 translations[TR.TR_BUTTON_BACK_TO_RESTAURANTS] = 'Volver a los restaurantes';
 
 

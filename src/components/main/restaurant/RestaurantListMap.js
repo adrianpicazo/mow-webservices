@@ -3,19 +3,18 @@ import React, { Component } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import MapView, { Marker } from 'react-native-maps';
-import { Actions } from 'react-native-router-flux';
 import Header from '../../headers/Header';
-import { Card, Template, Warning } from '../../common';
+import { Card, Template } from '../../common';
 import { analyticsTracker } from '../../../App';
 import { I18nUtils } from '../../../utils/I18nUtils';
-import {
-    TR_BODY_GOTO,
-    TR_HEADER_RESTAURANT_LIST_MAP,
-    TR_TITLE_FAILURE_OBTAINING_DATA
-} from '../../../i18n/constants';
+import { TR_BODY_GOTO, TR_HEADER_RESTAURANT_LIST_MAP } from '../../../i18n/constants';
 import { colors } from '../../../res/Colors';
 import { fonts } from '../../../res/Fonts';
-import { restaurantMapSelection } from '../../../actions';
+import {
+    restaurantMapReset,
+    restaurantMapSelection,
+    checkRestaurantSelection
+} from '../../../actions';
 
 class RestaurantListMap extends Component {
 
@@ -25,30 +24,25 @@ class RestaurantListMap extends Component {
         this.onLinkPress = this.onLinkPress.bind(this);
     }
 
+    componentWillMount() {
+        this.props.restaurantMapReset();
+    }
+
     componentDidMount() {
         analyticsTracker.trackScreenView('Restaurant List Map');
     }
 
     onLinkPress(mapRestaurantSelected) {
-        console.log(mapRestaurantSelected);
+        const { restaurantSelected, numProducts } = this.props;
 
-        // const restaurant = this.props.restaurant;
-        // const restaurantIdSelected = this.props.restaurantSelected == null ? -1 : this.props.restaurantSelected.id;
-        // const hasOrderedProducts = this.props.numProducts > 0;
-        //
-        // if (restaurantIdSelected !== -1 &&
-        //     restaurant.id !== restaurantIdSelected &&
-        //     hasOrderedProducts) {
-        //     Actions.push('orderResetWarning', { restaurant });
-        // } else {
-        //     Actions.push('restaurantInfo', { restaurant });
-        // }
+        this.props.checkRestaurantSelection(
+            mapRestaurantSelected, restaurantSelected, numProducts > 0);
     }
 
     renderMarkers() {
-        const { mapRestaurants } = this.props;
+        const { restaurants } = this.props;
 
-        const markers = _.map(mapRestaurants, (mapRes, index) => {
+        return _.map(restaurants, (mapRes, index) => {
             const { position } = mapRes;
 
             if (position !== undefined)
@@ -61,8 +55,6 @@ class RestaurantListMap extends Component {
                     }}
                 />);
         });
-
-        return markers;
     }
 
     renderRestaurantLink() {
@@ -85,15 +77,6 @@ class RestaurantListMap extends Component {
 
     renderMap() {
         const { mapViewStyle } = styles;
-        const { error } = this.props;
-
-        if (error) {
-            return (
-                <Warning title={I18nUtils.tr(TR_TITLE_FAILURE_OBTAINING_DATA)}>
-                    {error}
-                </Warning>
-            );
-        }
 
         return (
             <Card style={{ width: '100%', height: '100%', padding: 0 }}>
@@ -153,10 +136,15 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ restaurantMap }) => {
-    const { mapRestaurants, mapRestaurantSelected, error } = restaurantMap;
+const mapStateToProps = ({ restaurantMap, userOrder }) => {
+    const { mapRestaurantSelected } = restaurantMap;
+    const { restaurantSelected, numProducts } = userOrder;
 
-    return { mapRestaurants, mapRestaurantSelected, error };
+    return { mapRestaurantSelected, restaurantSelected, numProducts };
 };
 
-export default connect(mapStateToProps, { restaurantMapSelection })(RestaurantListMap);
+export default connect(mapStateToProps, {
+    restaurantMapReset,
+    restaurantMapSelection,
+    checkRestaurantSelection
+})(RestaurantListMap);

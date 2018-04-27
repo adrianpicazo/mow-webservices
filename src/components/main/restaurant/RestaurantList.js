@@ -2,8 +2,9 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import Header from '../../headers/Header';
-import { restaurantsFetch, restaurantMap } from '../../../actions/index';
+import { restaurantsFetch } from '../../../actions/index';
 import RestaurantListItem from './RestaurantListItem';
 import { Template, HorizontalRule, FloatingButton } from '../../common';
 import { analyticsTracker } from '../../../App';
@@ -50,7 +51,7 @@ class RestaurantList extends Component {
                 />
 
                 <FloatingButton
-                    onPress={() => this.props.restaurantMap(restaurants)}
+                    onPress={() => Actions.push('restaurantListMap', { restaurants })}
                     image={IC_BLACK_WORLDWIDE_LOCATION}
                 />
             </Template>
@@ -78,7 +79,4 @@ const mapStateToProps = ({ restaurantListScreen }) => {
     return { restaurants, restaurantsFetched };
 };
 
-export default connect(mapStateToProps, {
-    restaurantsFetch,
-    restaurantMap
-})(RestaurantList);
+export default connect(mapStateToProps, { restaurantsFetch })(RestaurantList);

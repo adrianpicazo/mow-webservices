@@ -7,9 +7,8 @@ import {
     RESTAURANT_TYPE_ALL_SELECTION,
     RESTAURANT_TYPE_SELECTION,
     RESTAURANT_FILTRATION_BY_TYPE,
-    RESTAURANT_SETTING_MAP_SUCCESS,
-    RESTAURANT_SETTING_MAP_FAILURE,
-    RESTAURANT_MAP_SELECTION
+    RESTAURANT_MAP_SELECTION,
+    RESTAURANT_SELECTION_CHECKED, RESTAURANT_MAP_RESET
 } from './types';
 
 // TODO: vigilar los errores como con las direcciones
@@ -67,31 +66,30 @@ const typeFilter = (restaurants, restaurantTypesSelected) => {
    return _.filter(restaurants, rest => restaurantTypesSelected.includes(rest.type));
 };
 
-export const restaurantMap = (restaurants) => {
-    try {
-        Actions.push('restaurantListMap');
-
-        const mapRestaurants = _.map(restaurants, res => {
-            return { rid: res.id, name: res.name, position: res.position };
-        });
-
-        return {
-            type: RESTAURANT_SETTING_MAP_SUCCESS,
-            payload: mapRestaurants
-        };
-    } catch (error) {
-        console.warn(error);
-
-        return {
-            type: RESTAURANT_SETTING_MAP_FAILURE,
-            payload: error.message
-        };
-    }
+export const restaurantMapReset = () => {
+    return {
+        type: RESTAURANT_MAP_RESET
+    };
 };
 
 export const restaurantMapSelection = (restaurant) => {
     return {
         type: RESTAURANT_MAP_SELECTION,
         payload: restaurant
+    };
+};
+
+export const checkRestaurantSelection = (resAccessed, resOrdered, resOrderedHasProducts) => {
+    const resAccesedExists = resAccessed !== null && resAccessed !== undefined;
+    const resOrderedExists = resOrdered !== null && resOrdered !== undefined;
+
+    if (resAccesedExists) {
+        if (resOrderedExists && (resAccessed.id !== resOrdered.id) && resOrderedHasProducts)
+            Actions.push('orderResetWarning', { restaurant: resAccessed });
+        else Actions.push('restaurantInfo', { restaurant: resAccessed });
+    }
+
+    return {
+        type: RESTAURANT_SELECTION_CHECKED
     };
 };

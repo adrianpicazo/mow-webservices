@@ -71,14 +71,21 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: colors.BLUE.N500,
-        width: '100%',
+        width: '95%',
         paddingTop: 5,
         paddingBottom: 5,
         paddingLeft: 10,
         paddingRight: 10,
         borderRadius: 5,
-        borderWidth: 1,
-        borderColor: colors.WHITE
+        marginTop: 5,
+        marginBottom: 5,
+        elevation: 8,
+        shadowColor: colors.BLACK,
+        shadowOpacity: 0.4,
+        shadowOffset: {
+            width: 1,
+            height: 5,
+        }
     },
     imageContainerStyle: {
         height: 30,

@@ -25,7 +25,14 @@ const styles = {
         height: 56,
         width: screenSize.width,
         backgroundColor: colors.BLACK,
-        padding: 5
+        padding: 5,
+        elevation: 8,
+        shadowColor: colors.BLACK,
+        shadowOpacity: 0.4,
+        shadowOffset: {
+            width: 1,
+            height: 5,
+        }
     }
 };
 
