@@ -62,7 +62,7 @@ translations[TR.TR_HEADER_USER_ORDER_DONE] = 'Mi pedido realizado';
 translations[TR.TR_HEADER_MODAL_RESTAURANT_TYPES] = 'Tipos de restaurante';
 translations[TR.TR_HEADER_MODAL_ADDRESS_FORM] = 'Introduzca una dirección';
 translations[TR.TR_HEADER_MODAL_ORDER_RESET] = 'Pedido pendiente';
-translations[TR.TR_HEADER_MODAL_LANGUAGE_SELECTION] = 'Seleccione un lenguaje';
+translations[TR.TR_HEADER_MODAL_LANGUAGE_SELECTION] = 'Seleccione un idioma';
 
 translations[TR.TR_BODY_REGISTERED_ADDRESSES] = 'Direcciones registradas';
 translations[TR.TR_BODY_REGISTERED_ORDERS] = 'Pedidos registrados';
@@ -75,7 +75,7 @@ translations[TR.TR_BODY_ORDER_PRODUCTS] = 'Productos';
 translations[TR.TR_BODY_ORDER_TOTAL_TITLE] = 'Total del pedido';
 translations[TR.TR_BODY_ORDER_SHIPPING_ADDRESS] = 'Dirección de envío';
 translations[TR.TR_BODY_ORDER_SUCCESS] = 'Pedido realizado\ncon éxito';
-translations[TR.TR_BODY_SETTINGS_LANGUAGE] = 'Lenguaje';
+translations[TR.TR_BODY_SETTINGS_LANGUAGE] = 'Idioma';
 translations[TR.TR_BODY_SETTINGS_CHANGE] = 'Cambiar';
 translations[TR.TR_BODY_GOTO] = 'Ir a ';
 

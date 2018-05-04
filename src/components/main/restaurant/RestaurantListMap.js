@@ -106,8 +106,8 @@ class RestaurantListMap extends Component<RestaurantListMapProps, { fadeAnim: an
                 <MapView
                     style={mapViewStyle}
                     initialRegion={{
-                        latitude: 39.985821,
-                        longitude: -0.038422,
+                        latitude: 39.980000,
+                        longitude: -0.050000,
                         latitudeDelta: 0.0700,
                         longitudeDelta: 0.0700,
                     }}

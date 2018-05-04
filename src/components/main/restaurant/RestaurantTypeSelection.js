@@ -89,7 +89,7 @@ class RestaurantTypeSelection extends Component {
                 onDecline={this.onDecline}
                 titleSize={24}
             >
-                <Card style={{ width: '100%', marginBottom: -10 }}>
+                <Card style={{ width: '100%', marginTop: 5, marginBottom: -10 }}>
                     <CardSection style={cardSection}>
                         <Button
                             textStyle={textStyle}
@@ -121,7 +121,7 @@ const styles = {
         position: 'relative',
         width: '100%',
         height: 270,
-        marginTop: 5,
+        marginTop: 15,
         marginBottom: 0
     },
     topButtonsSection: {
