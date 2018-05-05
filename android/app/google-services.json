@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:988825721106:android:995a19a2d247d7f4",
         "android_client_info": {
-          "package_name": "com.mealsonwheel.android"
+          "package_name": "com.mealsonwheels.webservices.android"
         }
       },
       "oauth_client": [
