@@ -7,9 +7,6 @@ import com.airbnb.android.react.maps.MapsPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.auth.RNFirebaseAuthPackage;
-import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -34,10 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
         new MapsPackage(),
         new RNI18nPackage(),
         new GoogleAnalyticsBridgePackage(),
-        new ReactNativeOneSignalPackage(),
-        new RNFirebasePackage(),
-        new RNFirebaseAuthPackage(),
-        new RNFirebaseDatabasePackage()
+        new ReactNativeOneSignalPackage()
       );
     }
 

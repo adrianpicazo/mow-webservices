@@ -360,6 +360,7 @@
 		CA0B43F0C66443F4BA523A09 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		D015A2C4B21F43C4944346BA /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		E34D8CD55743E6003A720CD2 /* Pods-mealsOnWheel_JavaScript.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mealsOnWheel_JavaScript.release.xcconfig"; path = "Pods/Target Support Files/Pods-mealsOnWheel_JavaScript/Pods-mealsOnWheel_JavaScript.release.xcconfig"; sourceTree = "<group>"; };
+		8045F152EBEB4481B2BD9BB8 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; name = "RNFirebase.xcodeproj"; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -554,6 +555,7 @@
 				36D6D14A236C46EC8962DA85 /* AirMaps.xcodeproj */,
 				939CDDAA5B0F4989B98E068F /* RNFirebase.xcodeproj */,
 				53F168A4B0B74BB99CF28162 /* RCTOneSignal.xcodeproj */,
+				8045F152EBEB4481B2BD9BB8 /* RNFirebase.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1164,6 +1166,7 @@
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 				INFOPLIST_FILE = mealsOnWheel_JavaScript/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1201,6 +1204,7 @@
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
+					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
 				);
 				INFOPLIST_FILE = mealsOnWheel_JavaScript/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

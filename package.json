@@ -13,7 +13,6 @@
     "react": "16.2.0",
     "react-dom": "^16.2.0",
     "react-native": "0.53.3",
-    "react-native-firebase": "^3.3.1",
     "react-native-google-analytics-bridge": "^5.6.3",
     "react-native-i18n": "^2.0.12",
     "react-native-maps": "^0.21.0",
