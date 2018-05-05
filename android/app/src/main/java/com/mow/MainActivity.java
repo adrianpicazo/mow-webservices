@@ -1,4 +1,4 @@
-package com.mealsonwheel_javascript;
+package com.mow;
 
 import com.facebook.react.ReactActivity;
 

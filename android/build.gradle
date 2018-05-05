@@ -35,20 +35,11 @@ allprojects {
         maven { url 'https://maven.google.com' }
         google()
 
-//        ------------------------
-//          SOLUCIÓN DE VAL
-//        ------------------------
-//        configurations.all {
-//            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-//                def requested = details.requested
-//                if (requested.group == 'com.google.android.gms') {
-//                    details.useVersion '12.0.1'
-//                }
-//                if (requested.group == 'com.google.firebase') {
-//                    details.useVersion '12.0.1'
-//                }
-//            }
-//        }
+        gradle.projectsEvaluated {
+            tasks.withType(JavaCompile) {
+                options.compilerArgs << "-Xlint:deprecation"
+            }
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-package com.mealsonwheel_javascript;
+package com.mow;
 
 import android.app.Application;
 
