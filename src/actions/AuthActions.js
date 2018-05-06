@@ -1,4 +1,4 @@
-import firebase from 'react-native-firebase';
+import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import {
     LOGIN_RESET,
@@ -16,6 +16,7 @@ import {
 } from './types';
 import AsyncStorage, { AUTH_DATA } from '../utils/AsyncStorage';
 import { I18nUtils } from '../utils/I18nUtils';
+import { URL } from '../components/webservices/Request';
 
 export const loginReset = () => {
     return {
@@ -41,34 +42,46 @@ export const loginUser = ({ email, password }) => {
     return (dispatch) => {
         dispatch({ type: LOGIN_USER_START });
 
-        firebase.auth()
-            .signInAndRetrieveDataWithEmailAndPassword(email, password)
-            .then(userInfo => {
-                const { uid } = userInfo.user;
+        const data = {
+            email,
+            password
+        };
 
-                try {
-                    firebase.database()
-                        .ref(`/users/${uid}/account`)
-                        .on('value', snapshot => {
-                            const { language, name, surnames } = snapshot.val();
+        axios.post(URL.concat('login'), data)
+            .then(tokenResponse => {
+                const { token } = tokenResponse.data;
 
-                            I18nUtils.setLocale(language);
+                const config = {
+                    headers: {
+                        token
+                    }
+                };
 
-                            dispatch({
-                                type: LOGIN_USER_SUCCESS,
-                                payload: { uid, language, name, surnames, email }
-                            });
+                axios.get(URL.concat('user'), config)
+                    .then(userResponse => {
+                        const { id, name, surname } = userResponse.data;
 
-                            Actions.push('main');
+                        // TODO: corregir
+                        const language = userResponse.data.language ?
+                            userResponse.data.language : 'es';
+
+                        I18nUtils.setLocale(language);
+
+                        dispatch({
+                            type: LOGIN_USER_SUCCESS,
+                            payload: { token, id, language, name, surnames: surname, email }
                         });
-                } catch (error) {
-                    dispatch({
-                        type: LOGIN_USER_FAIL,
-                        payload: error.message
+
+                        Actions.push('main');
+                    })
+                    .catch(error => {
+                        dispatch({
+                            type: LOGIN_USER_FAIL,
+                            payload: error.message
+                        });
                     });
-                }
             })
-            .catch((error) => {
+            .catch(error => {
                 dispatch({
                     type: LOGIN_USER_FAIL,
                     payload: error.message
@@ -77,35 +90,36 @@ export const loginUser = ({ email, password }) => {
     };
 };
 
+// TODO: cambiar a webservice
 export const logoutUser = () => {
     return (dispatch) => {
         dispatch({ type: LOGOUT_USER_START });
 
-        firebase.auth().signOut()
-            .then(() => {
-                AsyncStorage.delete(AUTH_DATA)
-                    .then(() => {
-                        dispatch({
-                            type: LOGOUT_USER_SUCCESS
-                        });
-
-                        I18nUtils.setDeviceLocale();
-
-                        Actions.push('presentation');
-                    })
-                    .catch(error => {
-                        dispatch({
-                            type: LOGOUT_USER_FAILURE,
-                            payload: error.message
-                        });
-                    });
-            })
-            .catch((error) => {
-                dispatch({
-                    type: LOGOUT_USER_FAILURE,
-                    payload: error.message
-                });
-            });
+        // firebase.auth().signOut()
+        //     .then(() => {
+        //         AsyncStorage.delete(AUTH_DATA)
+        //             .then(() => {
+        //                 dispatch({
+        //                     type: LOGOUT_USER_SUCCESS
+        //                 });
+        //
+        //                 I18nUtils.setDeviceLocale();
+        //
+        //                 Actions.push('presentation');
+        //             })
+        //             .catch(error => {
+        //                 dispatch({
+        //                     type: LOGOUT_USER_FAILURE,
+        //                     payload: error.message
+        //                 });
+        //             });
+        //     })
+        //     .catch((error) => {
+        //         dispatch({
+        //             type: LOGOUT_USER_FAILURE,
+        //             payload: error.message
+        //         });
+        //     });
     };
 };
 

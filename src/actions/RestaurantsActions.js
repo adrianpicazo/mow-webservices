@@ -1,24 +1,44 @@
 import _ from 'lodash';
-import firebase from 'react-native-firebase';
+import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import {
+    RESTAURANTS_FETCH_START,
     RESTAURANTS_FETCH_SUCCESS,
+    RESTAURANTS_FETCH_FAILURE,
+    RESTAURANT_TYPES_FETCH_START,
+    RESTAURANT_TYPES_FETCH_FAILURE,
     RESTAURANT_TYPES_FETCH_SUCCESS,
     RESTAURANT_TYPE_ALL_SELECTION,
     RESTAURANT_TYPE_SELECTION,
-    RESTAURANT_FILTRATION_BY_TYPE,
     RESTAURANT_MAP_SELECTION,
-    RESTAURANT_SELECTION_CHECKED, RESTAURANT_MAP_RESET
+    RESTAURANT_SELECTION_CHECKED,
+    RESTAURANT_MAP_RESET
 } from './types';
+import { URL } from '../components/webservices/Request';
 
-// TODO: vigilar los errores como con las direcciones
 export const restaurantsFetch = () => {
     return (dispatch) => {
-        firebase.database().ref('/restaurants')
-            .on('value', snapshot => {
+        dispatch({ type: RESTAURANTS_FETCH_START });
+
+        let restaurantListURL = URL.concat('list?pc=12000&category=');
+        _.forEach(restaurantTypes, restaurantType => {
+            restaurantListURL += restaurantType.toString().concat('/');
+        });
+
+        axios.get(restaurantListURL)
+            .then(userResponse => {
+                const { restaurants } = userResponse.data;
+                const restaurantList = _.map(restaurants, rest => rest);
+
                 dispatch({
                     type: RESTAURANTS_FETCH_SUCCESS,
-                    payload: snapshot.val()
+                    payload: restaurantList
+                });
+            })
+            .catch(error => {
+                dispatch({
+                    type: RESTAURANTS_FETCH_FAILURE,
+                    payload: error.message
                 });
             });
     };
@@ -26,11 +46,21 @@ export const restaurantsFetch = () => {
 
 export const restaurantTypesFetch = () => {
     return (dispatch) => {
-        firebase.database().ref('/types')
-            .once('value', snapshot => {
+        dispatch({ type: RESTAURANT_TYPES_FETCH_START });
+
+        axios.get(URL.concat('types'))
+            .then(userResponse => {
+                const { categories } = userResponse.data;
+
                 dispatch({
                     type: RESTAURANT_TYPES_FETCH_SUCCESS,
-                    payload: snapshot.val()
+                    payload: categories
+                });
+            })
+            .catch(error => {
+                dispatch({
+                    type: RESTAURANT_TYPES_FETCH_FAILURE,
+                    payload: error.message
                 });
             });
     };
@@ -48,22 +78,6 @@ export const restaurantTypeAllSelection = (value) => {
         type: RESTAURANT_TYPE_ALL_SELECTION,
         payload: value
     };
-};
-
-export const restaurantFiltrationByType = (restaurantTypesSelected) => {
-    return (dispatch) => {
-        firebase.database().ref('/restaurants')
-            .on('value', snapshot => {
-                dispatch({
-                    type: RESTAURANT_FILTRATION_BY_TYPE,
-                    payload: typeFilter(snapshot.val(), restaurantTypesSelected)
-                });
-            });
-    };
-};
-
-const typeFilter = (restaurants, restaurantTypesSelected) => {
-   return _.filter(restaurants, rest => restaurantTypesSelected.includes(rest.type));
 };
 
 export const restaurantMapReset = () => {

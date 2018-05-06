@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
@@ -21,39 +20,45 @@ class RestaurantList extends Component {
     componentDidMount() {
         analyticsTracker.trackScreenView('Restaurant List');
 
-        const { restaurantsFetched } = this.props;
-
-        if (!restaurantsFetched)
-            this.props.restaurantsFetch();
+        this.props.restaurantsFetch();
     }
 
-    render() {
+    renderList() {
         const { flatListStyle } = styles;
         const { restaurants } = this.props;
 
         return (
-            <Template>
-                <Header
-                    renderFilterMenuButton
-                    renderUserAccountMenuButton
-                    headerTitle={I18nUtils.tr(TR_HEADER_RESTAURANT_LIST)}
-                />
-
+            <View style={{ width: '100%', flex: 1 }}>
                 <FlatList
                     data={restaurants}
                     renderItem={({ item }) => <RestaurantListItem restaurant={item} />}
-                    keyExtractor={item => item.id.toString()}
+                    keyExtractor={(item, index) => index.toString()}
                     style={flatListStyle}
                     ItemSeparatorComponent={() => <HorizontalRule
                         marginLeft={65}
                         marginRight={30}
                     />}
                 />
-
                 <FloatingButton
                     onPress={() => Actions.push('restaurantListMap', { restaurants })}
                     image={IC_BLACK_WORLDWIDE_LOCATION}
                 />
+            </View>
+        );
+    }
+
+    render() {
+        const { loading } = this.props;
+
+        return (
+            <Template key={this.props.language}>
+                <Header
+                    renderFilterMenuButton
+                    renderUserAccountMenuButton
+                    headerTitle={I18nUtils.tr(TR_HEADER_RESTAURANT_LIST)}
+                />
+
+                {loading ? <Spinner /> : this.renderList()}
             </Template>
         );
     }
@@ -70,13 +75,11 @@ const styles = {
     }
 };
 
-const mapStateToProps = ({ restaurantListScreen }) => {
-    const { restaurantsFetched } = restaurantListScreen;
-    const restaurants = _.map(restaurantListScreen.restaurants, (val, uid) => {
-        return { ...val, uid };
-    });
+const mapStateToProps = ({ restaurantListScreen, account }) => {
+    const { restaurants, loading, error } = restaurantListScreen;
+    const { language } = account;
 
-    return { restaurants, restaurantsFetched };
+    return { restaurants, loading, error, language };
 };
 
 export default connect(mapStateToProps, { restaurantsFetch })(RestaurantList);

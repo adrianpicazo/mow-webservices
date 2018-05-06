@@ -1,5 +1,4 @@
-import _ from 'lodash';
-import firebase from 'react-native-firebase';
+import axios from 'axios';
 import {
     ADDRESS_FORM_RESET,
     ADDRESS_FORM_CHANGE,
@@ -14,8 +13,7 @@ import {
     ADDRESS_REMOVE_START,
     ADDRESS_REMOVE_SUCCESS
 } from './types';
-import { I18nUtils } from '../utils/I18nUtils';
-import { TR_ERROR_NO_DATA, TR_ERROR_REPEATED_ADDRESS } from '../i18n/constants';
+import { URL } from '../components/webservices/Request';
 
 export const addressFormReset = () => {
     return {
@@ -37,56 +35,52 @@ export const addressFormError = (error) => {
     };
 };
 
-export const addressesFetch = (uid) => {
+export const addressesFetch = (token) => {
     return (dispatch) => {
         dispatch({ type: ADDRESSES_FETCH_START });
 
-        try {
-            firebase.database()
-                .ref(`/users/${uid}/addresses`)
-                .on('value', snapshot => {
-                    if (snapshot.exists()) {
-                        dispatch({
-                            type: ADDRESSES_FETCH_SUCCESS,
-                            payload: snapshot.val()
-                        });
-                    } else {
-                        dispatch({
-                            type: ADDRESSES_FETCH_FAILURE,
-                            payload: I18nUtils.tr(TR_ERROR_NO_DATA)
-                        });
-                    }
+        const config = {
+            headers: {
+                Token: token
+            }
+        };
+
+        axios.get(URL.concat('addresses'), config)
+            .then(userResponse => {
+                const { addresses } = userResponse.data;
+
+                dispatch({
+                    type: ADDRESSES_FETCH_SUCCESS,
+                    payload: addresses
                 });
-        } catch (error) {
-            dispatch({
-                type: ADDRESSES_FETCH_FAILURE,
-                payload: error.message
+            })
+            .catch(error => {
+                dispatch({
+                    type: ADDRESSES_FETCH_FAILURE,
+                    payload: error.message
+                });
             });
-        }
     };
 };
 
-export const addressAdd = (uid, addressList, address) => {
-    let addresses;
-
-    if (addressList !== null) {
-        if (_.find(addressList, item => { return item === address; })) {
-            return {
-                type: ADDRESS_ADD_FAILURE,
-                payload: I18nUtils.tr(TR_ERROR_REPEATED_ADDRESS)
-            };
-        }
-        addresses = _.concat(addressList, address);
-    } else {
-        addresses = [address];
-    }
-
+export const addressAdd = (token, address) => {
     return (dispatch) => {
         dispatch({ type: ADDRESS_ADD_START });
 
-        firebase.database().ref(`/users/${uid}`)
-            .update({ addresses })
-            .then(() => {
+        const data = {
+            address
+        };
+
+        const config = {
+            headers: {
+                Token: token
+            }
+        };
+
+        axios.post(URL.concat('address/new'), data, config)
+            .then(userResponse => {
+                const { addresses } = userResponse.data;
+
                 dispatch({
                     type: ADDRESS_ADD_SUCCESS,
                     payload: addresses
@@ -101,15 +95,20 @@ export const addressAdd = (uid, addressList, address) => {
     };
 };
 
-export const addressRemove = (uid, addressList, address) => {
-    const addresses = _.filter(addressList, item => { return item !== address; });
-
+export const addressRemove = (token, address) => {
     return (dispatch) => {
         dispatch({ type: ADDRESS_REMOVE_START });
 
-        firebase.database().ref(`/users/${uid}`)
-            .update({ addresses })
-            .then(() => {
+        const config = {
+            headers: {
+                Token: token
+            }
+        };
+
+        axios.delete(URL.concat(`address/delete/${address.id}`), config)
+            .then(userResponse => {
+                const { addresses } = userResponse.data;
+
                 dispatch({
                     type: ADDRESS_REMOVE_SUCCESS,
                     payload: addresses

@@ -1,8 +1,11 @@
+export const RESTAURANTS_FETCH_START = 'restaurants_fetch_start';
 export const RESTAURANTS_FETCH_SUCCESS = 'restaurants_fetch_success';
+export const RESTAURANTS_FETCH_FAILURE = 'restaurants_fetch_failure';
+export const RESTAURANT_TYPES_FETCH_START = 'restaurant_types_fetch_start';
 export const RESTAURANT_TYPES_FETCH_SUCCESS = 'restaurant_types_fetch_success';
+export const RESTAURANT_TYPES_FETCH_FAILURE = 'restaurant_types_fetch_failure';
 export const RESTAURANT_TYPE_SELECTION = 'select_restaurant_type';
 export const RESTAURANT_TYPE_ALL_SELECTION = 'select_all_restaurant_types';
-export const RESTAURANT_FILTRATION_BY_TYPE = 'filter_restaurants_by_type';
 export const RESTAURANT_SELECTION_CHECKED = 'restaurant_selection_checked';
 
 export const RESTAURANT_MAP_RESET = 'restaurant_map_reset';

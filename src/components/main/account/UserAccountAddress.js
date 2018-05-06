@@ -36,10 +36,9 @@ class UserAccountAddress extends Component {
     componentDidMount() {
         analyticsTracker.trackScreenView('User Account Address');
 
-        const { uid, addresses } = this.props;
+        const { uid, token } = this.props;
 
-        if (addresses === null)
-            this.props.addressesFetch(uid);
+        this.props.addressesFetch(token || uid);
     }
 
     renderFailure() {
@@ -152,7 +151,7 @@ const styles = {
 };
 
 const mapStateToProps = ({ userAddresses, account }) => {
-    const { uid, addresses } = account;
+    const { uid, token, addresses } = account;
     const {
         fetchLoading,
         fetchFailure,
@@ -165,6 +164,7 @@ const mapStateToProps = ({ userAddresses, account }) => {
 
     return {
         uid,
+        token,
         addresses,
         fetchLoading,
         fetchFailure,

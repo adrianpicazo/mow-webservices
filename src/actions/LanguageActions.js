@@ -1,4 +1,3 @@
-import firebase from 'react-native-firebase';
 import { I18nUtils } from '../utils/I18nUtils';
 import {
     LANGUAGE_CHANGE_FAILURE,
@@ -14,26 +13,27 @@ export const languageSelection = (language) => {
     };
 };
 
+// TODO: cambiar a webservice
 export const languageSelectionDone = (uid, language) => {
     return (dispatch) => {
         dispatch({ type: LANGUAGE_CHANGE_START });
 
-        firebase.database()
-            .ref(`/users/${uid}/account`)
-            .update({ language })
-            .then(() => {
-                I18nUtils.setLocale(language);
-
-                dispatch({
-                    type: LANGUAGE_CHANGE_SUCCESS,
-                    payload: language
-                });
-            })
-            .catch(error => {
-                dispatch({
-                    type: LANGUAGE_CHANGE_FAILURE,
-                    payload: error.message
-                });
-            });
+        // firebase.database()
+        //     .ref(`/users/${uid}/account`)
+        //     .update({ language })
+        //     .then(() => {
+        //         I18nUtils.setLocale(language);
+        //
+        //         dispatch({
+        //             type: LANGUAGE_CHANGE_SUCCESS,
+        //             payload: language
+        //         });
+        //     })
+        //     .catch(error => {
+        //         dispatch({
+        //             type: LANGUAGE_CHANGE_FAILURE,
+        //             payload: error.message
+        //         });
+        //     });
     };
 };

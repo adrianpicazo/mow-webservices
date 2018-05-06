@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import firebase from 'react-native-firebase';
 import { Actions } from 'react-native-router-flux';
 import {
     ORDER_ADD_RESTAURANT,
@@ -78,35 +77,37 @@ export const orderAddressFormFailure = (error) => {
     };
 };
 
+// TODO: cambiar a webservice
 export const orderAddressesFetch = (uid) => {
     return (dispatch) => {
         dispatch({ type: ORDER_ADDRESSES_FETCH_START });
 
-        try {
-            firebase.database()
-                .ref(`/users/${uid}/addresses`)
-                .on('value', snapshot => {
-                    if (snapshot.exists()) {
-                        dispatch({
-                            type: ORDER_ADDRESSES_FETCH_SUCCESS,
-                            payload: snapshot.val()
-                        });
-                    } else {
-                        dispatch({
-                            type: ORDER_ADDRESSES_FETCH_FAILURE,
-                            payload: I18nUtils.tr(TR_ERROR_NO_DATA)
-                        });
-                    }
-                });
-        } catch (error) {
-            dispatch({
-                type: ORDER_ADDRESSES_FETCH_FAILURE,
-                payload: error.message
-            });
-        }
+        // try {
+        //     firebase.database()
+        //         .ref(`/users/${uid}/addresses`)
+        //         .on('value', snapshot => {
+        //             if (snapshot.exists()) {
+        //                 dispatch({
+        //                     type: ORDER_ADDRESSES_FETCH_SUCCESS,
+        //                     payload: snapshot.val()
+        //                 });
+        //             } else {
+        //                 dispatch({
+        //                     type: ORDER_ADDRESSES_FETCH_FAILURE,
+        //                     payload: I18nUtils.tr(TR_ERROR_NO_DATA)
+        //                 });
+        //             }
+        //         });
+        // } catch (error) {
+        //     dispatch({
+        //         type: ORDER_ADDRESSES_FETCH_FAILURE,
+        //         payload: error.message
+        //     });
+        // }
     };
 };
 
+// TODO: cambiar a webservice
 export const order = (uid, newOrder) => {
     const {
         products,
@@ -117,49 +118,50 @@ export const order = (uid, newOrder) => {
         restaurantName
     } = newOrder;
 
-    return (dispatch) => {
-        dispatch({ type: ORDER_START });
-
-        firebase.database()
-            .ref(`/users/${uid}/orders`)
-            .push({ products, subtotalPrice, otherExpenses, totalPrice, address, restaurantName })
-            .then(() => {
-                dispatch({
-                    type: ORDER_SUCCESS,
-                    payload: newOrder
-                });
-            })
-            .catch(error => {
-                dispatch({
-                    type: ORDER_FAILURE,
-                    payload: error.message
-                });
-            });
-
-        Actions.push('orderDoneOverview');
-    };
+    // return (dispatch) => {
+    //     dispatch({ type: ORDER_START });
+    //
+    //     firebase.database()
+    //         .ref(`/users/${uid}/orders`)
+    //         .push({ products, subtotalPrice, otherExpenses, totalPrice, address, restaurantName })
+    //         .then(() => {
+    //             dispatch({
+    //                 type: ORDER_SUCCESS,
+    //                 payload: newOrder
+    //             });
+    //         })
+    //         .catch(error => {
+    //             dispatch({
+    //                 type: ORDER_FAILURE,
+    //                 payload: error.message
+    //             });
+    //         });
+    //
+    //     Actions.push('orderDoneOverview');
+    // };
 };
 
+// TODO: cambiar a webservice
 export const ordersFetch = (uid) => {
     return (dispatch) => {
         dispatch({ type: ORDERS_FETCH_START });
 
-        try {
-            firebase.database()
-                .ref(`/users/${uid}/orders`)
-                .on('value', snapshot => {
-                    const orders = _.map(_.forEach(snapshot.val(), item => { return item; }));
-
-                    dispatch({
-                        type: ORDERS_FETCH_SUCCESS,
-                        payload: orders
-                    });
-                });
-        } catch (error) {
-            dispatch({
-                type: ORDERS_FETCH_FAILURE,
-                payload: error.message
-            });
-        }
+        // try {
+        //     firebase.database()
+        //         .ref(`/users/${uid}/orders`)
+        //         .on('value', snapshot => {
+        //             const orders = _.map(_.forEach(snapshot.val(), item => { return item; }));
+        //
+        //             dispatch({
+        //                 type: ORDERS_FETCH_SUCCESS,
+        //                 payload: orders
+        //             });
+        //         });
+        // } catch (error) {
+        //     dispatch({
+        //         type: ORDERS_FETCH_FAILURE,
+        //         payload: error.message
+        //     });
+        // }
     };
 };

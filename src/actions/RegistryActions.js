@@ -1,4 +1,4 @@
-import firebase from 'react-native-firebase';
+import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import {
     REGISTRY_RESET,
@@ -8,6 +8,8 @@ import {
     REGISTRY_USER_FAIL,
     REGISTRY_USER_SUCCESS
 } from './types';
+import { URL } from '../components/webservices/Request';
+import { I18nUtils } from '../utils/I18nUtils';
 
 export const registryReset = () => {
     return {
@@ -30,44 +32,34 @@ export const registryUserError = ({ error }) => {
 };
 
 export const registryUser = (registryForm) => {
-    const { email, password } = registryForm;
+    const { name, surnames, email, password } = registryForm;
 
     return (dispatch) => {
         dispatch({ type: REGISTRY_USER_START });
 
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(user => registryUserSuccess(dispatch, user, registryForm))
+        const data = {
+            name,
+            surname: surnames,
+            email,
+            password,
+            nick: email,
+            language: I18nUtils.getLanguage()
+        };
+
+        axios.post(URL.concat('register'), data)
+            .then(() => {
+                dispatch({
+                    type: REGISTRY_USER_SUCCESS,
+                    payload: { email, password }
+                });
+
+                Actions.push('login');
+            })
             .catch(error => {
-                registryUserFail(dispatch, error);
+                dispatch({
+                    type: REGISTRY_USER_FAIL,
+                    payload: error.message
+                });
             });
     };
-};
-
-const registryUserFail = (dispatch, error) => {
-    dispatch({
-        type: REGISTRY_USER_FAIL,
-        payload: error.message
-    });
-};
-
-// TODO: registrar lenguaje
-const registryUserSuccess = (dispatch, user, registryForm) => {
-    const { name, surnames, email, password } = registryForm;
-    const { uid } = user;
-    const language = 'es';
-    const address = '';
-
-    firebase.database().ref('/users').child(`/${uid}/account`)
-        .set({ name, surnames, email, address, language })
-        .then(() => {
-            dispatch({
-                type: REGISTRY_USER_SUCCESS,
-                payload: { email, password }
-            });
-
-            Actions.push('login');
-        })
-        .catch(error => {
-            registryUserFail(dispatch, error);
-        });
 };

@@ -18,7 +18,7 @@ class App extends Component {
             .configure()
             .useReactNative()
             .use(reactotronRedux())
-            .configure({ host: '192.168.5.103' })
+            .configure({ host: '192.168.1.9', port:8081 })
             .connect();
     }
 
